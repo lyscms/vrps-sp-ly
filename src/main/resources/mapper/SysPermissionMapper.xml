@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunkl.my.common.dao.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.sunkl.my.common.model.SysPermission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, url, description, pid, type,method, create_by, create_time, update_by, update_time,
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_permission
+    <where>
+      <if test="permissionIds!=null and permissionIds.size()>0">
+       and id in
+        <foreach collection="permissionIds" item="item" open="(" close=")" separator=",">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <select id="selectSelective" parameterType="com.sunkl.my.common.model.SysPermission" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_permission
+    <where>
+        <if test="name != null and name!=''">
+          and name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="url != null and url!=''">
+          and url = #{url,jdbcType=VARCHAR}
+        </if>
+        <if test="description != null">
+          and description = #{description,jdbcType=VARCHAR}
+        </if>
+        <if test="pid != null and pid!=''">
+          and pid = #{pid,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null and type!=''">
+          and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="createBy != null">
+          and create_by = #{createBy,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+          and create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateBy != null">
+          and update_by = #{updateBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updateTime != null">
+          and update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="remark != null">
+          and remark = #{remark,jdbcType=VARCHAR}
+        </if>
+    </where>
+    order by create_time desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sunkl.my.common.model.SysPermission">
+    insert into t_sys_permission (id, name, url, 
+      description, pid, type, method,
+      create_by, create_time, update_by, 
+      update_time, remark)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sunkl.my.common.model.SysPermission">
+    insert into t_sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sunkl.my.common.model.SysPermission">
+    update t_sys_permission
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sunkl.my.common.model.SysPermission">
+    update t_sys_permission
+    set name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
