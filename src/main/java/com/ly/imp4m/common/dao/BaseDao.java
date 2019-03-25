@@ -1,7 +1,5 @@
 package com.ly.imp4m.common.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 /**
@@ -9,7 +7,6 @@ import java.util.List;
  * @author sunkl
  * @date 2018/12/7
  */
-@Mapper
 public interface BaseDao <T>{
     /**
      * deleteByPrimaryKey

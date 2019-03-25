@@ -1,6 +1,5 @@
 package com.ly.imp4m.common.dao;
 
-
 import com.ly.imp4m.common.model.SysUserRoleRelation;
 
 /**

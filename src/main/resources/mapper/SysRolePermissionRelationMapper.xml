@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunkl.my.common.dao.SysRolePermissionRelationMapper">
-  <resultMap id="BaseResultMap" type="com.sunkl.my.common.model.SysRolePermissionRelation">
+<mapper namespace="com.ly.imp4m.common.dao.SysRolePermissionRelationMapper">
+  <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.SysRolePermissionRelation">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="permission_id" jdbcType="VARCHAR" property="permissionId" />
@@ -22,7 +22,7 @@
     order by create_time desc
   </select>
 
-  <select id="selectSelective" parameterType="com.sunkl.my.common.model.SysRolePermissionRelation" resultMap="BaseResultMap">
+  <select id="selectSelective" parameterType="com.ly.imp4m.common.model.SysRolePermissionRelation" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from t_sys_role_permission_relation
@@ -75,7 +75,7 @@
     </where>
   </delete>
 
-  <insert id="insert" parameterType="com.sunkl.my.common.model.SysRolePermissionRelation">
+  <insert id="insert" parameterType="com.ly.imp4m.common.model.SysRolePermissionRelation">
     insert into t_sys_role_permission_relation (id, role_id, permission_id, 
       create_by, create_time, update_by, 
       update_time, remark)
@@ -84,7 +84,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.sunkl.my.common.model.SysRolePermissionRelation">
+  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.SysRolePermissionRelation">
     insert into t_sys_role_permission_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,7 +139,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sunkl.my.common.model.SysRolePermissionRelation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.imp4m.common.model.SysRolePermissionRelation">
     update t_sys_role_permission_relation
     <set>
       <if test="roleId != null">
@@ -166,7 +166,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sunkl.my.common.model.SysRolePermissionRelation">
+  <update id="updateByPrimaryKey" parameterType="com.ly.imp4m.common.model.SysRolePermissionRelation">
     update t_sys_role_permission_relation
     set role_id = #{roleId,jdbcType=VARCHAR},
       permission_id = #{permissionId,jdbcType=VARCHAR},

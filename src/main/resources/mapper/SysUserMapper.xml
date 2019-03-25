@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunkl.my.common.dao.SysUserMapper">
-  <resultMap id="BaseResultMap" type="com.sunkl.my.common.model.SysUser">
+<mapper namespace="com.ly.imp4m.common.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.SysUser">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="org_id" jdbcType="VARCHAR" property="orgId" />
@@ -33,7 +33,7 @@
     delete from t_sys_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.sunkl.my.common.model.SysUser">
+  <insert id="insert" parameterType="com.ly.imp4m.common.model.SysUser">
     insert into t_sys_user (id, name, org_id, 
       account, password, status, 
       enable, last_login_time, last_login_ip_address, 
@@ -47,7 +47,7 @@
       #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.sunkl.my.common.model.SysUser">
+  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.SysUser">
     insert into t_sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -145,7 +145,7 @@
     </trim>
   </insert>
 
-  <select id="select" parameterType="com.sunkl.my.common.model.SysUser" resultMap="BaseResultMap">
+  <select id="select" parameterType="com.ly.imp4m.common.model.SysUser" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from t_sys_user
@@ -157,7 +157,7 @@
     order by create_time desc
   </select>
 
-  <select id="selectOne" parameterType="com.sunkl.my.common.model.SysUser" resultType="com.sunkl.my.common.model.SysUser">
+  <select id="selectOne" parameterType="com.ly.imp4m.common.model.SysUser" resultType="com.ly.imp4m.common.model.SysUser">
     select
     <include refid="Base_Column_List" />
     from t_sys_user
@@ -171,7 +171,7 @@
     </where>
     order by create_time desc
   </select>
-  <update id="update" parameterType="com.sunkl.my.common.model.SysUser">
+  <update id="update" parameterType="com.ly.imp4m.common.model.SysUser">
     update t_sys_user
     <set>
       <if test="updateBy != null and updateBy!=''">

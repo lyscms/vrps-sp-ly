@@ -1,7 +1,6 @@
 package com.ly.imp4m.common.dao;
 
 import com.ly.imp4m.common.model.SysRole;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
  * @author sunkl
  * @date 2018年12月07日 10:47:45
  */
-@Mapper
 public interface SysRoleMapper extends BaseDao<SysRole> {
 
     /**

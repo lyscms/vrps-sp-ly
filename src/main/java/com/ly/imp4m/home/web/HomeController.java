@@ -1,15 +1,15 @@
 package com.ly.imp4m.home.web;
 
-import com.sunkl.my.common.enums.PermissionTypeEnums;
-import com.sunkl.my.common.util.EnvUtils;
-import com.sunkl.my.common.model.SysPermission;
-import com.sunkl.my.common.model.SysRolePermissionRelation;
-import com.sunkl.my.common.model.SysUserRoleRelation;
-import com.sunkl.my.home.web.vo.SysPermissionMenuTreeVo;
-import com.sunkl.my.user.service.SysPermissionService;
-import com.sunkl.my.user.service.SysRolePermissionRelationService;
-import com.sunkl.my.user.service.SysUserRoleRelationService;
-import com.sunkl.my.user.web.vo.SecurityUser;
+import com.ly.imp4m.common.enums.PermissionTypeEnums;
+import com.ly.imp4m.common.util.EnvUtils;
+import com.ly.imp4m.common.model.SysPermission;
+import com.ly.imp4m.common.model.SysRolePermissionRelation;
+import com.ly.imp4m.common.model.SysUserRoleRelation;
+import com.ly.imp4m.home.web.vo.SysPermissionMenuTreeVo;
+import com.ly.imp4m.user.service.SysPermissionService;
+import com.ly.imp4m.user.service.SysRolePermissionRelationService;
+import com.ly.imp4m.user.service.SysUserRoleRelationService;
+import com.ly.imp4m.user.web.vo.SecurityUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
