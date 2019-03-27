@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.imp4m.common.dao.SubClassMapper">
+  <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.SubClass">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="isUse" jdbcType="INTEGER" property="isuse" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="catalog_id" jdbcType="VARCHAR" property="catalogId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, isUse, name, catalog_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_bus_subclass
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_bus_subclass
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ly.imp4m.common.model.SubClass">
+    insert into t_bus_subclass (id, isUse, name, 
+      catalog_id)
+    values (#{id,jdbcType=VARCHAR}, #{isuse,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{catalogId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.SubClass">
+    insert into t_bus_subclass
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isuse != null">
+        isUse,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="catalogId != null">
+        catalog_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null">
+        #{isuse,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        #{catalogId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.imp4m.common.model.SubClass">
+    update t_bus_subclass
+    <set>
+      <if test="isuse != null">
+        isUse = #{isuse,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        catalog_id = #{catalogId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.imp4m.common.model.SubClass">
+    update t_bus_subclass
+    set isUse = #{isuse,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      catalog_id = #{catalogId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
