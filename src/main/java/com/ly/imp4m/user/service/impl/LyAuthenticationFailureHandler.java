@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 @Component
 @Slf4j
-public class SunklMyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class LyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
 
     @Override

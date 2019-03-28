@@ -26,7 +26,7 @@ import java.util.Date;
  */
 @Slf4j
 @Service
-public class SunklMyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class LyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 

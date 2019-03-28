@@ -16,13 +16,13 @@ import java.io.IOException;
  * @date 2018/12/23
  */
 @Service
-public class SunklMyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
+public class LyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
  
     @Autowired
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
  
     @Autowired
-    public void setMyAccessDecisionManager(SunklMyAccessDecisionManager myAccessDecisionManager) {
+    public void setMyAccessDecisionManager(LyAccessDecisionManager myAccessDecisionManager) {
         super.setAccessDecisionManager(myAccessDecisionManager);
     }
  
@@ -42,8 +42,8 @@ public class SunklMyFilterSecurityInterceptor extends AbstractSecurityIntercepto
  
     public void invoke(FilterInvocation fi) throws IOException, ServletException {
         //fi里面有一个被拦截的url
-        //里面调用SunklMyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法获取fi对应的所有权限
-        //再调用SunklMyAccessDecisionManager的decide方法来校验用户的权限是否足够
+        //里面调用LyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法获取fi对应的所有权限
+        //再调用LyAccessDecisionManager的decide方法来校验用户的权限是否足够
         InterceptorStatusToken token = super.beforeInvocation(fi);
         try {
         //执行下一个拦截器

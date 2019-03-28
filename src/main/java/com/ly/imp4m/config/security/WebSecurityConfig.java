@@ -1,6 +1,6 @@
 package com.ly.imp4m.config.security;
 
-import com.ly.imp4m.user.service.impl.SunklMyUserDetailsService;
+import com.ly.imp4m.user.service.impl.LyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SunklMyUserDetailsService sunklMyUserDetailsService;
+    private LyUserDetailsService lyUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(sunklMyUserDetailsService);
+        auth.userDetailsService(lyUserDetailsService);
         auth.inMemoryAuthentication().withUser("user").password("{noop}123456").roles("96dd75eadca94862987bb0ac89af20af");
     }
 }

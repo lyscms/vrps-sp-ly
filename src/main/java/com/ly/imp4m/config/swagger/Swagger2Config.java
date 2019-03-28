@@ -33,7 +33,7 @@ public class Swagger2Config {
                 .title("video_resource_playback_site_sp_ly Restful API")
                 .description("video_resource_playback_site_sp_ly Restful API")
                 .termsOfServiceUrl("http://localhost:8085/")
-                .contact(new Contact("sp-ly","http://localhost:8080","sunklmy@163.com"))
+                .contact(new Contact("sp-ly","http://localhost:8080","Ly@163.com"))
                 .version("1.0")
                 .build();
     }

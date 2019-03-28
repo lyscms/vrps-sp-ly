@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @Slf4j
-public class SunklMyUserDetailsService implements UserDetailsService {
+public class LyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private SysUserService sysUserService;

@@ -20,7 +20,7 @@ import java.util.*;
  * @date 2018/12/23
  */
 @Service
-public class SunklMyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
+public class LyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
  
 
     private HashMap<String, Collection<ConfigAttribute>> map =null;
@@ -40,7 +40,7 @@ public class SunklMyInvocationSecurityMetadataSourceService implements FilterInv
             array = new ArrayList<>();
             cfg = new SecurityConfig(permission.getId());
             //此处只添加了用户的名字，其实还可以添加更多权限的信息，
-            // 例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为SunklMyAccessDecisionManager类的decide的第三个参数。
+            // 例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为LyAccessDecisionManager类的decide的第三个参数。
             array.add(cfg);
             //用权限的getUrl() 作为map的key，用ConfigAttribute的集合作为 value，
             if(!StringUtils.isEmpty(permission.getUrl())){
