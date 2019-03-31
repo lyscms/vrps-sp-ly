@@ -3,8 +3,9 @@ package com.ly.imp4m.common.dao;
 import com.ly.imp4m.common.model.Level;
 
 /**
+ * 影片级别
  * @author sunkl
- * @date 2019年03月28日 00:18:21
+ * @date 2019年03月31日 10:45:31
  */
 public interface LevelMapper extends BaseDao<Level> {
     int updateByPrimaryKey(Level record);

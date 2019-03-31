@@ -1,7 +1,7 @@
 package com.ly.imp4m.common.util;
 
 
-import com.ly.imp4m.user.web.vo.SecurityUser;
+import com.ly.imp4m.management.user.web.vo.SecurityUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

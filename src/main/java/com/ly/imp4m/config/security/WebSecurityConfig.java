@@ -1,6 +1,6 @@
 package com.ly.imp4m.config.security;
 
-import com.ly.imp4m.user.service.impl.LyUserDetailsService;
+import com.ly.imp4m.management.user.service.impl.LyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

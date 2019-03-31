@@ -56,7 +56,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="t_bus_catalog" domainObjectName="Catalog"
+        <table tableName="t_bus_catalog" domainObjectName="CataLog"
                enableSelectByExample="false"
                enableCountByExample="false"
                enableDeleteByExample="false"
@@ -126,7 +126,7 @@
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
         />
-        <table tableName="t_bus_vipcode" domainObjectName="VipCode"
+        <table tableName="t_bus_vip_code" domainObjectName="VipCode"
                enableSelectByExample="false"
                enableCountByExample="false"
                enableDeleteByExample="false"
