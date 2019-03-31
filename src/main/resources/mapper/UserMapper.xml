@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.imp4m.common.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.User">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="is_vip" jdbcType="INTEGER" property="isVip" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_passwd" jdbcType="VARCHAR" property="userPasswd" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ly.imp4m.common.model.User">
+    insert into t_bus_user (id, is_vip, create_time, 
+      expire_time, user_email, user_name, 
+      user_passwd)
+    values (#{id,jdbcType=VARCHAR}, #{isVip,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{expireTime,jdbcType=TIMESTAMP}, #{userEmail,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userPasswd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.User">
+    insert into t_bus_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isVip != null">
+        is_vip,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPasswd != null">
+        user_passwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null">
+        #{isVip,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPasswd != null">
+        #{userPasswd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
