@@ -1,11 +1,10 @@
 package com.ly.imp4m.foreign.controller;
 
-import com.imp4m.entity.*;
-import com.imp4m.service.*;
-import com.imp4m.util.DateUtil;
-import com.imp4m.util.FileOperate;
-import com.imp4m.util.PageBean;
-import com.imp4m.util.Tools;
+import com.github.pagehelper.PageInfo;
+import com.ly.imp4m.common.model.*;
+import com.ly.imp4m.foreign.service.*;
+import com.ly.imp4m.util.FileOperate;
+import com.ly.imp4m.util.Tools;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -107,7 +106,7 @@ public class Manager {
     public String film(ModelMap map, String film_id, HttpSession session) {
         if (film_id != null && !"".equals(film_id)) {
             map.addAttribute("film", filmService.load(film_id));
-            List<Res> list = resService.listByfilm_id(film_id);
+            List<Res> list = resService.listByfilmId(film_id);
             if (list.size() == 0) {
                 map.addAttribute("res", null);
             } else {
@@ -149,10 +148,8 @@ public class Manager {
          */
         subClass.setIsUse(1);//设置默认在使用
 
-
         //设置上级目录
-        CataLog cataLog = cataLogService.load(cataLog_id);
-        subClass.setCataLog(cataLog);
+        subClass.setCatalogId(cataLog_id);
 
         //添加二级子类目录
         String id = subClassService.add(subClass);
@@ -171,8 +168,7 @@ public class Manager {
 
 
         //设置上级目录
-        SubClass subClass = subClassService.load(subClass_id);
-        type.setSubClass(subClass);
+        type.setSubclassId(subClass_id);
 
         //添加二级子类目录
         String id = typeService.add(type);
@@ -215,7 +211,7 @@ public class Manager {
     @RequestMapping(value = "/addLoc.html")
     public
     @ResponseBody
-    String addLoc(Loc loc) {
+    String addLoc(Location loc) {
         /**
          * 初始化参数
          */
@@ -249,21 +245,21 @@ public class Manager {
      * 添加资源
      *
      * @param res
-     * @param film_id
+     * @param filmId
      * @return
      */
     @RequestMapping(value = "/addRes.html")
     public
     @ResponseBody
-    String addRes(Res res, String film_id) {
+    String addRes(Res res, String filmId) {
         /**
          * 初始化参数
          */
         res.setIsUse(1);//设置默认在使用
 
-        Film film = filmService.load(film_id);
-        res.setFilm(film);
-        res.setUpdateTime(DateUtil.getTime());
+        Film film = filmService.load(filmId);
+        res.setFilmId(filmId);
+        res.setUpdateTime(new Date());
         /**
          * 多资源上传
          */
@@ -291,7 +287,7 @@ public class Manager {
         }
 
         /**最近更新时间*/
-        film.setUpdateTime(DateUtil.getTime());
+        film.setUpdateTime(new Date());
         filmService.update(film);
         return id;
     }
@@ -330,12 +326,16 @@ public class Manager {
                 film.setTypeName(val);
                 break;
             case "type_id":
-                film.setType_id(val);
+                film.setTypeId(val);
                 Type type = typeService.load(val);
-                film.setSubClass_id(type.getSubClass().getId());
-                film.setSubClassName(type.getSubClass().getName());
-                film.setCataLog_id(type.getSubClass().getCataLog().getId());
-                film.setCataLogName(type.getSubClass().getCataLog().getName());
+
+                SubClass subClass = subClassService.load(type.getSubclassId());
+                film.setSubClassId(type.getSubclassId());
+                film.setSubClassName(subClass.getName());
+
+                CataLog cataLog = cataLogService.load(subClass.getCatalogId());
+                film.setCataLogId(cataLog.getId());
+                film.setCataLogName(cataLog.getName());
                 break;
             case "actor":
                 film.setActor(val);
@@ -344,7 +344,7 @@ public class Manager {
                 film.setLocName(val);
                 break;
             case "loc_id":
-                film.setLoc_id(val);
+                film.setLocId(val);
                 break;
             case "plot":
                 film.setPlot(val);
@@ -399,14 +399,14 @@ public class Manager {
     /**
      * 获取subClass二级目录信息
      *
-     * @param catalog_id
+     * @param cataLogId
      * @return
      */
     @RequestMapping(value = "/getSubClass.html", produces = "text/html;charset=UTF-8")
     public
     @ResponseBody
-    String getSubClass(String catalog_id) {
-        List<SubClass> subClasses = subClassService.listByCataLog_id(catalog_id);
+    String getSubClass(String cataLogId) {
+        List<SubClass> subClasses = subClassService.listByCataLogId(cataLogId);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
             @Override
@@ -434,7 +434,7 @@ public class Manager {
     public
     @ResponseBody
     String getType(String subClass_id) {
-        List<Type> types = typeService.listBySubClass_id(subClass_id);
+        List<Type> types = typeService.listBySubClassId(subClass_id);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
             @Override
@@ -511,19 +511,19 @@ public class Manager {
         if (flag != 0) {
             ob.setIsUse(1);
         }
-        PageBean<Film> pb = filmService.getPage(ob, pc, ps);
+        PageInfo<Film> page = filmService.getPage(ob, pc, ps);
 
-        pb.setUrl(url);
              /*存入到request域中*/
-        map.addAttribute("pb", pb);
+        map.addAttribute("pb", page);
         /**
          * 4. 转发到list.jsp
-         */}
+         */
+    }
 
     private void getCatalog(ModelMap map) {
         List<CataLog> cataLogList = cataLogService.listIsUse();
         List<Type> typeList = typeService.listIsUse();
-        List<Loc> locList = locService.listIsUse();
+        List<Location> locList = locService.listIsUse();
         List<Level> levelList = levelService.listIsUse();
         List<Decade> decadeList = decadeService.listIsUse();
 
@@ -553,10 +553,10 @@ public class Manager {
             for (int i = 0; i < n; i++) {
                 vipCode = new VipCode();
                 vipCode.setCode(Tools.UUID());
-                vipCode.setIs_use("1");
+                vipCode.setIsUse(1);
                 vipCode.setId(Tools.UUID());
-                vipCode.setCreate_time(new Date());
-                vipCode.setExpire_time(new Date());
+                vipCode.setCreateTime(new Date());
+                vipCode.setExpireTime(new Date());
                 vipCodes.add(vipCode);
             }
             int rtn = vipCodeService.saveAll(vipCodes);

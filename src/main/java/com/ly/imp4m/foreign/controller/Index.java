@@ -1,10 +1,10 @@
 package com.ly.imp4m.foreign.controller;
 
-import com.imp4m.entity.*;
-import com.imp4m.service.*;
-import com.imp4m.util.DateUtil;
-import com.imp4m.util.PageBean;
-import com.imp4m.util.Tools;
+import com.github.pagehelper.PageInfo;
+import com.ly.imp4m.common.model.*;
+import com.ly.imp4m.foreign.service.*;
+import com.ly.imp4m.util.DateUtil;
+import com.ly.imp4m.util.Tools;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -70,7 +70,7 @@ public class Index {
 
         String subClass_id = request.getParameter("subClass_id");
         if(Tools.notEmpty(subClass_id)){
-            List<Type> typeList = typeService.listIsUseBySubClass_id(subClass_id);
+            List<Type> typeList = typeService.listIsUseBySubClassId(subClass_id);
             map.addAttribute("typeList",typeList);
         }
         getCatalog(map);
@@ -122,70 +122,45 @@ public class Index {
          * 根据类型查询影片
          */
 
-        List<Film> films = filmService.listByType_id(film.getType_id());
+        List<Film> films = filmService.listByTypeId(film.getTypeId());
         map.addAttribute("films",films);
+
+        /**
+         * 获取资源
+         */
+        List<Res> res = resService.listByfilmId(film.getId());
 
 
         /**
          * 获取资源
          */
-        List<Res> resListEd2k = new ArrayList<Res>();
-        List<Res> resListThunder= new ArrayList<Res>();
-        List<Res> resListHttp= new ArrayList<Res>();
-        List<Res> resListDupan= new ArrayList<Res>();
-        List<Res> resListFlh= new ArrayList<Res>();
-        List<Res> resListOther= new ArrayList<Res>();
-        for (int i = 0; i < film.getResList().size(); i++) {
-            if("ed2k".equals(film.getResList().get(i).getLinkType())&&film.getResList().get(i).getIsUse()==1){
-                resListEd2k.add(film.getResList().get(i));
-            }else if("thunder".equals(film.getResList().get(i).getLinkType())&&film.getResList().get(i).getIsUse()==1){
-                resListThunder.add(film.getResList().get(i));
-            }else if("http".equals(film.getResList().get(i).getLinkType())&&film.getResList().get(i).getIsUse()==1){
-                resListHttp.add(film.getResList().get(i));
-            }else if("dupan".equals(film.getResList().get(i).getLinkType())&&film.getResList().get(i).getIsUse()==1){
-                resListDupan.add(film.getResList().get(i));
-            }else if("Flh".equals(film.getResList().get(i).getLinkType())&&film.getResList().get(i).getIsUse()==1){
-                resListFlh.add(film.getResList().get(i));
-            }else if(film.getResList().get(i).getIsUse()==1){
-                resListOther.add(film.getResList().get(i));
+        List<Res> resListEd2k = new ArrayList<>();
+        List<Res> resListThunder= new ArrayList<>();
+        List<Res> resListHttp= new ArrayList<>();
+        List<Res> resListDupan= new ArrayList<>();
+        List<Res> resListFlh= new ArrayList<>();
+        List<Res> resListOther= new ArrayList<>();
+        for (int i = 0; i < res.size(); i++) {
+            if("ed2k".equals(res.get(i).getLinkType())&&res.get(i).getIsUse()==1){
+                resListEd2k.add(res.get(i));
+            }else if("thunder".equals(res.get(i).getLinkType())&&res.get(i).getIsUse()==1){
+                resListThunder.add(res.get(i));
+            }else if("http".equals(res.get(i).getLinkType())&&res.get(i).getIsUse()==1){
+                resListHttp.add(res.get(i));
+            }else if("dupan".equals(res.get(i).getLinkType())&&res.get(i).getIsUse()==1){
+                resListDupan.add(res.get(i));
+            }else if("Flh".equals(res.get(i).getLinkType())&&res.get(i).getIsUse()==1){
+                resListFlh.add(res.get(i));
+            }else if(res.get(i).getIsUse()==1){
+                resListOther.add(res.get(i));
             }
         }
-        Collections.sort(resListEd2k, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
-        Collections.sort(resListThunder, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
-        Collections.sort(resListHttp, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
-        Collections.sort(resListDupan, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
-        Collections.sort(resListFlh, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
-        Collections.sort(resListOther, new Comparator<Res>() {
-            @Override
-            public int compare(Res o1, Res o2) {
-                return o1.getEpisodes()-o2.getEpisodes();
-            }
-        });
+        Collections.sort(resListEd2k, Comparator.comparingInt(Res::getEpisodes));
+        Collections.sort(resListThunder, Comparator.comparingInt(Res::getEpisodes));
+        Collections.sort(resListHttp, Comparator.comparingInt(Res::getEpisodes));
+        Collections.sort(resListDupan, Comparator.comparingInt(Res::getEpisodes));
+        Collections.sort(resListFlh, Comparator.comparingInt(Res::getEpisodes));
+        Collections.sort(resListOther, Comparator.comparingInt(Res::getEpisodes));
 
         map.addAttribute("resListEd2k",resListEd2k);
         map.addAttribute("resListThunder",resListThunder);
@@ -207,7 +182,7 @@ public class Index {
             /**
              *  1. 查询出所有该影片的评分
              */
-            List<Raty> list = ratyService.listALLByFilm_id(raty.getFilm_id());
+            List<Raty> list = ratyService.listALLByFilmId(raty.getFilmId());
             int count = 0;
             for (int i = 0; i < list.size(); i++) {
                 count = count+Integer.parseInt(list.get(i).getScore());
@@ -223,7 +198,7 @@ public class Index {
             /**
              * 3.更改film的评分
              */
-            Film film = filmService.load(raty.getFilm_id());
+            Film film = filmService.load(raty.getFilmId());
             film.setEvaluation(evaluation);
             if(filmService.update(film)){
                 jsonObject.put("code","1");
@@ -296,9 +271,9 @@ public class Index {
         if(flag!=0){
             ob.setIsUse(1);
         }
-        PageBean<Film> pb = filmService.getPage(ob,pc,ps);
+        PageInfo<Film> pb = filmService.getPage(ob, pc, ps);
 
-        pb.setUrl(url);
+        //pb.setUrl(url);
              /*存入到request域中*/
         map.addAttribute("pb",pb);
         /**
@@ -307,7 +282,7 @@ public class Index {
 
     private void getCatalog(ModelMap map) {
         List<CataLog> cataLogList =  cataLogService.listIsUse();
-        List<Loc> locList = locService.listIsUse();
+        List<Location> locList = locService.listIsUse();
         List<Level> levelList = levelService.listIsUse();
         List<Decade> decadeList = decadeService.listIsUse();
 

@@ -1,7 +1,5 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.ResourceMapper;
-import com.ly.imp4m.common.model.Res;
 import com.ly.imp4m.foreign.service.IResService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
@@ -34,7 +32,7 @@ public class ResService implements IResService {
      * @return
      */
     @Override
-    public List<Res> listByfilm_id(String filmId) {
+    public List<Res> listByfilmId(String filmId) {
         Res res = new Res();
         res.setFilmId(filmId);
         return resourceMapper.selectSelective(res);

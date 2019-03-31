@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ly.imp4m.common.dao.ResourceMapper">
+<mapper namespace="com.ly.imp4m.common.dao.ResMapper">
   <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.Res">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="episodes" jdbcType="INTEGER" property="episodes" />
     <result column="is_use" jdbcType="INTEGER" property="isUse" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
     <result column="link_type" jdbcType="VARCHAR" property="linkType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
     <result column="film_id" jdbcType="VARCHAR" property="filmId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ly.imp4m.common.model.ResourceWithBLOBs">
-    <result column="link" jdbcType="LONGVARCHAR" property="link" />
-    <result column="name" jdbcType="LONGVARCHAR" property="name" />
-  </resultMap>
   <sql id="Base_Column_List">
-    id, episodes, is_use, link_type, update_time, film_id
+    id, episodes, is_use, link, link_type, name, update_time, film_id
   </sql>
-  <sql id="Blob_Column_List">
-    link, name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_bus_res
     where id = #{id,jdbcType=VARCHAR}
   </select>
@@ -31,15 +24,15 @@
     delete from t_bus_res
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.ly.imp4m.common.model.ResourceWithBLOBs">
+  <insert id="insert" parameterType="com.ly.imp4m.common.model.Res">
     insert into t_bus_res (id, episodes, is_use, 
-      link_type, update_time, film_id, 
-      link, name)
+      link, link_type, name, 
+      update_time, film_id)
     values (#{id,jdbcType=VARCHAR}, #{episodes,jdbcType=INTEGER}, #{isUse,jdbcType=INTEGER}, 
-      #{linkType,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{filmId,jdbcType=VARCHAR}, 
-      #{link,jdbcType=LONGVARCHAR}, #{name,jdbcType=LONGVARCHAR})
+      #{link,jdbcType=VARCHAR}, #{linkType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{filmId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.ResourceWithBLOBs">
+  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.Res">
     insert into t_bus_res
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -51,20 +44,20 @@
       <if test="isUse != null">
         is_use,
       </if>
+      <if test="link != null">
+        link,
+      </if>
       <if test="linkType != null">
         link_type,
+      </if>
+      <if test="name != null">
+        name,
       </if>
       <if test="updateTime != null">
         update_time,
       </if>
       <if test="filmId != null">
         film_id,
-      </if>
-      <if test="link != null">
-        link,
-      </if>
-      <if test="name != null">
-        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -77,8 +70,14 @@
       <if test="isUse != null">
         #{isUse,jdbcType=INTEGER},
       </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
       <if test="linkType != null">
         #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=VARCHAR},
@@ -86,15 +85,9 @@
       <if test="filmId != null">
         #{filmId,jdbcType=VARCHAR},
       </if>
-      <if test="link != null">
-        #{link,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ly.imp4m.common.model.ResourceWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.imp4m.common.model.Res">
     update t_bus_res
     <set>
       <if test="episodes != null">
@@ -103,8 +96,14 @@
       <if test="isUse != null">
         is_use = #{isUse,jdbcType=INTEGER},
       </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
       <if test="linkType != null">
         link_type = #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=VARCHAR},
@@ -112,31 +111,16 @@
       <if test="filmId != null">
         film_id = #{filmId,jdbcType=VARCHAR},
       </if>
-      <if test="link != null">
-        link = #{link,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ly.imp4m.common.model.ResourceWithBLOBs">
-    update t_bus_res
-    set episodes = #{episodes,jdbcType=INTEGER},
-      is_use = #{isUse,jdbcType=INTEGER},
-      link_type = #{linkType,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=VARCHAR},
-      film_id = #{filmId,jdbcType=VARCHAR},
-      link = #{link,jdbcType=LONGVARCHAR},
-      name = #{name,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ly.imp4m.common.model.Res">
     update t_bus_res
     set episodes = #{episodes,jdbcType=INTEGER},
       is_use = #{isUse,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
       link_type = #{linkType,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=VARCHAR},
       film_id = #{filmId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

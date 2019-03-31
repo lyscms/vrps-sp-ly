@@ -1,9 +1,9 @@
 package com.ly.imp4m.foreign.controller;
 
-import com.imp4m.entity.CataLog;
-import com.imp4m.entity.Film;
-import com.imp4m.service.ICataLogService;
-import com.imp4m.service.IFilmService;
+
+import com.ly.imp4m.common.model.CataLog;
+import com.ly.imp4m.common.model.Film;
+import com.ly.imp4m.foreign.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +28,9 @@ public class Start {
     private ICataLogService cataLogService;
 
     @RequestMapping(value = "index.html")
-    public String index(ModelMap map){
-        List<CataLog> cataLogList =  cataLogService.listIsUse();
-        map.addAttribute("cataLogList",cataLogList);
+    public String index(ModelMap map) {
+        List<CataLog> cataLogList = cataLogService.listIsUse();
+        map.addAttribute("cataLogList", cataLogList);
         /**
          * 查询推荐
          */
@@ -38,34 +38,34 @@ public class Start {
         List<Object> list = new ArrayList<Object>();
         for (int i = 0; i < cataLogList.size(); i++) {
 
-            List<Film> film = filmService.listByCataLog_id(cataLogList.get(i).getId());
-            if(film.size()!=0){
+            List<Film> film = filmService.listByCataLogId(cataLogList.get(i).getId());
+            if (film.size() != 0) {
                 list.add(film);
             }
         }
-        map.addAttribute("filmTuijian",list);
+        map.addAttribute("filmTuijian", list);
 
         List<Object> list1 = new ArrayList<Object>();
         for (int i = 0; i < cataLogList.size(); i++) {
 
             List<Film> film = filmService.listByEvaluation(cataLogList.get(i).getId());
-            if(film.size()!=0){
+            if (film.size() != 0) {
                 list1.add(film);
             }
         }
-        map.addAttribute("filmPaiHang",list1);
+        map.addAttribute("filmPaiHang", list1);
         return "index/index";
     }
 
     @RequestMapping(value = "note.html")
-    public String note(ModelMap map){
-        List<CataLog> cataLogList =  cataLogService.listIsUse();
-        map.addAttribute("cataLogList",cataLogList);
+    public String note(ModelMap map) {
+        List<CataLog> cataLogList = cataLogService.listIsUse();
+        map.addAttribute("cataLogList", cataLogList);
         return "index/note";
     }
 
     @RequestMapping(value = "error.html")
-    public String error(ModelMap map){
+    public String error() {
         return "index/error";
     }
 

@@ -1,13 +1,13 @@
 package com.ly.imp4m.foreign.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.imp4m.entity.User;
-import com.imp4m.entity.VipCode;
-import com.imp4m.service.IUserService;
-import com.imp4m.service.IVipCodeService;
-import com.imp4m.util.MD5Auth;
-import com.imp4m.util.Tools;
+import com.ly.imp4m.common.model.User;
+import com.ly.imp4m.common.model.VipCode;
+import com.ly.imp4m.foreign.service.IUserService;
+import com.ly.imp4m.foreign.service.IVipCodeService;
+import com.ly.imp4m.util.MD5Auth;
+import com.ly.imp4m.util.Tools;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,8 +63,8 @@ public class Authentication {
             userCondition.setUserName(user.getUserName());
             users = userService.findByCondition(userCondition);
             if(users==null || users.isEmpty()){
-                user.setCreateDate(new Date());
-                user.setExpireDate(new Date());
+                user.setCreateTime(new Date());
+                user.setExpireTime(new Date());
                 user.setUserPasswd(MD5Auth.MD5Encode(user.getUserPasswd()+key, "UTF-8").toUpperCase());
                 User u = userService.add(user);
                 if(null!=u){
@@ -132,7 +132,7 @@ public class Authentication {
             jsonObject.put("code","1");
 
             /**进行VIP身份过期校验*/
-            if(userDb.getExpireDate().getTime()<=new Date().getTime()){
+            if(userDb.getExpireTime().getTime()<=new Date().getTime()){
                 /**当前过期时间与当前的时间小，则表示已经过期*/
                 userDb.setIsVip(0);
                 userService.update(userDb);
@@ -171,7 +171,7 @@ public class Authentication {
             User user = userService.load(u_skl.getId());
             if(user!=null){
                 /**获取该用户的到期时间*/
-                Date expireTime = user.getExpireDate();
+                Date expireTime = user.getExpireTime();
                 Date expireTimeTemp = expireTime;
                 long isVip = user.getIsVip();
                 /**判断是否比当前时间大*/
@@ -184,19 +184,19 @@ public class Authentication {
                     rightNow.add(Calendar.MONTH,1);
                     expireTime = rightNow.getTime();
                 }
-                user.setExpireDate(expireTime);
+                user.setExpireTime(expireTime);
                 user.setIsVip(1);
                 if(userService.update(user)){
                     session.setAttribute(USER_KEY,user);
 
                     /**修改vipCode为不能使用，增加过期时间*/
-                    vipCode.setExpire_time(new Date());
-                    vipCode.setIs_use("0");
+                    vipCode.setExpireTime(new Date());
+                    vipCode.setIsUse(0);
                     if(vipCodeService.update(vipCode)){
                         jsonObject.put("code","1");
                     }else{
-                        user.setExpireDate(expireTimeTemp);
-                        user.setIsVip(isVip);
+                        user.setExpireTime(expireTimeTemp);
+                        user.setIsVip((int)isVip);
                         userService.update(user);
                     }
                 }else{

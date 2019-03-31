@@ -13,7 +13,7 @@ import java.util.List;
 public interface IResService {
     String add(Res res);
 
-    List<Res> listByfilm_id(String film_id);
+    List<Res> listByfilmId(String film_id);
 
     boolean delete(String res_id);
 
