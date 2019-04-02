@@ -1,10 +1,12 @@
 package com.ly.imp4m.common.model;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * 数据展示层
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Table(name = "t_sys_user")
 public class SysUser extends BaseModel {
     /**
      * 用户名称

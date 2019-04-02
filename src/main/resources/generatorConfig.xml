@@ -56,12 +56,13 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <!--<table tableName="t_bus_catalog" domainObjectName="CataLog"
+        <table tableName="t_bus_catalog" domainObjectName="CataLog"
                enableSelectByExample="false"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_film" domainObjectName="Film"
                enableSelectByExample="false"
@@ -69,6 +70,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_decade" domainObjectName="Decade"
                enableSelectByExample="false"
@@ -76,6 +78,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_level" domainObjectName="Level"
                enableSelectByExample="false"
@@ -83,6 +86,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_loc" domainObjectName="Location"
                enableSelectByExample="false"
@@ -90,6 +94,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_raty" domainObjectName="Raty"
                enableSelectByExample="false"
@@ -97,20 +102,23 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
-        />-->
+               enableSelectByPrimaryKey="false"
+        />
         <table tableName="t_bus_res" domainObjectName="Res"
                enableSelectByExample="false"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
-        <!--<table tableName="t_bus_subclass" domainObjectName="SubClass"
+        <table tableName="t_bus_subclass" domainObjectName="SubClass"
                enableSelectByExample="false"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_type" domainObjectName="Type"
                enableSelectByExample="false"
@@ -118,6 +126,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_user" domainObjectName="User"
                enableSelectByExample="false"
@@ -125,6 +134,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_vip_code" domainObjectName="VipCode"
                enableSelectByExample="false"
@@ -132,6 +142,7 @@
                enableDeleteByExample="false"
                enableUpdateByExample="false"
                selectByExampleQueryId="false"
-        />-->
+               enableSelectByPrimaryKey="false"
+        />
     </context>
 </generatorConfiguration>

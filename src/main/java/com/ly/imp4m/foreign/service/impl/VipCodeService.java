@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.VipCodeMapper;
+import com.ly.imp4m.common.dao.impl.VipCodeMapper;
 import com.ly.imp4m.common.model.VipCode;
 import com.ly.imp4m.foreign.service.IVipCodeService;
 import org.apache.commons.collections.CollectionUtils;
@@ -29,7 +29,7 @@ public class VipCodeService implements IVipCodeService {
     public List<VipCode> listIsUse() {
         VipCode vipCode = new VipCode();
         vipCode.setIsUse(1);
-        return vipCodeMapper.selectSelective(vipCode);
+        return vipCodeMapper.select(vipCode);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class VipCodeService implements IVipCodeService {
         VipCode vipCode = new VipCode();
         vipCode.setIsUse(1);
         vipCode.setCode(code);
-        List<VipCode> vipCodes = vipCodeMapper.selectSelective(vipCode);
+        List<VipCode> vipCodes = vipCodeMapper.select(vipCode);
         return CollectionUtils.isEmpty(vipCodes) ? null : vipCodes.get(0);
     }
 

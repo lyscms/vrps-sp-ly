@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ly.imp4m.common.dao.VipCodeMapper">
+<mapper namespace="com.ly.imp4m.common.dao.impl.VipCodeMapper">
   <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.VipCode">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
@@ -11,83 +11,4 @@
   <sql id="Base_Column_List">
     id, code, is_use, create_time, expire_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_bus_vip_code
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_bus_vip_code
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.ly.imp4m.common.model.VipCode">
-    insert into t_bus_vip_code (id, code, is_use, 
-      create_time, expire_time)
-    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{isUse,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.ly.imp4m.common.model.VipCode">
-    insert into t_bus_vip_code
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="code != null">
-        code,
-      </if>
-      <if test="isUse != null">
-        is_use,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="expireTime != null">
-        expire_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="isUse != null">
-        #{isUse,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="expireTime != null">
-        #{expireTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ly.imp4m.common.model.VipCode">
-    update t_bus_vip_code
-    <set>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="isUse != null">
-        is_use = #{isUse,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="expireTime != null">
-        expire_time = #{expireTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ly.imp4m.common.model.VipCode">
-    update t_bus_vip_code
-    set code = #{code,jdbcType=VARCHAR},
-      is_use = #{isUse,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      expire_time = #{expireTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

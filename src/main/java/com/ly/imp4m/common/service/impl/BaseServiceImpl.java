@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @date 2018/12/7
  */
 @Service
-public class BaseServiceImpl<T> implements BaseService<T> {
+public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
     @Autowired
     private BaseDao<T> baseDao;

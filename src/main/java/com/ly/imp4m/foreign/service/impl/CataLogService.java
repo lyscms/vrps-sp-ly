@@ -1,5 +1,5 @@
 package com.ly.imp4m.foreign.service.impl;
-import com.ly.imp4m.common.dao.CataLogMapper;
+import com.ly.imp4m.common.dao.impl.CataLogMapper;
 import com.ly.imp4m.common.model.CataLog;
 import com.ly.imp4m.foreign.service.ICataLogService;
 import org.springframework.stereotype.Component;
@@ -38,7 +38,7 @@ public class CataLogService implements ICataLogService {
     public List<CataLog> listIsUse() {
         CataLog cataLog = new CataLog();
         cataLog.setIsUse(1);
-        return cataLogMapper.selectSelective(cataLog);
+        return cataLogMapper.select(cataLog);
     }
 
     @Override

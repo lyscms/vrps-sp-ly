@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ly.impl4m</groupId>
-    <artifactId>video_resource_playback_site</artifactId>
+    <artifactId>video_resource_playback_site_sp_ly</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>video_resource_playback_site</name>
+    <name>video_resource_playback_site_sp_ly</name>
     <description>VideoResourcePlaybackSite project for Spring Boot</description>
 
     <properties>
@@ -54,6 +54,12 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>2.1.5</version>
         </dependency>
 
         <dependency>

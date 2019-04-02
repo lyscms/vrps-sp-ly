@@ -1,6 +1,6 @@
 package com.ly.imp4m.management.user.service.impl;
 
-import com.ly.imp4m.common.dao.SysUserRoleRelationMapper;
+import com.ly.imp4m.common.dao.impl.SysUserRoleRelationMapper;
 import com.ly.imp4m.common.model.SysUserRoleRelation;
 import com.ly.imp4m.common.service.impl.BaseServiceImpl;
 import com.ly.imp4m.management.user.service.SysUserRoleRelationService;
@@ -25,7 +25,7 @@ public class SysUserRoleRelationServiceImpl extends BaseServiceImpl<SysUserRoleR
     public void deleteByUserId(String userId) {
         SysUserRoleRelation sysUserRoleRelation = new SysUserRoleRelation();
         sysUserRoleRelation.setUserId(userId);
-        sysUserRoleRelationMapper.deleteSelective(sysUserRoleRelation);
+        sysUserRoleRelationMapper.delete(sysUserRoleRelation);
     }
 
     @Override
@@ -50,6 +50,6 @@ public class SysUserRoleRelationServiceImpl extends BaseServiceImpl<SysUserRoleR
     public List<SysUserRoleRelation> selectSysUserRelationRoleInfo(String userId) {
         SysUserRoleRelation sysUserRoleRelation = new SysUserRoleRelation();
         sysUserRoleRelation.setUserId(userId);
-        return sysUserRoleRelationMapper.selectSelective(sysUserRoleRelation);
+        return sysUserRoleRelationMapper.select(sysUserRoleRelation);
     }
 }

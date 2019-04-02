@@ -1,5 +1,7 @@
 package com.ly.imp4m.foreign.service.impl;
 
+import com.ly.imp4m.common.dao.impl.ResMapper;
+import com.ly.imp4m.common.model.Res;
 import com.ly.imp4m.foreign.service.IResService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
@@ -17,13 +19,13 @@ import java.util.List;
 public class ResService implements IResService {
 
     @Resource
-    private ResourceMapper resourceMapper;
+    private ResMapper resMapper;
 
     @Override
     public String add(Res res) {
         res.setIsUse(1);
         res.setUpdateTime(new Date());
-        return resourceMapper.insert(res) > 0 ? res.getId() : "0";
+        return resMapper.insert(res) > 0 ? res.getId() : "0";
     }
 
     /**
@@ -32,15 +34,15 @@ public class ResService implements IResService {
      * @return
      */
     @Override
-    public List<Res> listByfilmId(String filmId) {
+    public List<Res> listByFilmId(String filmId) {
         Res res = new Res();
         res.setFilmId(filmId);
-        return resourceMapper.selectSelective(res);
+        return resMapper.select(res);
     }
 
     @Override
     public boolean delete(String resId) {
-        return resourceMapper.deleteByPrimaryKey(resId) > 0;
+        return resMapper.deleteByPrimaryKey(resId) > 0;
     }
 
     /**
@@ -50,14 +52,14 @@ public class ResService implements IResService {
      */
     @Override
     public boolean updateIsUse(String resId) {
-        Res res = resourceMapper.selectByPrimaryKey(resId);
+        Res res = resMapper.selectByPrimaryKey(resId);
         int isUse = res.getIsUse();
         if (isUse == 1) {
             res.setIsUse(0);
         } else {
             res.setIsUse(1);
         }
-        return resourceMapper.updateByPrimaryKeySelective(res) > 0;
+        return resMapper.updateByPrimaryKeySelective(res) > 0;
     }
 
     @Override
@@ -65,6 +67,6 @@ public class ResService implements IResService {
         Res res = new Res();
         res.setFilmId(filmId);
         res.setLinkType(linkType);
-        return resourceMapper.selectSelective(res);
+        return resMapper.select(res);
     }
 }

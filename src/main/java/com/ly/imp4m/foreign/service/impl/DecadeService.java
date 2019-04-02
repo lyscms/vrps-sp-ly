@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.DecadeMapper;
+import com.ly.imp4m.common.dao.impl.DecadeMapper;
 import com.ly.imp4m.common.model.Decade;
 import com.ly.imp4m.foreign.service.IDecadeService;
 import org.springframework.stereotype.Component;

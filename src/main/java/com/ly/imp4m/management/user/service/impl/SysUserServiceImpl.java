@@ -2,7 +2,7 @@ package com.ly.imp4m.management.user.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ly.imp4m.common.dao.SysUserMapper;
+import com.ly.imp4m.common.dao.impl.SysUserMapper;
 import com.ly.imp4m.common.enums.EnableStatusEnums;
 import com.ly.imp4m.common.enums.OnlineStatusEnums;
 import com.ly.imp4m.common.model.SysUser;
@@ -58,7 +58,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements SysU
 
     @Override
     public void update(SysUser sysUser) {
-        sysUserMapper.update(sysUser);
+        sysUserMapper.updateByPrimaryKey(sysUser);
     }
 
     @Override

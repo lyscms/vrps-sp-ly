@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.UserMapper;
+import com.ly.imp4m.common.dao.impl.UserMapper;
 import com.ly.imp4m.common.model.User;
 import com.ly.imp4m.foreign.service.IUserService;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     public List<User> listIsUse() {
         User user = new User();
         user.setIsUse(1);
-        return userMapper.selectSelective(user);
+        return userMapper.select(user);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findByCondition(User user) {
-        return userMapper.selectSelective(user);
+        return userMapper.select(user);
     }
 
     @Override

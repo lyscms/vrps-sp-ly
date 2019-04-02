@@ -1,6 +1,6 @@
 package com.ly.imp4m.management.user.service.impl;
 
-import com.ly.imp4m.common.dao.SysRoleMapper;
+import com.ly.imp4m.common.dao.impl.SysRoleMapper;
 import com.ly.imp4m.common.model.SysRole;
 import com.ly.imp4m.common.service.impl.BaseServiceImpl;
 import com.ly.imp4m.management.user.service.SysRoleService;
@@ -32,6 +32,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRole> implements SysR
 
     @Override
     public void update(SysRole sysRole) {
-        sysRoleMapper.update(sysRole);
+        sysRoleMapper.updateByPrimaryKey(sysRole);
     }
 }

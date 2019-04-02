@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
+
 /**
  * @author sunkl
  * @date 2018年12月21日 15:11:59
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Table(name = "t_sys_permission")
 public class SysPermission extends BaseModel {
     /**
      * 权限名称

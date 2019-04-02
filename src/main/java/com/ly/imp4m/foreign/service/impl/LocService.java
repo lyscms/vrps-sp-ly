@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.LocationMapper;
+import com.ly.imp4m.common.dao.impl.LocationMapper;
 import com.ly.imp4m.common.model.Location;
 import com.ly.imp4m.foreign.service.ILocService;
 import org.springframework.stereotype.Component;
@@ -30,6 +30,6 @@ public class LocService implements ILocService {
     public List<Location> listIsUse() {
         Location location = new Location();
         location.setIsUse(1);
-        return locationMapper.selectSelective(location);
+        return locationMapper.select(location);
     }
 }

@@ -1,5 +1,5 @@
 package com.ly.imp4m.foreign.service.impl;
-import com.ly.imp4m.common.dao.TypeMapper;
+import com.ly.imp4m.common.dao.impl.TypeMapper;
 import com.ly.imp4m.common.model.Type;
 import com.ly.imp4m.foreign.service.ITypeService;
 import org.springframework.stereotype.Component;
@@ -28,14 +28,14 @@ public class TypeService implements ITypeService {
     public List<Type> listIsUse() {
         Type type = new Type();
         type.setIsUse(1);
-        return typeMapper.selectSelective(type);
+        return typeMapper.select(type);
     }
 
     @Override
     public List<Type> listBySubClassId(String subClassId) {
         Type type = new Type();
         type.setSubclassId(subClassId);
-        return typeMapper.selectSelective(type);
+        return typeMapper.select(type);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TypeService implements ITypeService {
         Type type = new Type();
         type.setSubclassId(subClassId);
         type.setIsUse(1);
-        return typeMapper.selectSelective(type);
+        return typeMapper.select(type);
     }
 }

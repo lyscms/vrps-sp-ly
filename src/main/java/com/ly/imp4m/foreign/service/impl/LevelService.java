@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.LevelMapper;
+import com.ly.imp4m.common.dao.impl.LevelMapper;
 import com.ly.imp4m.common.model.Level;
 import com.ly.imp4m.foreign.service.ILevelService;
 import org.springframework.stereotype.Component;
@@ -40,6 +40,6 @@ public class LevelService implements ILevelService {
     public List<Level> listIsUse() {
         Level level = new Level();
         level.setIsUse(1);
-        return levelMapper.selectSelective(level);
+        return levelMapper.select(level);
     }
 }

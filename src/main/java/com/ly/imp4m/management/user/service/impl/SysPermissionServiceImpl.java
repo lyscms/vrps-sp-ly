@@ -3,7 +3,7 @@ package com.ly.imp4m.management.user.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Multimap;
-import com.ly.imp4m.common.dao.SysPermissionMapper;
+import com.ly.imp4m.common.dao.impl.SysPermissionMapper;
 import com.ly.imp4m.common.enums.PermissionTypeEnums;
 import com.ly.imp4m.common.model.SysPermission;
 import com.ly.imp4m.common.util.EnvUtils;
@@ -51,7 +51,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
      */
     @Override
     public List<SysPermissionVo> selectSysPermissionInfo(SysPermission sysPermission) {
-        List<SysPermission> sysPermissions = sysPermissionMapper.selectSelective(sysPermission);
+        List<SysPermission> sysPermissions = sysPermissionMapper.select(sysPermission);
         List<SysPermissionVo> sysPermissionVos = new ArrayList<>();
         for (int i = 0; i < sysPermissions.size(); i++) {
             SysPermissionVo sysPermissionVo = new SysPermissionVo();
@@ -97,7 +97,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     public List<SysPermission> getMenus() {
         SysPermission sysPermission = new SysPermission();
         sysPermission.setType(PermissionTypeEnums.MENU.getStringValue());
-        List<SysPermission> sysPermissions = sysPermissionMapper.selectSelective(sysPermission);
+        List<SysPermission> sysPermissions = sysPermissionMapper.select(sysPermission);
         return sysPermissions;
     }
 
@@ -120,7 +120,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
         /**
          * 2.获取数据所有的已有权限路径
          */
-        List<SysPermission> sysPermissions = sysPermissionMapper.selectSelective(new SysPermission());
+        List<SysPermission> sysPermissions = sysPermissionMapper.select(new SysPermission());
         Map<String, SysPermission> sysPermissionMaps = sysPermissions
                 .stream()
                 .collect(Collectors.toMap(
@@ -195,7 +195,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     @Override
     public PageInfo<SysPermission> selectSysPermissions(SysPermission sysPermission, int page, int limit) {
         PageHelper.startPage(page,limit);
-        List<SysPermission> sysPermissions = sysPermissionMapper.selectSelective(sysPermission);
+        List<SysPermission> sysPermissions = sysPermissionMapper.select(sysPermission);
         sysPermissions.stream().map(sp->{
             sp.setType(PermissionTypeEnums.ofValue(sp.getType()).getName());
             return sp;

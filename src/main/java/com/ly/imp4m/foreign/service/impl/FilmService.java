@@ -2,10 +2,10 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ly.imp4m.common.dao.CataLogMapper;
-import com.ly.imp4m.common.dao.FilmMapper;
-import com.ly.imp4m.common.dao.SubClassMapper;
-import com.ly.imp4m.common.dao.TypeMapper;
+import com.ly.imp4m.common.dao.impl.CataLogMapper;
+import com.ly.imp4m.common.dao.impl.FilmMapper;
+import com.ly.imp4m.common.dao.impl.SubClassMapper;
+import com.ly.imp4m.common.dao.impl.TypeMapper;
 import com.ly.imp4m.common.model.CataLog;
 import com.ly.imp4m.common.model.Film;
 import com.ly.imp4m.common.model.SubClass;
@@ -96,7 +96,7 @@ public class FilmService implements IFilmService {
     @Override
     public PageInfo<Film> getPage(Film film, int pc, int ps) {
         PageHelper.startPage(pc, ps);
-        List<Film> films = filmMapper.selectSelective(film);
+        List<Film> films = filmMapper.select(film);
         return new PageInfo<>(films);
     }
 
@@ -110,7 +110,7 @@ public class FilmService implements IFilmService {
     public List<Film> listByTypeId(String typeId) {
         Film film = new Film();
         film.setTypeId(typeId);
-        return filmMapper.selectSelective(film);
+        return filmMapper.select(film);
     }
 
     @Override
@@ -127,14 +127,14 @@ public class FilmService implements IFilmService {
         Film film = new Film();
         film.setCataLogId(id);
         film.setIsUse(1);
-        List<Film> films = filmMapper.selectSelective(film);
+        List<Film> films = filmMapper.select(film);
         films.sort(comparing.reversed());
         return CollectionUtils.isEmpty(films) ? Collections.emptyList() : films.subList(0, 12);
     }
 
     @Override
     public int getCountAll() {
-        List<Film> films = filmMapper.selectSelective(new Film());
+        List<Film> films = filmMapper.select(new Film());
         return CollectionUtils.isEmpty(films) ? 0 : films.size();
     }
 
@@ -143,7 +143,7 @@ public class FilmService implements IFilmService {
         Film film = new Film();
         film.setIsUse(1);
         film.setCataLogId(id);
-        List<Film> films = filmMapper.selectSelective(film);
+        List<Film> films = filmMapper.select(film);
         return CollectionUtils.isEmpty(films) ? 0 : films.size();
     }
 }

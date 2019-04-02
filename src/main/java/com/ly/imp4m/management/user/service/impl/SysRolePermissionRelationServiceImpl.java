@@ -1,6 +1,6 @@
 package com.ly.imp4m.management.user.service.impl;
 
-import com.ly.imp4m.common.dao.SysRolePermissionRelationMapper;
+import com.ly.imp4m.common.dao.impl.SysRolePermissionRelationMapper;
 import com.ly.imp4m.common.model.SysRolePermissionRelation;
 import com.ly.imp4m.management.user.service.SysRolePermissionRelationService;
 import com.ly.imp4m.management.user.web.vo.SysRolePermissionRelationQueryVo;
@@ -24,7 +24,7 @@ public class SysRolePermissionRelationServiceImpl implements SysRolePermissionRe
     public List<SysRolePermissionRelation> selectSysPermissionRelationRoleInfo(String roleId) {
         SysRolePermissionRelation sysRolePermissionRelation = new SysRolePermissionRelation();
         sysRolePermissionRelation.setRoleId(roleId);
-        return sysRolePermissionRelationMapper.selectSelective(sysRolePermissionRelation);
+        return sysRolePermissionRelationMapper.select(sysRolePermissionRelation);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SysRolePermissionRelationServiceImpl implements SysRolePermissionRe
     public void addRolePerMissionRelation(SysRolePermissionRelationQueryVo sysRolePermissionRelationQueryVo) {
         SysRolePermissionRelation sysRolePermissionRelationCondition = new SysRolePermissionRelation();
         sysRolePermissionRelationCondition.setRoleId(sysRolePermissionRelationQueryVo.getRoleId());
-        sysRolePermissionRelationMapper.deleteSelective(sysRolePermissionRelationCondition);
+        sysRolePermissionRelationMapper.delete(sysRolePermissionRelationCondition);
 
         List<String> permissionIds = sysRolePermissionRelationQueryVo.getPermissionIds();
         for (int i = 0; i < permissionIds.size(); i++) {

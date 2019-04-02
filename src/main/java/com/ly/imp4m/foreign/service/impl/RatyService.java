@@ -1,7 +1,7 @@
 package com.ly.imp4m.foreign.service.impl;
 
 
-import com.ly.imp4m.common.dao.RatyMapper;
+import com.ly.imp4m.common.dao.impl.RatyMapper;
 import com.ly.imp4m.common.model.Raty;
 import com.ly.imp4m.foreign.service.IRatyService;
 import org.apache.commons.collections.CollectionUtils;
@@ -31,7 +31,7 @@ public class RatyService implements IRatyService {
     public List<Raty> listALLByFilmId(String filmId) {
         Raty raty = new Raty();
         raty.setFilmId(filmId);
-        return ratyMapper.selectSelective(raty);
+        return ratyMapper.select(raty);
     }
 
     @Override

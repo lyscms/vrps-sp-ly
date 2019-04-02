@@ -1,6 +1,6 @@
 package com.ly.imp4m.foreign.service.impl;
 
-import com.ly.imp4m.common.dao.SubClassMapper;
+import com.ly.imp4m.common.dao.impl.SubClassMapper;
 import com.ly.imp4m.common.model.SubClass;
 import com.ly.imp4m.foreign.service.ISubClassService;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public class SubClassService implements ISubClassService {
     public List<SubClass> listByCataLogId(String catalogId) {
         SubClass subClass = new SubClass();
         subClass.setCatalogId(catalogId);
-        return subClassMapper.selectSelective(subClass);
+        return subClassMapper.select(subClass);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class SubClassService implements ISubClassService {
         SubClass subClass = new SubClass();
         subClass.setIsUse(1);
         subClass.setCatalogId(catalogId);
-        return subClassMapper.selectSelective(subClass);
+        return subClassMapper.select(subClass);
     }
 }

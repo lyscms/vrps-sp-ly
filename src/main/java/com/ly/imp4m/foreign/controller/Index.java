@@ -128,7 +128,7 @@ public class Index {
         /**
          * 获取资源
          */
-        List<Res> res = resService.listByfilmId(film.getId());
+        List<Res> res = resService.listByFilmId(film.getId());
 
 
         /**

@@ -9,7 +9,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,7 +106,7 @@ public class Manager {
     public String film(ModelMap map, String film_id, HttpSession session) {
         if (film_id != null && !"".equals(film_id)) {
             map.addAttribute("film", filmService.load(film_id));
-            List<Res> list = resService.listByfilmId(film_id);
+            List<Res> list = resService.listByFilmId(film_id);
             if (list.size() == 0) {
                 map.addAttribute("res", null);
             } else {
