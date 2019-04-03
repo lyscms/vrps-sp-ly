@@ -1,7 +1,7 @@
 package com.ly.imp4m.foreign.service.impl;
 import com.ly.imp4m.common.dao.impl.TypeMapper;
 import com.ly.imp4m.common.model.Type;
-import com.ly.imp4m.foreign.service.ITypeService;
+import com.ly.imp4m.foreign.service.TypeService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import java.util.List;
  * @time 18:25
  */
 @Component
-public class TypeService implements ITypeService {
+public class TypeServiceImpl implements TypeService {
     @Resource
     private TypeMapper typeMapper;
 

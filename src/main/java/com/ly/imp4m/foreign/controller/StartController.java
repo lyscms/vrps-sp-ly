@@ -20,12 +20,12 @@ import java.util.List;
  * @time 23:34
  */
 @Controller
-public class Start {
+public class StartController {
     @Resource
-    private IFilmService filmService;
+    private FilmService filmService;
 
     @Resource
-    private ICataLogService cataLogService;
+    private CataLogService cataLogService;
 
     @RequestMapping(value = "index.html")
     public String index(ModelMap map) {

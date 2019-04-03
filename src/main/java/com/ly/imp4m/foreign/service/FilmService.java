@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2016/10/4
  * @time 12:05
  */
-public interface IFilmService {
+public interface FilmService {
     String add(Film film);
 
     Film load(String film_id);

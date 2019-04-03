@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.ResMapper;
 import com.ly.imp4m.common.model.Res;
-import com.ly.imp4m.foreign.service.IResService;
+import com.ly.imp4m.foreign.service.ResService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Date;
@@ -16,7 +16,7 @@ import java.util.List;
  * @time 12:08
  */
 @Component
-public class ResService implements IResService {
+public class ResServiceImpl implements ResService {
 
     @Resource
     private ResMapper resMapper;

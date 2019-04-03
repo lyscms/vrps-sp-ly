@@ -3,7 +3,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.RatyMapper;
 import com.ly.imp4m.common.model.Raty;
-import com.ly.imp4m.foreign.service.IRatyService;
+import com.ly.imp4m.foreign.service.RatyService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @time 12:52
  */
 @Component
-public class RatyService implements IRatyService {
+public class RatyServiceImpl implements RatyService {
     @Resource
     private RatyMapper ratyMapper;
 

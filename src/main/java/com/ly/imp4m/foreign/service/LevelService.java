@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:29
  */
-public interface ILevelService {
+public interface LevelService {
     String add(Level level);
 
     List<Level> listIsUse();

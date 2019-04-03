@@ -3,8 +3,8 @@ package com.ly.imp4m.foreign.controller;
 
 import com.ly.imp4m.common.model.User;
 import com.ly.imp4m.common.model.VipCode;
-import com.ly.imp4m.foreign.service.IUserService;
-import com.ly.imp4m.foreign.service.IVipCodeService;
+import com.ly.imp4m.foreign.service.UserService;
+import com.ly.imp4m.foreign.service.VipCodeService;
 import com.ly.imp4m.util.MD5Auth;
 import com.ly.imp4m.util.Tools;
 import net.sf.json.JSONObject;
@@ -27,17 +27,17 @@ import java.util.List;
  * @time 23:23
  */
 @Controller
-public class Authentication {
+public class AuthenticationController {
 
 
     private final static String key = "sw23klkj3nm23";
     public final static String USER_KEY = "u_skl";
 
     @Resource
-    private IUserService userService;
+    private UserService userService;
 
     @Resource
-    private IVipCodeService vipCodeService;
+    private VipCodeService vipCodeService;
 
 
     /**

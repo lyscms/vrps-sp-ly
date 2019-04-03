@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.DecadeMapper;
 import com.ly.imp4m.common.model.Decade;
-import com.ly.imp4m.foreign.service.IDecadeService;
+import com.ly.imp4m.foreign.service.DecadeService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
  * @time 18:28
  */
 @Component
-public class DecadeService implements IDecadeService {
+public class DecadeServiceImpl implements DecadeService {
 
     @Resource
     private DecadeMapper decadeMapper;

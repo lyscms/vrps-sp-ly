@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.LevelMapper;
 import com.ly.imp4m.common.model.Level;
-import com.ly.imp4m.foreign.service.ILevelService;
+import com.ly.imp4m.foreign.service.LevelService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * @time 18:29
  */
 @Component
-public class LevelService implements ILevelService {
+public class LevelServiceImpl implements LevelService {
 
     @Resource
     private LevelMapper levelMapper;

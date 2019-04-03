@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.SubClassMapper;
 import com.ly.imp4m.common.model.SubClass;
-import com.ly.imp4m.foreign.service.ISubClassService;
+import com.ly.imp4m.foreign.service.SubClassService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @time 18:33
  */
 @Component
-public class SubClassService implements ISubClassService {
+public class SubClassServiceImpl implements SubClassService {
 
 
     @Resource

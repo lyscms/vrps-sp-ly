@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:27
  */
-public interface IDecadeService {
+public interface DecadeService {
 
     String add(Decade decade);
 

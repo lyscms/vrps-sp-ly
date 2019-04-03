@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:25
  */
-public interface IVipCodeService {
+public interface VipCodeService {
 
     String  add(VipCode vipCode);
 

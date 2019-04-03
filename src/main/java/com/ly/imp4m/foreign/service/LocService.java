@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:30
  */
-public interface ILocService {
+public interface LocService {
     String add(Location loc);
 
     List<Location> listIsUse();

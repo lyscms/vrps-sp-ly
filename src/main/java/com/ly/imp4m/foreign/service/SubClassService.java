@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:32
  */
-public interface ISubClassService {
+public interface SubClassService {
 
     String add(SubClass subClass);
 

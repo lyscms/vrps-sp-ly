@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.LocationMapper;
 import com.ly.imp4m.common.model.Location;
-import com.ly.imp4m.foreign.service.ILocService;
+import com.ly.imp4m.foreign.service.LocService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
  * @time 18:31
  */
 @Component
-public class LocService implements ILocService {
+public class LocServiceImpl implements LocService {
 
     @Resource
     private LocationMapper locationMapper;

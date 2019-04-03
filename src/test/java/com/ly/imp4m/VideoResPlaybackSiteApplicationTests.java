@@ -1,7 +1,7 @@
 package com.ly.imp4m;
 
 import com.ly.imp4m.common.model.User;
-import com.ly.imp4m.foreign.service.impl.UserService;
+import com.ly.imp4m.foreign.service.impl.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +16,11 @@ import java.util.List;
 public class VideoResPlaybackSiteApplicationTests {
 
     @Resource
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Test
     public void contextLoads() {
-        List<User> users = userService.listIsUse();
+        List<User> users = userServiceImpl.listIsUse();
         Assert.assertNotNull(users);
     }
 

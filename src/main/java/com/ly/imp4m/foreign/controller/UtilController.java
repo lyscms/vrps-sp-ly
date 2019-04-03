@@ -27,7 +27,7 @@ import java.util.*;
  * @time 10:42
  */
 @Controller
-public class Util implements ServletContextAware {
+public class UtilController implements ServletContextAware {
     private ServletContext servletContext;
 
 

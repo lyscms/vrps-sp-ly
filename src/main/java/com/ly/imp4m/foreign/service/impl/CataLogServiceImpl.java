@@ -1,7 +1,7 @@
 package com.ly.imp4m.foreign.service.impl;
 import com.ly.imp4m.common.dao.impl.CataLogMapper;
 import com.ly.imp4m.common.model.CataLog;
-import com.ly.imp4m.foreign.service.ICataLogService;
+import com.ly.imp4m.foreign.service.CataLogService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import java.util.List;
  * @time 18:27
  */
 @Component
-public class CataLogService implements ICataLogService {
+public class CataLogServiceImpl implements CataLogService {
 
     @Resource
     private CataLogMapper cataLogMapper;

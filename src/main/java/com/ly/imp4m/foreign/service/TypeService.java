@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:25
  */
-public interface ITypeService {
+public interface TypeService {
     String  add(Type type);
 
     List<Type> listIsUse();

@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2016/10/8
  * @time 12:52
  */
-public interface IRatyService {
+public interface RatyService {
 
     String  add(Raty raty);
 

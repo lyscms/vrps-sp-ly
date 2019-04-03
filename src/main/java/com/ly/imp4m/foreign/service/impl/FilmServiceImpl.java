@@ -10,7 +10,7 @@ import com.ly.imp4m.common.model.CataLog;
 import com.ly.imp4m.common.model.Film;
 import com.ly.imp4m.common.model.SubClass;
 import com.ly.imp4m.common.model.Type;
-import com.ly.imp4m.foreign.service.IFilmService;
+import com.ly.imp4m.foreign.service.FilmService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,7 @@ import java.util.*;
  * @time 12:06
  */
 @Component
-public class FilmService implements IFilmService {
+public class FilmServiceImpl implements FilmService {
     @Resource
     private FilmMapper filmMapper;
 

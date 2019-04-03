@@ -12,10 +12,10 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @MapperScan(basePackages = "com.ly.imp4m.common.dao.impl")
 @SpringBootApplication
-public class VideoResourcePlaybackSiteApplication {
+public class VideoResourcePlaybackSiteSpLyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VideoResourcePlaybackSiteApplication.class, args);
+        SpringApplication.run(VideoResourcePlaybackSiteSpLyApplication.class, args);
     }
 
 }

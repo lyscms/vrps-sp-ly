@@ -1,4 +1,4 @@
-package com.ly.imp4m.foreign.controller;
+package com.ly.imp4m.management.bus;
 
 import com.github.pagehelper.PageInfo;
 import com.ly.imp4m.common.model.*;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,35 +29,35 @@ import java.util.List;
  * @time 23:23
  */
 @Controller
-public class Manager {
+public class ManagerController {
 
 
     @Resource
-    private ICataLogService cataLogService;
+    private CataLogService cataLogService;
 
     @Resource
-    private ISubClassService subClassService;
+    private SubClassService subClassService;
 
     @Resource
-    private IDecadeService decadeService;
+    private DecadeService decadeService;
 
     @Resource
-    private ILevelService levelService;
+    private LevelService levelService;
 
     @Resource
-    private ILocService locService;
+    private LocService locService;
 
     @Resource
-    private ITypeService typeService;
+    private TypeService typeService;
 
     @Resource
-    private IFilmService filmService;
+    private FilmService filmService;
 
     @Resource
-    private IResService resService;
+    private ResService resService;
 
     @Resource
-    private IVipCodeService vipCodeService;
+    private VipCodeService vipCodeService;
 
 
     /**

@@ -29,34 +29,34 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/xl")
-public class Index {
+public class IndexController {
 
     @Resource
-    private ICataLogService cataLogService;
+    private CataLogService cataLogService;
 
     @Resource
-    private ISubClassService subClassService;
+    private SubClassService subClassService;
 
     @Resource
-    private IDecadeService decadeService;
+    private DecadeService decadeService;
 
     @Resource
-    private ILevelService levelService;
+    private LevelService levelService;
 
     @Resource
-    private ILocService locService;
+    private LocService locService;
 
     @Resource
-    private ITypeService typeService;
+    private TypeService typeService;
 
     @Resource
-    private IFilmService filmService;
+    private FilmService filmService;
 
     @Resource
-    private IResService resService;
+    private ResService resService;
 
     @Resource
-    private IRatyService ratyService;
+    private RatyService ratyService;
 
     @RequestMapping(value = "/1.html")
     public String index(ModelMap map, HttpServletRequest request){
@@ -89,7 +89,7 @@ public class Index {
         /**判断是否是VIP资源进行VIP身份校验*/
         if(film.getIsVip()==1){
             /**获取当前登录用户*/
-            User u_skl = (User)session.getAttribute(Authentication.USER_KEY);
+            User u_skl = (User)session.getAttribute(AuthenticationController.USER_KEY);
             String referer = request.getHeader("referer");
             if(u_skl!=null){
                 if(u_skl.getIsVip()==0){

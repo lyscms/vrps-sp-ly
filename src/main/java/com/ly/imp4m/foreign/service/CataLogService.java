@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/3
  * @time 18:26
  */
-public interface ICataLogService {
+public interface CataLogService {
 
     String  add(CataLog cataLog);
 

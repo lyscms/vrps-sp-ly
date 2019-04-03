@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2016/10/4
  * @time 12:07
  */
-public interface IResService {
+public interface ResService {
     String add(Res res);
 
     List<Res> listByFilmId(String film_id);

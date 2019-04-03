@@ -2,7 +2,7 @@ package com.ly.imp4m.foreign.service.impl;
 
 import com.ly.imp4m.common.dao.impl.UserMapper;
 import com.ly.imp4m.common.model.User;
-import com.ly.imp4m.foreign.service.IUserService;
+import com.ly.imp4m.foreign.service.UserService;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @time 18:25
  */
 @Component
-public class UserService implements IUserService {
+public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
