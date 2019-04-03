@@ -1,4 +1,4 @@
-package com.ly.imp4m.management.bus;
+package com.ly.imp4m.management.busmanager;
 
 import com.github.pagehelper.PageInfo;
 import com.ly.imp4m.common.model.*;

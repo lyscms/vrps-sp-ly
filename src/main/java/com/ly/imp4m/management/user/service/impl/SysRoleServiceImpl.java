@@ -32,6 +32,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRole> implements SysR
 
     @Override
     public void update(SysRole sysRole) {
-        sysRoleMapper.updateByPrimaryKey(sysRole);
+        sysRoleMapper.updateByPrimaryKeySelective(sysRole);
     }
 }

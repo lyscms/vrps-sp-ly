@@ -74,7 +74,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
      */
     @Override
     public void update(SysPermissionInfoQueryVo sysPermissionInfoQueryVo) {
-        sysPermissionMapper.updateByPrimaryKey(sysPermissionInfoQueryVo);
+        sysPermissionMapper.updateByPrimaryKeySelective(sysPermissionInfoQueryVo);
     }
 
     /**

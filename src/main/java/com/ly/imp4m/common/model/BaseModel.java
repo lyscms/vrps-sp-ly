@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ public class BaseModel {
     /**
      * 主键id
      */
+    @Id
     private String id;
 
     /**
