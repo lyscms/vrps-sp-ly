@@ -5,6 +5,8 @@ import com.ly.imp4m.common.model.*;
 import com.ly.imp4m.foreign.service.*;
 import com.ly.imp4m.util.FileOperate;
 import com.ly.imp4m.util.Tools;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -12,8 +14,8 @@ import net.sf.json.util.PropertyFilter;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,7 @@ import java.util.List;
  * @time 23:23
  */
 @Controller
+@Api(value = "业务后台处理")
 public class ManagerController {
 
 
@@ -63,7 +66,8 @@ public class ManagerController {
     /**
      * 目录
      */
-    @RequestMapping(value = "/catalog.html")
+    @GetMapping(value = "/catalog.html")
+    @ApiOperation(value = "查询目录界面")
     public String catalog(ModelMap map) {
         getCatalog(map);
         return "manager/catalog";
@@ -72,21 +76,22 @@ public class ManagerController {
     /**
      * Vip管理
      */
-    @RequestMapping(value = "/vipCode.html")
+    @GetMapping(value = "/vipCode.html")
+    @ApiOperation(value = "Vip管理页面")
     public String vipCode(ModelMap map) {
         getCatalog(map);
         List<VipCode> list = vipCodeService.listIsUse();
-        map.addAttribute("vip_codes",list);
-        return "manager/vipManager";
+        map.addAttribute("vip_codes", list);
+        return "manager/vip-manager";
     }
 
     /**
-     * 列表
-     *
+     * 列表页面
      * @param map
      * @param request
      */
-    @RequestMapping(value = "/list.html")
+    @ApiOperation(value = "列表页面")
+    @GetMapping(value = "/list.html")
     public String list(ModelMap map, HttpServletRequest request) {
         getFilmList(map, request, 0);
         return "manager/list";
@@ -101,7 +106,8 @@ public class ManagerController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/film.html")
+    @GetMapping(value = "/film.html")
+    @ApiOperation(value = "影片管理")
     public String film(ModelMap map, String film_id, HttpSession session) {
         if (film_id != null && !"".equals(film_id)) {
             map.addAttribute("film", filmService.load(film_id));
@@ -116,7 +122,6 @@ public class ManagerController {
         return "manager/film";
     }
 
-
     /**
      * 影片管理异步操作
      *
@@ -124,10 +129,10 @@ public class ManagerController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/addCataLog.html")
-    public
+    @PostMapping(value = "/addCataLog.html")
     @ResponseBody
-    String addCataLog(CataLog cataLog, HttpSession session) {
+    @ApiOperation(value = "影片管理异步操作")
+    public String addCataLog(CataLog cataLog, HttpSession session) {
         /**
          * 初始化参数
          */
@@ -138,10 +143,11 @@ public class ManagerController {
         return id;
     }
 
-    @RequestMapping(value = "/addSubClass.html")
-    public
+
+    @PostMapping(value = "/addSubClass.html")
     @ResponseBody
-    String addSubClass(SubClass subClass, String cataLog_id, HttpSession session) {
+    @ApiOperation(value = "添加二级目录")
+    public String addSubClass(SubClass subClass, String cataLog_id, HttpSession session) {
         /**
          * 初始化参数
          */
@@ -156,10 +162,10 @@ public class ManagerController {
         return id;
     }
 
-    @RequestMapping(value = "/addType.html")
-    public
+    @PostMapping(value = "/addType.html")
     @ResponseBody
-    String addType(Type type, String subClass_id, HttpSession session) {
+    @ApiOperation(value = "添加类型")
+    public String addType(Type type, String subClass_id, HttpSession session) {
         /**
          * 初始化参数
          */
@@ -174,9 +180,9 @@ public class ManagerController {
         return id;
     }
 
-    @RequestMapping(value = "/addDecade.html")
-    public
-    @ResponseBody
+    @PostMapping(value = "/addDecade.html")
+    public @ResponseBody
+    @ApiOperation(value = "添加年代")
     String addDecade(Decade decade) {
         /**
          * 初始化参数
@@ -190,10 +196,10 @@ public class ManagerController {
         return id;
     }
 
-    @RequestMapping(value = "/addLevel.html")
-    public
+    @PostMapping(value = "/addLevel.html")
     @ResponseBody
-    String addLevel(Level level) {
+    @ApiOperation(value = "添加级别")
+    public String addLevel(Level level) {
         /**
          * 初始化参数
          */
@@ -207,10 +213,10 @@ public class ManagerController {
     }
 
 
-    @RequestMapping(value = "/addLoc.html")
-    public
+    @PostMapping(value = "/addLoc.html")
     @ResponseBody
-    String addLoc(Location loc) {
+    @ApiOperation(value = "添加地区")
+    public String addLoc(Location loc) {
         /**
          * 初始化参数
          */
@@ -223,10 +229,10 @@ public class ManagerController {
         return id;
     }
 
-    @RequestMapping(value = "/addFilm.html")
-    public
+    @PostMapping(value = "/addFilm.html")
     @ResponseBody
-    String addFilm(Film film) {
+    @ApiOperation(value = "添加影片")
+    public String addFilm(Film film) {
         /**
          * 初始化参数
          */
@@ -247,10 +253,10 @@ public class ManagerController {
      * @param filmId
      * @return
      */
-    @RequestMapping(value = "/addRes.html")
-    public
+    @PostMapping(value = "/addRes.html")
     @ResponseBody
-    String addRes(Res res, String filmId) {
+    @ApiOperation(value = "添加资源")
+    public String addRes(Res res, String filmId) {
         /**
          * 初始化参数
          */
@@ -262,7 +268,7 @@ public class ManagerController {
         /**
          * 多资源上传
          */
-        String id="";
+        String id = "";
         if (res.getName().contains("@@")) {
             //多资源上传
             String resName[] = res.getName().trim().split("##");//xxxx@@集&集数开始&集数结束&分割符号
@@ -270,15 +276,15 @@ public class ManagerController {
             int begin = Integer.parseInt(resName[1]);
             int end = Integer.parseInt(resName[2]);
             String flag = resName[3];
-            String res_link_valArray[] = res.getLink().replaceAll("\\n","").split(flag);
-            int cz = begin-1;
+            String res_link_valArray[] = res.getLink().replaceAll("\\n", "").split(flag);
+            int cz = begin - 1;
             for (int x = begin; x <= end; x++) {
-                res.setName(name.replace("@@",x+""));
+                res.setName(name.replace("@@", x + ""));
                 res.setEpisodes(x);
-                res.setLink(flag+res_link_valArray[x-cz]);
+                res.setLink(flag + res_link_valArray[x - cz]);
                 id = resService.add(res);
             }
-        }else{
+        } else {
             /**
              * 添加地区
              */
@@ -299,10 +305,10 @@ public class ManagerController {
      * @param val
      * @return
      */
-    @RequestMapping(value = "/updateFilmInfo.html")
-    public
+    @PutMapping(value = "/updateFilmInfo.html")
     @ResponseBody
-    String updateFilmInfo(String film_id, String key, String val, HttpSession session) {
+    @ApiOperation(value = "更改影片信息")
+    public String updateFilmInfo(String film_id, String key, String val, HttpSession session) {
         Film film = filmService.load(film_id);
         switch (key) {
             case "name":
@@ -367,10 +373,10 @@ public class ManagerController {
      * @param res_id
      * @return
      */
-    @RequestMapping(value = "/delRes.html")
-    public
+    @DeleteMapping(value = "/delRes.html")
     @ResponseBody
-    String delRes(String res_id) {
+    @ApiOperation(value = "删除资源")
+    public  String delRes(String res_id) {
         if (resService.delete(res_id)) {
             return "1";
         } else {
@@ -384,10 +390,10 @@ public class ManagerController {
      * @param res_id
      * @return
      */
-    @RequestMapping(value = "/updateIsUse.html")
-    public
+    @PutMapping(value = "/updateIsUse.html")
     @ResponseBody
-    String updateIsUse(String res_id) {
+    @ApiOperation(value = "更新资源在离线")
+    public String updateIsUse(String res_id) {
         if (resService.updateIsUse(res_id)) {
             return "1";
         } else {
@@ -401,10 +407,10 @@ public class ManagerController {
      * @param cataLogId
      * @return
      */
-    @RequestMapping(value = "/getSubClass.html", produces = "text/html;charset=UTF-8")
-    public
+    @GetMapping(value = "/getSubClass.html", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    String getSubClass(String cataLogId) {
+    @ApiOperation(value = "获取subClass二级目录信息")
+    public String getSubClass(String cataLogId) {
         List<SubClass> subClasses = subClassService.listByCataLogId(cataLogId);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
@@ -429,10 +435,10 @@ public class ManagerController {
      * @param subClass_id
      * @return
      */
-    @RequestMapping(value = "/getType.html", produces = "text/html;charset=UTF-8")
-    public
+    @ApiOperation(value = "获取type类型")
+    @GetMapping(value = "/getType.html", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    String getType(String subClass_id) {
+    public String getType(String subClass_id) {
         List<Type> types = typeService.listBySubClassId(subClass_id);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
@@ -512,7 +518,7 @@ public class ManagerController {
         }
         PageInfo<Film> page = filmService.getPage(ob, pc, ps);
 
-             /*存入到request域中*/
+        /*存入到request域中*/
         map.addAttribute("pb", page);
         /**
          * 4. 转发到list.jsp
@@ -537,15 +543,17 @@ public class ManagerController {
 
     /**
      * 创建VIPCODE
+     *
      * @param num
      * @return
      */
-    @RequestMapping(value = "/createVipCode.html")
+    @PostMapping(value = "/createVipCode.html")
     @ResponseBody
+    @ApiOperation(value = "创建VIP CODE")
     public String createVipCode(String num) {
         JSONObject jsonObject = new JSONObject();
         /**生成VIP号*/
-        if(StringUtils.isNotBlank(num)){
+        if (StringUtils.isNotBlank(num)) {
             int n = Integer.parseInt(num);
             VipCode vipCode;
             List<VipCode> vipCodes = new ArrayList<>();
@@ -559,12 +567,12 @@ public class ManagerController {
                 vipCodes.add(vipCode);
             }
             int rtn = vipCodeService.saveAll(vipCodes);
-            if(rtn!=0){
-                jsonObject.put("code","1");
-                jsonObject.put("data",vipCodes);
+            if (rtn != 0) {
+                jsonObject.put("code", "1");
+                jsonObject.put("data", vipCodes);
             }
-        }else{
-            jsonObject.put("code","0");
+        } else {
+            jsonObject.put("code", "0");
         }
         return jsonObject.toString();
     }
