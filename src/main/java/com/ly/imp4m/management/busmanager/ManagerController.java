@@ -413,17 +413,13 @@ public class ManagerController {
     public String getSubClass(String cataLogId) {
         List<SubClass> subClasses = subClassService.listByCataLogId(cataLogId);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
-            @Override
-            public boolean apply(Object o, String s, Object o1) {
-                if ("id".equals(s) || "name".equals(s)) {
-                    return false;
-                } else {
-                    return true;
-                }
+        jsonConfig.setJsonPropertyFilter((o, s, o1) -> {
+            if ("id".equals(s) || "name".equals(s)) {
+                return false;
+            } else {
+                return true;
             }
         });
-
         JSONArray jsonArray = JSONArray.fromObject(subClasses, jsonConfig);
         return jsonArray.toString();
     }

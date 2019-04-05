@@ -8,11 +8,11 @@
         <version>2.1.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.ly.impl4m</groupId>
-    <artifactId>video_resource_playback_site_sp_ly</artifactId>
+    <groupId>com.ly.vrps</groupId>
+    <artifactId>vrps_sp_ly</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>video_resource_playback_site_sp_ly</name>
-    <description>VideoResourcePlaybackSite project for Spring Boot</description>
+    <name>vrps_sp_ly</name>
+    <description>VRPS_SP_LY project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -155,5 +155,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
