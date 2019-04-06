@@ -13,12 +13,17 @@
 <body>
 <div class="container-fluid">
     <div class="row">
+
         <div class="col">
+
             <div class="search-box">
-                <form th:action="@{/video/manager/list.html}" action="" method="GET">
-                    <input type="search" name="name" th:class="input" th:value="${name}" autocomplete="off"
-                           placeholder="请输入影片名称"/>
-                </form>
+                <div style="margin:0px auto;width:100%;overflow: hidden;">
+                    <a style="float: left; margin-bottom: 5px;" class="btn btn-dark" th:href="@{/video/manager/film.html}">添加影片</a>
+                    <form th:action="@{/video/manager/list.html}" style="display: inline-block; margin-top: 10px;" method="GET">
+                        <input type="search" name="name" class="input" th:value="${name}" autocomplete="off"
+                               placeholder="请输入影片名称"/>
+                    </form>
+                </div>
             </div>
             <div style="margin: 3px auto;">
                 <ul class="film-list">

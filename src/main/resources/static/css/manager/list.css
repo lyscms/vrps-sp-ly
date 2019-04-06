@@ -12,20 +12,17 @@ a {
 
 /*影片列表*/
 .film-list {
-    width: 98%;
+    width: 100%;
     height: auto;
-    padding: 1%;
     overflow: hidden;
     border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
 }
 
 .film-list li {
     list-style: none;
     float: left;
     width: 104px;
-    height: 190px;
-    margin: 3px;
+    margin: 2px;
 }
 
 .film-list li img {
@@ -58,7 +55,7 @@ a {
     width: 100%;
     height: auto;
     text-align: right;
-    margin: 70px auto 0px auto;
+    margin: 10px auto 0px auto;
 }
 
 /*box框架*/
