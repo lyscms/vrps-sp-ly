@@ -8,10 +8,28 @@
     <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
     <!--导入layui js文件-->
     <script src="/static/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
     <script>
         layui.config({
             base: '/static/plugins/layui/lay/modules/'
         }).use(['layer','form',"element"]);
+        
+        $(function () {
+            $("#refresh-resource").click(function () {
+                //刷新资源
+                $.ajax({
+                    url: '/user/permission/update-permission-by-swagger',
+                    dataType: 'json',
+                    type:'get',
+                    success: function(){
+                        layer.msg("刷新成功");
+                    },
+                    error:function () {
+                        layer.msg("刷新失败!");
+                    }
+                });
+            })
+        });
     </script>
     <!--导入外部css-->
     <link rel="stylesheet" href="/static/css/home/index.css">
@@ -42,6 +60,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="">基本资料</a></dd>
+                        <dd><a href="javascript:;" id="refresh-resource">刷新资源</a></dd>
                         <dd><a href="">安全设置</a></dd>
                     </dl>
                 </li>

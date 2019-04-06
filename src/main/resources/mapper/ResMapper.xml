@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ly.imp4m.common.dao.impl.ResMapper">
-  <resultMap id="BaseResultMap" type="com.ly.imp4m.common.model.Res">
+<mapper namespace="com.ly.vrps.common.dao.impl.ResMapper">
+  <resultMap id="BaseResultMap" type="com.ly.vrps.common.model.Res">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="episodes" jdbcType="INTEGER" property="episodes" />
     <result column="is_use" jdbcType="INTEGER" property="isUse" />

@@ -1,10 +1,376 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>添加影片</title>
+    <div th:replace="pub/head_meta"/>
+    <div th:replace="pub/head_link"/>
+    <div th:replace="pub/head_script"/>
+
+    <!--=====================CSS_Link===========================-->
+    <link rel="stylesheet" href="/static/plugins/uploadify/uploadify.css" type="text/css">
+    <link th:href="@{/static/css/manager/film.css}" type="text/css" rel="stylesheet">
+    <!--=====================JS_Link===========================-->
+    <script type="text/javascript" src="/static/plugins/uploadify/jquery.uploadify.min.js"></script>
+
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div style="width:100%; height: auto;overflow:hidden;margin: 0px auto;">
+                <ul class="film-info">
+                    <li class="title">
+                        <div class="left-con">添加影片</div>
+                        <div class="right-con"></div>
+                    </li>
+                    <li>
+                        <div class="left-con">片名:</div>
+                        <div class="right-con">
+                            <div class="update" th:if="${film!=null}">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.name}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <input class="input update-input" placeholder="请填写影片名称" autocomplete="off" el="div"
+                                           name="name" th:value="${film.name}"/>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
 
+                            <input th:if="${film==null}" class="input addFilmInput" id="name" placeholder="请填写影片名称"
+                                   autocomplete="off" />
+                            <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">海报:</div>
+                        <div class="right-con">
+                            <div th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <div class="update-pre">
+                                        <div><img th:src="${film.image}"/></div>
+                                    </div>
+                                    <a href="javascript:;" class="btn edit" t="img">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <input id="file_upload" name="file_upload" type="file">
+                                    <div class="file-pre"></div>
+                                    <a href="javascript:;" class="btn save" id="save-bt" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel" t="img" id="cancel-bt">取消</a>
+                                </div>
+                            </div>
+
+                            <input th:if="${film==null}" id="file_upload" name="file_upload" type="file">
+                            <div th:if="${film==null}" class="file-pre"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">上映年代:</div>
+                        <div class="right-con">
+                            <div th:if="${film!=null}"  class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.onDecade}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <select class="input fixSelect update-input" el="select" name="onDecade">
+                                            <option th:each="decadeList_list:${decadeList}" th:value="${decadeList_list.name}" th:text="${decadeList_list.name}"></option>
+                                    </select>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <select th:if="${film==null}"    id="onDecade" class="input fixSelect">
+                                <option th:each="decadeList_list:${decadeList}" th:value="${decadeList_list.name}" th:text="${decadeList_list.name}"></option>
+                            </select>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">状态:</div>
+                        <div class="right-con">
+                            <div  th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.status}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <input class="input update-input" placeholder="全集/更新第几集" autocomplete="off" el="div"
+                                           name="status" th:value="${film.status}"/>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <input th:if="${film==null}" class="input addFilmInput" value="全集" placeholder="全集/更新第几集" autocomplete="off" id="status"/>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">分辨率:</div>
+                        <div class="right-con">
+                            <div th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.resolution}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <select name="resolution" class="input fixSelect update-input" el="select">
+                                        <option value="1080">1080p</option>
+                                        <option value="720">720p</option>
+                                        <option value="480">480p</option>
+                                    </select>
+
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <select th:if="${film==null}" id="resolution" class="input fixSelect">
+                                <option value="1080">1080p</option>
+                                <option value="720">720p</option>
+                                <option value="480">480p</option>
+                            </select>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">类型:</div>
+                        <div class="right-con">
+                            <div th:if="${film!=null}"  class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.typeName}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <select  class="cataLog_id_subClass input fixSelect">
+                                         <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
+                                    </select>&nbsp;
+                                    <select class="subClass_id input fixSelect"></select>&nbsp;
+                                    <select name="typeName" name1="type_id" class="type_id input fixSelect update-input"
+                                            id="type_id" el="select"></select>
+
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <select th:if="${film==null}"  class="cataLog_id_subClass input fixSelect">
+                               <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
+                            </select>&nbsp;
+                            <select th:if="${film==null}" class="subClass_id input fixSelect"></select>&nbsp;
+                            <select th:if="${film==null}" class="type_id input fixSelect" id="type_id"></select>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">演员:</div>
+                        <div class="right-con">
+                            <div th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.actor}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <input class="input  update-input" placeholder="请填写演员名称，多个演员请用逗号隔开" autocomplete="off" el="div"
+                                           name="actor" th:value="${film.actor}"/>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                                <input th:if="${film==null}" class="input  addFilmInput" placeholder="请填写演员名称，多个演员请用逗号隔开" autocomplete="off" id="actor"/>
+                                <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">地区:</div>
+                        <div class="right-con">
+
+                            <div th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.locName}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                    <select name="locName" th:each="locList_list:${locList}" name1="loc_id" class="input fixSelect update-input"
+                                            el="select">
+                                            <option th:value="${locList_list.id}" th:text="${locList_list.name}"></option>
+                                    </select>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <select th:if="${film==null}"   id="locName" class="input fixSelect">
+                                    <option th:each="locList_list:${locList}" th:value="${locList_list.id}" th:text="${locList_list.name}"></option>
+                            </select>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">剧情:</div>
+                        <div class="right-con">
+                            <div  th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <span class="show" href="javascript:;" th:text="${film.plot}"></span>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+                                <textarea class="input contentType update-input" placeholder="请简短填写剧情介绍" autocomplete="off" el="div"
+                                          name="plot" th:text="${film.plot}"></textarea>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <textarea th:if="${film==null}" class="input contentType addFilmInput" placeholder="请简短填写剧情介绍" autocomplete="off" id="plot"></textarea>
+                            <span th:if="${film==null}" style="color:red;">*</span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">是否vip:</div>
+                        <div class="right-con">
+                            <div  th:if="${film!=null}" class="update">
+                                <div class="label">
+                                    <a class="show" href="javascript:;">
+                                        <span th:if="${film.isVip==1}">是</span>
+                                        <span th:if="${film.isVip==0}">否</span>
+                                    </a>
+                                    <a href="javascript:;" class="btn edit">编辑</a>
+                                </div>
+                                <div class="label-input">
+
+                                    <select th:if="${film.isVip==1}" name="isVip"  id="isVip"  class="input fixSelect update-input" el="select">
+                                        <option value="">请选择</option>
+                                        <option value="1" selected>是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                    <select th:if="${film.isVip==0}" name="isVip"  id="isVip"  class="input fixSelect update-input" el="select">
+                                        <option value="">请选择</option>
+                                        <option value="1">是</option>
+                                        <option value="0" selected>否</option>
+                                    </select>
+                                    <a href="javascript:;" class="btn save" th:filmId="${film.id}">保存</a>
+                                    <a href="javascript:;" class="btn cancel">取消</a>
+                                </div>
+                            </div>
+
+                            <select th:if="${film==null}" name="isVip"  id="isVip" class="input fixSelect update-input" el="select">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                            <span  th:if="${film==null}" style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con"></div>
+                        <div class="right-con" th:if="${film==null}" >
+                            <a href="javascript:;" class="btn" id="addFilm-btn">添加影片</a>
+                            <a href="javascript:;" class="btn" onclick="clearAddFilmInput()">清空</a>
+                        </div>
+                    </li>
+
+                    <li th:if="${film!=null}" class="title">
+                        <div class="left-con">影片资源</div>
+                        <div class="right-con"><span class="zhuti"></span></div>
+                    </li>
+                    <li th:if="${film!=null and res==null}">
+                        <div style="width: auto;height: auto;margin: 20px auto;text-align: center;font-size: 12px;font-family: '微软雅黑';">
+                            暂无资源
+                        </div>
+                    </li>
+                    <li th:each="resList:${res}">
+                        <ul class="zi_yuan_list">
+                            <li><a th:href="${resList.link}" class="show" th:title="${resList.name}" th:text="${resList.name}"></a>
+                            </li>
+                            <li>
+                                <span href="javascript:;" class="show" th:text="${resList.linkType}"></span>
+                            </li>
+                            <li>
+                                <span href="javascript:;" class="show isUse" th:text="${resList.isUse==1?'在线':'离线'}"></span>
+                            </li>
+                            <li><span href="javascript:;" class="show" th:text="${resList.updateTime}"></span></li>
+                            <li>
+                                <a th:if="${resList.isUse==1}" href="javascript:;" class="btn updateIsUse" th:res_id="${resList.id}">离线</a>
+                                <a th:if="${resList.isUse==0}" href="javascript:;" class="btn updateIsUse" th:res_id="${resList.id}">在线</a>
+                                <a href="javascript:;" class="btn delRes" th:res_id="${resList.id}">删除</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="title">
+                        <div class="left-con">添加资源</div>
+                        <div class="right-con">
+                        <span class="zhuti">
+                            <a th:if="${film!=null}" href="javascript:;" class="show" th:text="'影片主体：'+ ${film.id}"></a>
+                        </span>
+                    </div>
+                    </li>
+                    <li>
+                        <div style="width: 200px;height: auto;margin: 10px auto;">
+                            <input id="file_upload_src" name="file_upload" type="file">
+                        </div>
+                        <div class="file-pre-file" style="margin: 10px auto;text-align: center;"></div>
+                    </li>
+                    <li>
+                        <div class="left-con">资源名:</div>
+                        <div class="right-con">
+                            <input class="input longInput addResInput" placeholder="请填写资源名" autocomplete="off" id="res_name"/>
+                            <span style="color:red;">*</span><span style="color:#ddd;">(若百度资源请将密码填在此处，无需填写名称)</span><a href="javascript:;"  class="btn" onclick="setMoban()">多资源模板</a></div>
+                    </li>
+
+                    <li>
+                        <div class="left-con">当前集数:</div>
+                        <div class="right-con">
+                            <select class="input fixSelect" id="res_episodes">
+                                <option value="1">1</option>
+                            </select>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="left-con">链接:</div>
+                        <div class="right-con">
+                            <textarea class="input contentType addResInput" placeholder="请填写资源链接，并在下个选择栏选择正确的资源类型" autocomplete="off" id="res_link"></textarea>
+                            <span style="color:red;">*</span></div>
+                    </li>
+
+                    <li>
+                        <div class="left-con">链接类型:</div>
+                        <div class="right-con">
+                            <select class="input fixSelect" id="res_linkType">
+                                <option value="Flh">在线</option>
+                                <option value="ed2k">电驴</option>
+                                <option value="thunder">迅雷</option>
+                                <option value="http">离线</option>
+                                <option value="dupan">度盘</option>
+                                <option value="other">其它</option>
+                            </select>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="left-con"></div>
+                        <div class="right-con">
+                            <a href="javascript:;" class="btn" id="addRes-btn" th:filmId="${film==null?'':film.id}">添加资源+</a>
+                            <a href="javascript:;" class="btn" onclick="clearAddResInput()">清空</a>
+                            <span href="javascript:;" class="alert-box">温馨提示：清空后可继续添加更多资源</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/js/manager/film.js}" ></script>
 </body>
 </html>

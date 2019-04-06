@@ -36,7 +36,7 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.ly.imp4m.common.model"
+        <javaModelGenerator targetPackage="com.ly.vrps.common.model"
                             targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -51,7 +51,7 @@
 
         <!--生成Dao类存放位置-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.ly.imp4m.common.dao"
+                             targetPackage="com.ly.vrps.common.dao"
                              targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>

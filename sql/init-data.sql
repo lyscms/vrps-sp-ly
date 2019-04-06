@@ -605,3 +605,15 @@ INSERT INTO `t_bus_vip_code` VALUES ('402881e8651518890165152d7dfe0005', '813A0E
 INSERT INTO `t_bus_vip_code` VALUES ('402881e8651518890165152d7dfe0006', 'B4988A1AC07142A5836FB3806F578A82', '1', '2018-08-08 00:17:07', '2018-08-08 00:17:07',null,null,null,null);
 INSERT INTO `t_bus_vip_code` VALUES ('d4ee751208daa8d8bef3ca29d086fa92', '07999C1C4CBAEEEA127B11AD9731B312', '1', '2018-05-11 15:51:41', '2018-05-11 15:51:41',null,null,null,null);
 INSERT INTO `t_bus_vip_code` VALUES ('dc3c54c81c8e2d4b208cae74d70e93e1', '08EDC174726E4C84A9FDF904B90578E5', '1', '2018-05-11 15:51:41', '2018-05-11 15:51:41',null,null,null,null);
+-- ==========================后台========================
+-- 添加角色信息
+INSERT INTO `t_sys_role` VALUES ('4d0c081c86d443929f7825dc3cfc3be2', '采集', '采集管理员', null, '2018-12-11 17:44:37', null, '2018-12-11 17:44:37', '采集备注');
+INSERT INTO `t_sys_role` VALUES ('96dd75eadca94862987bb0ac89af20af', '超级', '超级管理员', null, '2018-12-20 17:51:05', null, '2018-12-20 17:51:05', '超级管理员');
+INSERT INTO `t_sys_role` VALUES ('9c4bd9d7d79045088237615d60fd42b8', '审计', '审计管理员', null, '2018-12-11 17:44:58', null, '2018-12-11 17:44:58', '审计备注');
+INSERT INTO `t_sys_role` VALUES ('d4bbc45e5f544c38b62cd5339abd9a7a', '系统员', '系统管理员', null, '2018-12-11 17:42:25', null, '2018-12-11 17:47:08', '系统备注');
+INSERT INTO `t_sys_role` VALUES ('dd2a5e3d4b0b408980e9f9cb66dd3528', '日志', '日志管理员', null, '2018-12-11 17:45:28', null, '2018-12-11 17:45:43', '日志备注');
+
+-- 添加后台用户
+INSERT INTO `t_sys_user` VALUES ('1bd8effd0fc84564988b70e41eafcb05', '超级管理员', null, 'admin', '$2a$10$Lrfluhxzy8ZxDifXXLeU6uDsx2aQtL0.P0.PgvJHx4/6hwp8278Du', null, '1', '2019-01-04 14:05:34', '0:0:0:0:0:0:0:1', '5', null, '2018-12-20 17:50:06', 'e354cf56072b422c9b68e83fa82afd6e', '2018-12-31 16:06:51', '超级管理员');
+INSERT INTO `t_sys_user` VALUES ('e354cf56072b422c9b68e83fa82afd6e', '孙克亮', null, 'sunkl', '$2a$10$m0FUP5DAY8eEE/K0.M2MXO8pZDlvI3g0lkB9Q8G5IRDEw8VhZJ54a', null, '1', '2019-01-31 16:49:17', '0:0:0:0:0:0:0:1', '79', null, '2018-12-20 17:48:46', 'e354cf56072b422c9b68e83fa82afd6e', '2019-01-04 15:50:15', '超级管理员');
+
