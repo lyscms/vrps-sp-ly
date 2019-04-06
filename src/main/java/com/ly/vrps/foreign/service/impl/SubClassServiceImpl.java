@@ -4,6 +4,9 @@ import com.ly.vrps.common.dao.impl.SubClassMapper;
 import com.ly.vrps.common.model.SubClass;
 import com.ly.vrps.foreign.service.SubClassService;
 import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.weekend.WeekendSqls;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -45,5 +48,13 @@ public class SubClassServiceImpl implements SubClassService {
         subClass.setIsUse(1);
         subClass.setCatalogId(catalogId);
         return subClassMapper.select(subClass);
+    }
+
+    @Override
+    public List<SubClass> listIsUse(List<String> cataLogIdList) {
+        Example example = Example.builder(SubClass.class).where(WeekendSqls.<SubClass>custom()
+                .andIn(SubClass::getCatalogId, cataLogIdList)
+        ).build();
+        return subClassMapper.selectByExample(example);
     }
 }

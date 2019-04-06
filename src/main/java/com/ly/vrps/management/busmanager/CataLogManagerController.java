@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @Api(tags = "目录管理{影视管理:/videoManager}")
@@ -156,6 +158,16 @@ public class CataLogManagerController {
 
     private void getCatalog(ModelMap map) {
         List<CataLog> cataLogList = cataLogService.listIsUse();
+        List<String> cataLogIdList = cataLogList.stream().map(CataLog::getId).collect(Collectors.toList());
+
+        List<SubClass> subClassList = subClassService.listIsUse(cataLogIdList);
+        Map<String, List<SubClass>> subClassMap = subClassList.stream().collect(Collectors.groupingBy(SubClass::getCatalogId));
+
+        for (int i = 0; i < cataLogList.size(); i++) {
+            CataLog cataLog = cataLogList.get(i);
+            cataLogList.get(i).setSubClassList(subClassMap.get(cataLog.getId()));
+        }
+
         List<Type> typeList = typeService.listIsUse();
         List<Location> locList = locService.listIsUse();
         List<Level> levelList = levelService.listIsUse();

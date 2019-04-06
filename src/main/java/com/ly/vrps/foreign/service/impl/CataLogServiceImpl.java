@@ -27,7 +27,8 @@ public class CataLogServiceImpl implements CataLogService {
      */
     @Override
     public String add(CataLog cataLog) {
-        return cataLogMapper.insert(cataLog) > 0 ? cataLog.getId() : "0";
+        cataLog.beforeInsert();
+        return cataLogMapper.insert(cataLog) > 0 ? "1" : "0";
     }
 
     /**

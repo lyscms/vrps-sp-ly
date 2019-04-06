@@ -19,4 +19,6 @@ public interface SubClassService {
     List<SubClass> listByCataLogId(String catalog_id);
 
     List<SubClass> listIsUse(String catalog_id);
+
+    List<SubClass> listIsUse(List<String> cataLogIdList);
 }

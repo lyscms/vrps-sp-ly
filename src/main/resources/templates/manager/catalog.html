@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
-    <link rel="stylesheet" href="/static/css/manager/catalog.css" type="text/css">
+    <title>目录</title>
+    <div th:replace="pub/head_meta"/>
+    <div th:replace="pub/head_link"/>
+    <div th:replace="pub/head_script"/>
+    <script th:src="@{/static/js/manager/catalog.js}" ></script>
+    <link th:href="@{/static/css/manager/catalog.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div style="width:50%;float:left;height: auto;overflow: hidden;">
+                <span>一级分类</span><br/>
+                <div contenteditable="true" class="catalog_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_CataLog_btn btn">添加</a><br/><br/>
 
+                <span>二级子分类</span>
+                <select class="cataLog_id">
+                   <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
+                </select>
+                <br/>
+                <div contenteditable="true" class="subClass_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_SubClass_btn btn">添加</a><br/><br/>
+
+                <span>类型</span><br/>
+                <select class="cataLog_id_subClass">
+                    <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
+                </select>
+                <select class="subClass_id"></select><br/>
+                <div contenteditable="true" class="type_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_Type_btn btn">添加</a><br/><br/>
+                <br/>
+
+                <h2><span style="color:blue;">一级目录</span>--><span style="color:green;">二级目录</span>--><span style="color:#fd5c11;">类型</span></h2>
+                <span th:each="list:${cataLogList}">
+                    <span style="color:blue;" th:text="${list.name}"></span>
+                    <br/>
+                    <span th:if="${list.subClassList!=null}" th:each="li:${list.subClassList}">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;" th:text="${li.name}"></span>-->
+                        <span th:each="l:${typeList}">
+                            <span th:if="${li.id==l.subclassId}" style="color:#fd5c11;" th:text="${l.name}"></span>
+                        </span>
+                        <br/>
+                    </span>
+                    <br/>
+                </span>
+            </div>
+            <div style="width:50%;float:left;height: auto;overflow: hidden;">
+
+                <span>地区</span><br/>
+                <div contenteditable="true" class="loc_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_Loc_btn btn" >添加</a><br/><br/>
+
+
+                <span>级别</span><br/>
+                <div contenteditable="true" class="level_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_Level_btn btn">添加</a><br/><br/>
+
+
+                <span>年代</span><br/>
+                <div contenteditable="true" class="decade_name" style="display: inline-block;"></div>
+                <a href="javascript:;" class="add_Decade_btn btn">添加</a><br/><br/>
+
+
+                <h2>地区-->级别-->年代</h2>
+                <br/>
+                <span>地区--></span>
+                <span th:each="locList_list:${locList}" th:text="${locList_list.name}"></span>
+                <br/>
+                <span>级别--></span>
+                <span th:each="levelList_list:${levelList}" th:text="${levelList_list.name}"></span>
+                <br/>
+
+                <span>年代--></span>
+                <span th:each="decadeList_list:${decadeList}" th:text="${decadeList_list.name}"></span>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

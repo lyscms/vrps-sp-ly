@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * 目录
@@ -37,4 +38,9 @@ public class CataLog extends BaseModel {
      * 是否vip
      */
     private Integer isVip;
+
+    /**
+     * 二级目录
+     */
+    private List<SubClass> subClassList;
 }
