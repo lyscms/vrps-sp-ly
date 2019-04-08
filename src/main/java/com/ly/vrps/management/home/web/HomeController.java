@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Controller
 @Api(tags = "首页管理")
-@RequestMapping
+@RequestMapping(value = "/manager/home")
 public class HomeController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class HomeController {
     private SysRoleService sysRoleService;
 
     @ApiOperation(value = "首页")
-    @GetMapping("/")
+    @GetMapping("")
     @ApiIgnore
     public String index(Model model) {
 
