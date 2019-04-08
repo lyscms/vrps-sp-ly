@@ -14,11 +14,11 @@ public interface SubClassService {
 
     String add(SubClass subClass);
 
-    SubClass load(String subClass_id);
+    SubClass load(String subClassId);
 
-    List<SubClass> listByCataLogId(String catalog_id);
+    List<SubClass> listByCataLogId(String cataLogId);
 
-    List<SubClass> listIsUse(String catalog_id);
+    List<SubClass> listIsUse(String cataLogId);
 
     List<SubClass> listIsUse(List<String> cataLogIdList);
 }

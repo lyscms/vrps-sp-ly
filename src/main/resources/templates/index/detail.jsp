@@ -89,9 +89,9 @@
             <%--*当前位置:--%>
             <div class="wz">
                 当前位置: <a href="/">首页</a>
-                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/1.html?cataLog_id=${film.cataLog_id}">${film.cataLogName}</a>
-                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/1.html?subClass_id=${film.subClass_id}">${film.subClassName}</a>
-                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/1.html?type_id=${film.type_id}">${film.typeName}</a>
+                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/index.html?cataLog_id=${film.cataLog_id}">${film.cataLogName}</a>
+                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/index.html?subClass_id=${film.subClass_id}">${film.subClassName}</a>
+                &nbsp;&nbsp;»&nbsp;&nbsp;<a href="xl/index.html?type_id=${film.type_id}">${film.typeName}</a>
                 &nbsp;&nbsp;»&nbsp;&nbsp;${film.name}
             </div>
         </div>
@@ -116,7 +116,7 @@
                             </li>
                             <li>
                                 <span>类型：</span>
-                                <a href="xl/1.html?type=${film.type_id}" target="_blank">${film.typeName}</a>
+                                <a href="xl/index.html?type=${film.type_id}" target="_blank">${film.typeName}</a>
                             </li>
                             <li>
                                 <span>主演：</span>

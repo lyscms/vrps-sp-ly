@@ -15,7 +15,7 @@ public interface RatyService {
 
     String  add(Raty raty);
 
-    List<Raty> listALLByFilmId(String film_id);
+    List<Raty> listALLByFilmId(String filmId);
 
-    int getCountByFilm_id(String film_id);
+    int getCountByfilmId(String filmId);
 }

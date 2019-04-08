@@ -13,11 +13,11 @@ import java.util.List;
 public interface ResService {
     String add(Res res);
 
-    List<Res> listByFilmId(String film_id);
+    List<Res> listByFilmId(String filmId);
 
     boolean delete(String res_id);
 
     boolean updateIsUse(String res_id);
 
-    List<Res> listByLinkType(String film_id, String linkType);
+    List<Res> listByLinkType(String filmId, String linkType);
 }

@@ -30,10 +30,10 @@ $(function () {
         var subClass_name = $(".subClass_name").text();
         if(subClass_name!="") {
             $.ajax({
-                url: "addSubClass.html",
+                url: "/catalog/manager/addSubClass.html",
                 type: "POST",
                 dataType: "json",
-                data: "cataLog_id=" + $(".cataLog_id").val() + "&name=" + $(".subClass_name").text(),
+                data: "cataLogId=" + $(".cataLog_id").val() + "&name=" + $(".subClass_name").text(),
                 success: backFunction,
                 error: function () {
                     alert("系统繁忙!");
@@ -48,10 +48,10 @@ $(function () {
         var type_name = $(".type_name").text();
         if(type_name!=""){
             $.ajax({
-                url: "addType.html",
+                url: "/catalog/manager/addType.html",
                 type: "POST",
                 dataType: "json",
-                data: "subClass_id=" + $(".subClass_id").val() + "&name=" + $(".type_name").text(),
+                data: "subClassId=" + $(".subClass_id").val() + "&name=" + $(".type_name").text(),
                 success: backFunction,
                 error: function () {
                     alert("系统繁忙!");
@@ -66,7 +66,7 @@ $(function () {
         var loc_name = $(".loc_name").text();
         if(loc_name!=""){
             $.ajax({
-                url: "addLoc.html",
+                url: "/catalog/manager/addLoc.html",
                 type: "POST",
                 dataType: "json",
                 data: "name=" + $(".loc_name").text(),
@@ -84,7 +84,7 @@ $(function () {
         var level_name = $(".level_name").text();
         if(level_name!="") {
             $.ajax({
-                url: "addLevel.html",
+                url: "/catalog/manager/addLevel.html",
                 type: "POST",
                 dataType: "json",
                 data: "name=" + $(".level_name").text(),
@@ -102,7 +102,7 @@ $(function () {
         var decade_name = $(".decade_name").text();
         if(decade_name!="") {
             $.ajax({
-                url: "addDecade.html",
+                url: "/catalog/manager/addDecade.html",
                 type: "POST",
                 dataType: "json",
                 data: "name=" + $(".decade_name").text(),

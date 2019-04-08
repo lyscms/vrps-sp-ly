@@ -1,71 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="/WEB-INF/jsp/pub/include.jsp" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
-<c:set var="prourl" value="<%=basePath%>"></c:set>
-<c:set var="proname" value="${pageContext.request.contextPath}"></c:set>
-<div style="width: 100%;height: auto;overflow:hidden;    margin-bottom: 10px;">
-
+<div style="width: 100%;height: auto;overflow:hidden; margin-bottom: 10px;" xmlns:th="http://www.thymeleaf.org">
     <!-- 头部begin -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="/">欢迎来到<f:message key="siteName"/>最新影片资源</a>
+        <a class="navbar-brand" href="/">欢迎来到SP-LY最新影片资源</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="nav navbar-nav navbar-right" >
 
-
-                <%--<li class="nav-item">
-                    <a class="nav-link" href="note.html">留言</a>
-                </li>--%>
-
                 <li class="nav-item">
-                    <a class="nav-link" onclick="alert('请点击Ctrl+D收藏')" href="#">收藏网站</a>
+                    <a class="nav-link" onclick="alert('请点击Ctrl+D收藏')" href="javascript:;">收藏网站</a>
                 </li>
-
-                <c:if test="${u_skl.userName!='' and u_skl.userName!=null}">
-                    <c:if test="${u_skl.isVip==1}">
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle='tooltip' data-placement="bottom" title="<f:formatDate value='${u_skl.expireDate}' pattern='yyyy-MM-dd HH:mm:ss' />到期" href="javascript:;">${u_skl.userName}</a>
-                        </li>
-                    </c:if>
-                    <c:if test="${u_skl.isVip==0}">
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle='tooltip' data-placement="bottom" title="你的车开到<f:formatDate value='${u_skl.expireDate}' pattern='yyyy-MM-dd HH:mm:ss' />没油了，请加油后继续上路！"  href="javascript:;">${u_skl.userName}</a>
-                        </li>
-                    </c:if>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://w.url.cn/s/Axllwhs"  target="_blank">加点油</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="fuelFilling()"  href="javascript:;">使用加油卡</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="globalLoginBtn_loginOut" href="javascript:;">退出</a>
-                    </li>
-                </c:if>
-                <c:if test="${u_skl.userName=='' or u_skl.userName==null}">
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#myModal" href="javascript:;">登录</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="globalLoginBtn_register_input" href="registerInput.html">注册</a>
-                    </li>
-                </c:if>
+                <li th:if="${session.u_skl!=null and session.u_skl.userName!='' and session.u_skl.userName!=null and session.u_skl.isVip==1}" class="nav-item">
+                    <a class="nav-link" data-toggle='tooltip' data-placement="bottom" th:title="${#dates.format(session.u_skl.expireTime,'yyyy-MM-dd HH:mm:ss')}+'到期'" href="javascript:;" th:text="${session.u_skl.userName}"></a>
+                </li>
+                <li th:if="${session.u_skl!=null and session.u_skl.userName!='' and session.u_skl.userName!=null and session.u_skl.isVip==0}" class="nav-item">
+                    <a class="nav-link" data-toggle='tooltip' data-placement="bottom" th:title="'你的车开到'+${#dates.format(session.u_skl.expireTime,'yyyy-MM-dd HH:mm:ss')}+'没油了，请加油后继续上路！'"  href="javascript:;" th:text="${session.u_skl.userName}"></a>
+                </li>
+                <li th:if="${session.u_skl!=null and session.u_skl.userName!='' and session.u_skl.userName!=null}" class="nav-item">
+                    <a class="nav-link" href="https://w.url.cn/s/Axllwhs"  target="_blank">加点油</a>
+                </li>
+                <li th:if="${session.u_skl!=null and session.u_skl.userName!='' and session.u_skl.userName!=null}" class="nav-item">
+                    <a class="nav-link" onclick="fuelFilling()"  href="javascript:;">使用加油卡</a>
+                </li>
+                <li th:if="${session.u_skl!=null and session.u_skl.userName!='' and session.u_skl.userName!=null}" class="nav-item">
+                    <a class="nav-link" id="globalLoginBtn_loginOut" href="javascript:;">退出</a>
+                </li>
+                <li th:if="${session.u_skl==null or (session.u_skl!=null and (session.u_skl.userName=='' or session.u_skl.userName==null))}" class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal" href="javascript:;">登录</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="globalLoginBtn_register_input" href="/registerInput.html">注册</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:;">|</a>
                 </li>
                 <li class="nav-item">
                     <a  class="nav-link" href="/">首页</a>
                 </li>
-                <c:forEach items="${cataLogList}" var="vo">
-                    <li class="nav-item">
-                        <a  class="nav-link" href="xl/1.html?cataLog_id=${vo.id}">${vo.name}</a>
-                    </li>
-                </c:forEach>
+                <li th:each="vo:${cataLogList}" class="nav-item">
+                    <a  class="nav-link" th:href="@{/xl/index.html(cataLogId=${vo.id})}" th:text="${vo.name}"></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -119,12 +94,11 @@
         /**登录*/
         $("#login_btn").click(function () {
             $.ajax({
-                url:"login.html",
+                url:"/login.html",
                 type:"POST",
                 dataType:"json",
                 data:$("#login_form").serialize(),
                 success:function (data) {
-                    data = JSON.parse(data);
                     if(data.code=="1"){
                         location.reload();
                     }else{
@@ -141,7 +115,7 @@
         /**登出*/
         $("#globalLoginBtn_loginOut").click(function () {
             $.ajax({
-                url:"logout.html",
+                url:"/logout.html",
                 type:"POST",
                 dataType:"json",
                 success:function (data) {
@@ -162,17 +136,16 @@
      * 加油
      */
     function fuelFilling() {
-        var vip_code =  prompt("请输入你的加油卡号：");
-        if(vip_code!='' && vip_code!=undefined){
+        var vipCode =  prompt("请输入你的加油卡号：");
+        if(vipCode!='' && vipCode!=undefined){
             $.ajax({
-                url:"vipCodeVerification.html",
+                url:"/vipCodeVerification.html",
                 type:"POST",
                 dataType:"json",
                 data:{
-                    vip_code:vip_code
+                    vipCode:vipCode
                 },
                 success:function (data) {
-                    data = JSON.parse(data);
                     if(data.code=="1"){
                         alert("加油成功，继续前行");
                         location.reload();
@@ -181,7 +154,7 @@
                     }
                 }
             });
-        }else if(vip_code!=undefined){
+        }else if(vipCode!=undefined){
             alert("请输入你的加油卡号!")
         }
     }

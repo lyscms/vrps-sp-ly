@@ -70,8 +70,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Film load(String film_id) {
-        return filmMapper.selectByPrimaryKey(film_id);
+    public Film load(String filmId) {
+        return filmMapper.selectByPrimaryKey(filmId);
     }
 
     /**

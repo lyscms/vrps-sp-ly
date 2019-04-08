@@ -27,7 +27,8 @@ public class SubClassServiceImpl implements SubClassService {
 
     @Override
     public String add(SubClass subClass) {
-        return subClassMapper.insert(subClass) > 0 ? subClass.getId() : "0";
+        subClass.beforeInsert();
+        return subClassMapper.insert(subClass) > 0 ? "1" : "0";
     }
 
     @Override

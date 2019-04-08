@@ -28,7 +28,8 @@ public class DecadeServiceImpl implements DecadeService {
      */
     @Override
     public String add(Decade decade) {
-        return decadeMapper.insert(decade) > 0 ? decade.getId() : "0";
+        decade.beforeInsert();
+        return decadeMapper.insert(decade) > 0 ? "1" : "0";
     }
 
     /**

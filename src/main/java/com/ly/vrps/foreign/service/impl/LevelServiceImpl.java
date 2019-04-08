@@ -27,7 +27,8 @@ public class LevelServiceImpl implements LevelService {
      */
     @Override
     public String add(Level level) {
-        return levelMapper.insert(level) > 0 ? level.getId() : "0";
+        level.beforeInsert();
+        return levelMapper.insert(level) > 0 ? "1": "0";
     }
 
 

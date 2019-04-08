@@ -96,7 +96,7 @@ public class AuthenticationController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/login.html")
+    @RequestMapping(value = "/login.html",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String login(String account_l, String password_l, HttpSession session) {
         JSONObject jsonObject = new JSONObject();
@@ -161,11 +161,11 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/vipCodeVerification.html")
     @ResponseBody
-    public String vipCodeVerification(String vip_code, HttpSession session) {
+    public String vipCodeVerification(String vipCode, HttpSession session) {
         JSONObject jsonObject = new JSONObject();
 
-        VipCode vipCode = vipCodeService.findByVipCode(vip_code);
-        if(vipCode!=null){
+        VipCode code = vipCodeService.findByVipCode(vipCode);
+        if(code!=null){
             /**
              1.获取当前登录用户
              */
@@ -192,9 +192,9 @@ public class AuthenticationController {
                     session.setAttribute(USER_KEY,user);
 
                     /**修改vipCode为不能使用，增加过期时间*/
-                    vipCode.setExpireTime(new Date());
-                    vipCode.setIsUse(0);
-                    if(vipCodeService.update(vipCode)){
+                    code.setExpireTime(new Date());
+                    code.setIsUse(0);
+                    if(vipCodeService.update(code)){
                         jsonObject.put("code","1");
                     }else{
                         user.setExpireTime(expireTimeTemp);

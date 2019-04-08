@@ -21,7 +21,8 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public String add(Type type) {
-        return typeMapper.insert(type) > 0 ? type.getId() : "0";
+        type.beforeInsert();
+        return typeMapper.insert(type) > 0 ? "1" : "0";
     }
 
     @Override

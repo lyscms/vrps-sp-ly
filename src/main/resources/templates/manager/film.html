@@ -148,10 +148,10 @@
                                     <a href="javascript:;" class="btn edit">编辑</a>
                                 </div>
                                 <div class="label-input">
-                                    <select  class="cataLog_id_subClass input fixSelect">
+                                    <select  class="cataLogId_subClass input fixSelect">
                                          <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
                                     </select>&nbsp;
-                                    <select class="subClass_id input fixSelect"></select>&nbsp;
+                                    <select class="subClassId input fixSelect"></select>&nbsp;
                                     <select name="typeName" name1="type_id" class="type_id input fixSelect update-input"
                                             id="type_id" el="select"></select>
 
@@ -160,10 +160,10 @@
                                 </div>
                             </div>
 
-                            <select th:if="${film==null}"  class="cataLog_id_subClass input fixSelect">
+                            <select th:if="${film==null}"  class="cataLogId_subClass input fixSelect">
                                <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
                             </select>&nbsp;
-                            <select th:if="${film==null}" class="subClass_id input fixSelect"></select>&nbsp;
+                            <select th:if="${film==null}" class="subClassId input fixSelect"></select>&nbsp;
                             <select th:if="${film==null}" class="type_id input fixSelect" id="type_id"></select>
                             <span th:if="${film==null}" style="color:red;">*</span>
                         </div>

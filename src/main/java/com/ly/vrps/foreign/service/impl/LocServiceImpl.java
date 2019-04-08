@@ -23,7 +23,8 @@ public class LocServiceImpl implements LocService {
 
     @Override
     public String add(Location loc) {
-        return locationMapper.insert(loc) > 0 ? loc.getId() : "0";
+        loc.beforeInsert();
+        return locationMapper.insert(loc) > 0 ? "1" : "0";
     }
 
     @Override

@@ -15,9 +15,9 @@ public interface TypeService {
 
     List<Type> listIsUse();
 
-    List<Type> listBySubClassId(String subClass_id);
+    List<Type> listBySubClassId(String subClassId);
 
     Type load(String val);
 
-    List<Type> listIsUseBySubClassId(String subClass_id);
+    List<Type> listIsUseBySubClassId(String subClassId);
 }

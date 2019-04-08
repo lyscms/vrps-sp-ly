@@ -58,7 +58,6 @@ $('.red_button').click(function(){
           dataType:"json",
           data:$("#register_form").serialize(),
           success:function (data) {
-              data = JSON.parse(data);
               if(data.code=="1"){
                   alert("注册成功");
                   location.href=window.head_page_path;

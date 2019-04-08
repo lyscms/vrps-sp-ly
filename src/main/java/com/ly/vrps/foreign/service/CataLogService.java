@@ -16,6 +16,6 @@ public interface CataLogService {
 
     List<CataLog> listIsUse();
 
-    CataLog load(String cataLog_id);
+    CataLog load(String cataLogId);
 
 }

@@ -41,7 +41,7 @@ public class PayManagerController {
     @ApiOperation(value = "Vip管理页面")
     public String vipCode(ModelMap map) {
         List<VipCode> list = vipCodeService.listIsUse();
-        map.addAttribute("vip_codes", list);
+        map.addAttribute("vipCodes", list);
         return "manager/vip-manager";
     }
 

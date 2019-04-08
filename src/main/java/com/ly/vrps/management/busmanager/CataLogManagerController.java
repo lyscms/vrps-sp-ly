@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -92,15 +91,14 @@ public class CataLogManagerController {
     @PostMapping(value = "/addType.html")
     @ResponseBody
     @ApiOperation(value = "添加类型")
-    public String addType(Type type, String subClass_id, HttpSession session) {
+    public String addType(Type type, String subClassId) {
         /**
          * 初始化参数
          */
         type.setIsUse(1);//设置默认在使用
 
-
         //设置上级目录
-        type.setSubclassId(subClass_id);
+        type.setSubclassId(subClassId);
 
         //添加二级子类目录
         String id = typeService.add(type);

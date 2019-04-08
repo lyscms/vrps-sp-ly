@@ -75,7 +75,7 @@
             <c:if test="${filmTuijian.size()!=0}">
                 <c:forEach items="${filmTuijian}" var="list">
                     <div class="mox">
-                        <h5>最新${list.get(0).cataLogName}推荐<span style="margin-right:10px;cursor:pointer;float: right;" onclick="location.href='xl/1.html?cataLog_id=${list.get(0).cataLog_id}'">更多</span></h5>
+                        <h5>最新${list.get(0).cataLogName}推荐<span style="margin-right:10px;cursor:pointer;float: right;" onclick="location.href='xl/index.html?cataLog_id=${list.get(0).cataLog_id}'">更多</span></h5>
                         <ul>
                             <c:forEach items="${list}" var="li">
                                 <li class="float-left">

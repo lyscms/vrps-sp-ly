@@ -29,7 +29,7 @@ public class ResServiceImpl implements ResService {
     }
 
     /**
-     * 查询该film_id的资源
+     * 查询该filmId的资源
      * @param filmId
      * @return
      */

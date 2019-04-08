@@ -35,7 +35,7 @@ public class RatyServiceImpl implements RatyService {
     }
 
     @Override
-    public int getCountByFilm_id(String filmId) {
+    public int getCountByfilmId(String filmId) {
         List<Raty> raties = listALLByFilmId(filmId);
         return CollectionUtils.isEmpty(raties)?0:raties.size();
     }

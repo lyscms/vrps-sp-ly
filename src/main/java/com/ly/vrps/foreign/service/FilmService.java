@@ -15,7 +15,7 @@ import java.util.List;
 public interface FilmService {
     String add(Film film);
 
-    Film load(String film_id);
+    Film load(String filmId);
 
     boolean update(Film film);
 

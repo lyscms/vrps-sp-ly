@@ -60,34 +60,34 @@ public class IndexController {
     @Resource
     private RatyService ratyService;
 
-    @RequestMapping(value = "/1.html")
+    @RequestMapping(value = "/index.html")
     public String index(ModelMap map, HttpServletRequest request){
         getFilmList(map, request,1);
-        String cataLog_id = request.getParameter("cataLog_id");
-        if(Tools.notEmpty(cataLog_id)){
-            List<SubClass> subClassList =  subClassService.listIsUse(cataLog_id);
+        String cataLogId = request.getParameter("cataLogId");
+        if(Tools.notEmpty(cataLogId)){
+            List<SubClass> subClassList =  subClassService.listIsUse(cataLogId);
             map.addAttribute("subClassList",subClassList);
-            map.addAttribute("cataLog_id",cataLog_id);
+            map.addAttribute("cataLogId",cataLogId);
         }
 
-        String subClass_id = request.getParameter("subClass_id");
-        if(Tools.notEmpty(subClass_id)){
-            List<Type> typeList = typeService.listIsUseBySubClassId(subClass_id);
+        String subClassId = request.getParameter("subClassId");
+        if(Tools.notEmpty(subClassId)){
+            List<Type> typeList = typeService.listIsUseBySubClassId(subClassId);
             map.addAttribute("typeList",typeList);
         }
         getCatalog(map);
-        return "index/1";
+        return "index/index";
     }
 
     @RequestMapping(value = "/pc.html")
-    public String pc(ModelMap map, HttpServletRequest request){
+    public String pc(){
         return "index/pc";
     }
 
     @RequestMapping(value = "/detail.html")
-    public String detail(ModelMap map, String film_id, String src, String j, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes){
+    public String detail(ModelMap map, String filmId, String src, String j, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes){
 
-        Film film = filmService.load(film_id);
+        Film film = filmService.load(filmId);
         /**判断是否是VIP资源进行VIP身份校验*/
         if(film.getIsVip()==1){
             /**获取当前登录用户*/
@@ -118,7 +118,7 @@ public class IndexController {
         /**
          * 获取该影片总的评分人数
          */
-        map.addAttribute("totalRatys",ratyService.getCountByFilm_id(film_id));
+        map.addAttribute("totalRatys",ratyService.getCountByfilmId(filmId));
 
         /**
          * 根据类型查询影片
@@ -219,68 +219,10 @@ public class IndexController {
             map.addAttribute("name",name);
         }
 
-        /**
-         * 需要修改 3 处地方
-         */
-
-
-        /**
-         * 1. 获取页面传递的pc
-         * 2. 给定ps的值
-         * 3. 使用pc和ps调用service方法，得到PageBean，保存到request域
-         * 4. 转发到list.jsp
-         */
-
-        /**
-         * 把条件截取出来，保存到pb.url中！
-         */
-        String url = request.getQueryString();
-        /**
-         * url中有可能存在pc，这需要把pc截取下去，不要它！
-         */
-        if(url!=null){
-            int index = url.lastIndexOf("&pc=");
-            if(index == -1) {
-
-            }else{
-                url =  url.substring(0, index);
-            }
-        }
-
-        /**
-         * 1. 得到pc
-         *   如果pc参数不存在，说明pc=1
-         *   如果pc参数存在，需要转换成int类型即可
-         */
-        String value = request.getParameter("pc");
-        int pc = 1;
-        if(!Tools.isEmpty(value)){
-            pc = Integer.parseInt(value);
-        }
-        /**
-         * 2.给定ps值，每页10行记录
-         */
-        /**=================需求修改的每页记录数，默认10记录========================*/
-        int ps = 18;                                                                     /**1.修改*/
-
-        /**
-         * 3. 使用pc和ps调用service方法，得到PageBean，保存到request域
-         */
-
-        /**=================需求修改对象参数======================================*/          /**2.修改*/
-        // 获取页面传递的查询条件
         Film ob = Tools.toBean(request.getParameterMap(),Film.class);
-        if(flag!=0){
-            ob.setIsUse(1);
-        }
-        PageInfo<Film> pb = filmService.getPage(ob, pc, ps);
-
-        //pb.setUrl(url);
-             /*存入到request域中*/
+        PageInfo<Film> pb = filmService.getPage(ob, 1, 20);
         map.addAttribute("pb",pb);
-        /**
-         * 4. 转发到list.jsp
-         */}
+    }
 
     private void getCatalog(ModelMap map) {
         List<CataLog> cataLogList =  cataLogService.listIsUse();

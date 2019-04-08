@@ -43,7 +43,7 @@ public class CataLogServiceImpl implements CataLogService {
     }
 
     @Override
-    public CataLog load(String cataLog_id) {
-        return cataLogMapper.selectByPrimaryKey(cataLog_id);
+    public CataLog load(String cataLogId) {
+        return cataLogMapper.selectByPrimaryKey(cataLogId);
     }
 }

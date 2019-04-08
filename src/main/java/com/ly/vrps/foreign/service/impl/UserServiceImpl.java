@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
+        user.beforeInsert();
         return userMapper.insert(user) > 0 ? user : null;
     }
 
