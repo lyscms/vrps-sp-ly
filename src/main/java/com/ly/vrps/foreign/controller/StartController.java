@@ -30,7 +30,7 @@ public class StartController {
     @Resource
     private CataLogService cataLogService;
 
-    @RequestMapping(value = "index.html")
+    @RequestMapping(value = {"index.html",""})
     public String index(ModelMap map) {
         List<CataLog> cataLogList = cataLogService.listIsUse();
         map.addAttribute("cataLogList", cataLogList);
@@ -38,7 +38,7 @@ public class StartController {
          * 查询推荐
          */
 
-        List<Object> list = new ArrayList<Object>();
+        List<List<Film>> list = new ArrayList<>();
         for (int i = 0; i < cataLogList.size(); i++) {
 
             List<Film> film = filmService.listByCataLogId(cataLogList.get(i).getId());
@@ -57,7 +57,7 @@ public class StartController {
             }
         }
         map.addAttribute("filmPaiHang", list1);
-        return "index/index";
+        return "index/home";
     }
 
     @RequestMapping(value = "note.html")

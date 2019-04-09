@@ -7,13 +7,13 @@
       pageurl=@{/xl/index.html}"
       >
 <head>
-    <base th:href="${#dates.createNow().getTime()}">
+    <base th:href="${prourl}">
     <title>最新影片下载=高清影片下载-迅雷下载</title>
     <div th:replace="pub/head_meta"/>
     <div th:replace="pub/head_link"/>
     <div th:replace="pub/head_script"/>
     <!--=====================CSS_Link===========================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index/1.css(v=${pageurl})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index/index.css(v=${pageurl})}">
 
     <!--=====================JS_Link===========================-->
     <script>

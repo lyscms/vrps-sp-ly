@@ -129,7 +129,12 @@ public class FilmServiceImpl implements FilmService {
         film.setIsUse(1);
         List<Film> films = filmMapper.select(film);
         films.sort(comparing.reversed());
-        return CollectionUtils.isEmpty(films) ? Collections.emptyList() : films.subList(0, 12);
+        boolean empty = CollectionUtils.isEmpty(films);
+        int end = 12;
+        if(!empty){
+            end = films.size() >= 12 ? 12 : films.size();
+        }
+        return empty? Collections.emptyList() : films.subList(0, end);
     }
 
     @Override

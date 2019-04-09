@@ -1,31 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="/WEB-INF/jsp/pub/include.jsp" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
-<c:set var="prourl" value="<%=basePath%>"></c:set>
-<c:set var="proname" value="${pageContext.request.contextPath}"></c:set>
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:with="
+      version=${#dates.createNow().getTime()},
+      prourl=${#request.getScheme() + '://' + #request.getServerName() + ':' + #request.getServerPort() + #request.getContextPath() + '/'},
+      proname=${#request.getContextPath()},
+      pageurl=@{/xl/index.html}"
+>
 <head>
-    <base href="<%=basePath%>">
     <title>留言求片</title>
-    <jsp:include page="/WEB-INF/jsp/pub/head_meta.jsp"/>
-    <jsp:include page="/WEB-INF/jsp/pub/head_link.jsp"/>
-    <jsp:include page="/WEB-INF/jsp/pub/head_script.jsp"/>
+    <div th:replace="pub/head_meta"/>
+    <div th:replace="pub/head_link"/>
+    <div th:replace="pub/head_script"/>
     <!--=====================CSS_Link===========================-->
 
 
     <!--=====================JS_Link===========================-->
 </head>
 <body>
-<%--头部--%>
-<jsp:include page="/WEB-INF/jsp/pub/head.jsp"></jsp:include>
+<div th:replace="pub/head"/>
     <div class="container">
         <div class="row">
             <%--畅言--%>
-            <div id="SOHUCS" sid="${prourl}note.html"></div>
+            <div id="SOHUCS" th:sid="${prourl}+'note.html'"></div>
             <script type="text/javascript">
                 (function () {
                     var appid = 'cysEMKRat';
@@ -61,10 +57,8 @@
                     }
                 })();
             </script>
-            <%--畅言--%>
         </div>
     </div>
-<%--尾部--%>
-<jsp:include page="/WEB-INF/jsp/pub/footer.jsp"></jsp:include>
+<div th:replace="pub/footer"/>
 </body>
 </html>

@@ -119,7 +119,6 @@
                 type:"POST",
                 dataType:"json",
                 success:function (data) {
-                    data = JSON.parse(data);
                     if(data.code=="1"){
                         location.reload();
                     }else{
