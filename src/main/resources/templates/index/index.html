@@ -85,7 +85,7 @@
         </div>
         <div class="col-sm-10">
             <ul class="film-list">
-                <li th:each="list:${pb.list}">
+                <li th:each="list:${page.list}">
                     <a th:href="@{/xl/detail.html(filmId=${list.id})}">
                         <div  class="note-left" th:title="${list.name}"><img class="lazy rounded img-fluids" th:data-original="${list.image}" /></div>
                     </a>
@@ -108,16 +108,38 @@
                             <p><i th:text="'类型：'+${list.typeName}"></i><i th:text="'更新：'+${#dates.format(list.updateTime,'MM-dd')}"></i></p>
                             <br/>
                             <span>
-                                <a th:href="@{/xl/detail.html(filmId=${list.id})#kan}" class="watch-btn" target="_blank">观看</a>
-                                <a th:href="@{/xl/detail.html(filmId=${list.id})#down}" class="download-btn" target="_blank">下载</a>
+                                <a th:href="@{/xl/detail.html(filmId=${list.id})}" class="watch-btn" target="_blank">观看</a>
+                                <a th:href="@{/xl/detail.html(filmId=${list.id})}" class="download-btn" target="_blank">下载</a>
                             </span>
                         </div>
                     </div>
                 </li>
             </ul>
-            <ul th:if="${pb.size==0}" class="mlist">对不起，没有找到任何记录,<a target="_blank" href="note.html"><font color="red"><b>请您在此留言</b></font></a>，我们尽快为你添加喜欢的数据<div class="cr"></div></ul>
+            <ul th:if="${page.size==0}" class="mlist">对不起，没有找到任何记录,<a target="_blank" href="note.html"><font color="red"><b>请您在此留言</b></font></a>，我们尽快为你添加喜欢的数据<div class="cr"></div></ul>
             <div style="width:100%;margin: 5px auto;height: auto;overflow: hidden;">
+                <nav style="float: right;">
+                    <ul class="pagination">
+                        <li th:class="${'page-item'+(page.isFirstPage ? ' disabled':'')}">
+                            <a class="page-link" th:if="${not page.isFirstPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum-1},pageSize=${page.pageSize},cataLogId=${cataLogId})}">上一页</a>
+                            <a class="page-link" th:if="${page.isFirstPage}" href="javascript:void(0);">上一页</a>
+                        </li>
 
+                        <li th:each="pageNo : ${#numbers.sequence(1, page.pages)}"  th:class="${'page-item '+(page.pageNum eq pageNo ? 'active':'')}">
+                            <a class="page-link" th:if="${page.pageNum eq pageNo}" href="javascript:void(0);">
+                                <span th:text="${pageNo}"></span>
+                            </a>
+
+                            <a class="page-link" th:if="${not (page.pageNum eq pageNo)}" th:href="@{/xl/index.html(pageNum=${pageNo},size=${page.pageSize},cataLogId=${cataLogId})}">
+                                <span th:text="${pageNo}"></span>
+                            </a>
+                        </li>
+                        <li th:class="${'page-item'+(page.isLastPage ? ' disabled':'')}">
+                            <a class="page-link" th:if="${not page.isLastPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum+1},size=${page.pageSize},cataLogId=${cataLogId})}">下一页</a>
+                            <a class="page-link " th:if="${page.isLastPage}" href="javascript:void(0);">下一页</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             </div>
         </div>
     </div>

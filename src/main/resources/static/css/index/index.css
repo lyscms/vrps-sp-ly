@@ -8,6 +8,12 @@ a:hover {
 a{
     color: #444;
 }
+
+.pagination .active .page-link{
+    background-color: #57d2f2;
+    border-color: #57d2f2;
+}
+
 .user-box{
     width:1000px;
     height: auto;

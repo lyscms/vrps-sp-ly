@@ -220,9 +220,18 @@ public class IndexController {
             map.addAttribute("name",name);
         }
 
+        String pageNum = request.getParameter("pageNum");
+        if(Tools.isEmpty(pageNum)){
+            pageNum = "1";
+        }
+        String pageSize = request.getParameter("pageSize");
+        if(Tools.isEmpty(pageSize)){
+            pageSize = "18";
+        }
+
         Film ob = Tools.toBean(request.getParameterMap(),Film.class);
-        PageInfo<Film> pb = filmService.getPage(ob, 1, 20);
-        map.addAttribute("pb",pb);
+        PageInfo<Film> pb = filmService.getPage(ob, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+        map.addAttribute("page",pb);
     }
 
     private void getCatalog(ModelMap map) {
