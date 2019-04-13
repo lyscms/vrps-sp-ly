@@ -24,7 +24,8 @@ public class RatyServiceImpl implements RatyService {
 
     @Override
     public String add(Raty raty) {
-        return ratyMapper.insert(raty) > 0 ? raty.getId() : "0";
+        raty.beforeInsert();
+        return ratyMapper.insert(raty) > 0 ? "1" : "0";
     }
 
     @Override

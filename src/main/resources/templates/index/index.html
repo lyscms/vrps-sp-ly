@@ -71,11 +71,8 @@
 <!--头部-->
 <div th:replace="pub/head"/>
 <div class="container" style="margin-top: 50px;">
-        <div th:if="${session.u_skl==null}" class="row">
-            <div class="col">
-                <marquee  onmouseover='this.stop()' onmouseout='this.start()'><a id="globalLoginBtn_register_input" href="registerInput.html">注册</a>|<a data-toggle="modal" data-target="#myModal" href="javascript:;">登录</a>后观看更多高清无码视频</marquee>
-            </div>
-        </div>
+    <!--滚动banner-->
+    <div th:replace="pub/ad_banner"/>
     <div class="row">
         <div class="col-sm-2">
             <ul class="user-nav">

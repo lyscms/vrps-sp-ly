@@ -5,6 +5,7 @@ import com.ly.vrps.common.model.*;
 import com.ly.vrps.common.util.DateUtil;
 import com.ly.vrps.common.util.Tools;
 import com.ly.vrps.foreign.service.*;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -164,7 +165,7 @@ public class IndexController {
         Collections.sort(resListFlh, Comparator.comparingInt(Res::getEpisodes));
         Collections.sort(resListOther, Comparator.comparingInt(Res::getEpisodes));
 
-        map.addAttribute("resListEd2k",resListEd2k);
+        map.addAttribute("resListEd2k", JSONArray.fromObject(resListEd2k).toString());
         map.addAttribute("resListThunder",resListThunder);
         map.addAttribute("resListHttp",resListHttp);
         map.addAttribute("resListDupan",resListDupan);

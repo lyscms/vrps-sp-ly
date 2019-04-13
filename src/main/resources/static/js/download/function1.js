@@ -2,7 +2,26 @@
  * Created by 10589 on 2016/10/6.
  */
 
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[2-8a-gi-s]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('function loadSlide(w,h){c 2=1;document.write(\'<d classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="e://a.macromedia.f/pub/b/cabs/g/swflash.cab#version=9,0,28,0" i="\'+w+\'" j="\'+h+\'"><3 4="movie" 5="/\'+7+\'8/6/6.k" /><3 4="l" 5="m"><3   4="wmode"   5="transparent"><3 4="allowscriptaccess" 5="always"><3 4="n" 5="o"><3 4="p" 5="2=\'+2+\'&q=/\'+7+\'8/6/"><r src="/\'+7+\'8/6/6.k" p="2=\'+2+\'&q=/\'+7+\'8/6/" l="m" pluginspage="e://www.adobe.f/b/a/a.cgi?P1_Prod_Version=ShockwaveFlash" 2="application/x-b-g" n="o" i="\'+w+\'" j="\'+h+\'"></r></d>\')}c s=new AJAX();s.setcharset("GBK");',[],29,'||type|param|name|value|slide|sitePath|pic||download|shockwave|var|object|http|com|flash||width|height|swf|quality|high|allowfullscreen|true|flashvars|domain|embed|ajax'.split('|'),0,{}));
+/*
+eval(function (p, a, c, k, e, r) {
+    e = function (c) {
+        return c.toString(36)
+    };
+    if ('0'.replace(0, e) == 0) {
+        while (c--) r[e(c)] = k[c];
+        k = [function (e) {
+            return r[e] || e
+        }];
+        e = function () {
+            return '[2-8a-gi-s]'
+        };
+        c = 1
+    }
+    ;
+    while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+    return p
+}('function loadSlide(w,h){c 2=1;document.write(\'<d classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="e://a.macromedia.f/pub/b/cabs/g/swflash.cab#version=9,0,28,0" i="\'+w+\'" j="\'+h+\'"><3 4="movie" 5="/\'+7+\'8/6/6.k" /><3 4="l" 5="m"><3   4="wmode"   5="transparent"><3 4="allowscriptaccess" 5="always"><3 4="n" 5="o"><3 4="p" 5="2=\'+2+\'&q=/\'+7+\'8/6/"><r src="/\'+7+\'8/6/6.k" p="2=\'+2+\'&q=/\'+7+\'8/6/" l="m" pluginspage="e://www.adobe.f/b/a/a.cgi?P1_Prod_Version=ShockwaveFlash" 2="application/x-b-g" n="o" i="\'+w+\'" j="\'+h+\'"></r></d>\')}c s=new AJAX();s.setcharset("GBK");', [], 29, '||type|param|name|value|slide|sitePath|pic||download|shockwave|var|object|http|com|flash||width|height|swf|quality|high|allowfullscreen|true|flashvars|domain|embed|ajax'.split('|'), 0, {}));
+*/
 
 
 function reportErr(id){openWin("/"+sitePath+"js/err.html?id="+id,400,220,350,250,0)}
@@ -14,7 +33,7 @@ function pinglun(id,key){openWin("/"+sitePath+"comment/?id="+id+"&type=1&title="
 function viewComment(url,type){
     var url;
     url+='&type='+(type=='news' ? 2 : 1);
-    ajax.get(url,function(obj) {
+    $.ajax.get(url,function(obj) {
             if (obj.responseText=="err"){
                 set($("comment_list"),"<font color='red'>发生错误</font>")
             }else{
@@ -27,7 +46,7 @@ function viewComment(url,type){
 function submitComment(id){
     if($("m_author").value.length<1){alert('请填写昵称');return false;}
     if($("m_content").value.length<1){alert('请填写内容');return false;}
-    ajax.postf(
+    $.ajax.postf(
         $("f_comment"),function(obj){
             var x=obj.responseText;
             if(x=="ok"){
@@ -43,8 +62,8 @@ function submitComment(id){
 }
 
 function diggVideo(id,div){
-    ajax.get(
-        "/"+sitePath+"inc/ajax.asp?id="+id+"&action=digg",function (obj){
+    $.ajax.get(
+        "/"+sitePath+"inc/$.ajax.asp?id="+id+"&action=digg",function (obj){
             var returnValue=Number(obj.responseText)
             if (!isNaN(returnValue)){set($(div),returnValue);alert('(*^__^*) 嘻嘻……，顶得我真舒服！');}else if(obj.responseText=="err"){alert('顶失败')}else if(obj.responseText=="havescore"){alert('(*^__^*) 嘻嘻…… 这么热心啊，您已经顶过了！')}
         }
@@ -52,7 +71,7 @@ function diggVideo(id,div){
 }
 
 function treadVideo(id,div){
-    ajax.get("/"+sitePath+"inc/ajax.asp?id="+id+"&action=tread",function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?id="+id+"&action=tread",function (obj){
             var returnValue=Number(obj.responseText)
             if(!isNaN(returnValue)){set($(div),returnValue);alert('小样儿，居然敢踩我！');}else if(obj.responseText=="err"){alert('踩失败')}	else if(obj.responseText=="havescore"){alert('我晕，您已经踩过了，想踩死我啊！')}
         }
@@ -62,7 +81,7 @@ function treadVideo(id,div){
 //--xiu shanchu--
 
 function getVideoHit(vid){
-    ajax.get("/"+sitePath+"inc/ajax.asp?action=hit&id="+vid,function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?action=hit&id="+vid,function (obj){
             var result=obj.responseText
             if(result=="err"){set($('hit'),'发生错误')}else{set($('hit'),result);}
         }
@@ -70,7 +89,7 @@ function getVideoHit(vid){
 }
 
 function getNewsHit(nid){
-    ajax.get("/"+sitePath+"inc/ajax.asp?action=hitnews&id="+nid,function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?action=hitnews&id="+nid,function (obj){
             var result=obj.responseText
             if(result=="err"){set($('hit'),'发生错误')}else{set($('hit'),result);}
         }
@@ -78,7 +97,7 @@ function getNewsHit(nid){
 }
 
 function diggNews(id,div){
-    ajax.get("/"+sitePath+"inc/ajax.asp?id="+id+"&action=diggnews",function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?id="+id+"&action=diggnews",function (obj){
             var returnValue=Number(obj.responseText)
             if (!isNaN(returnValue)){set($(div),returnValue);alert('(*^__^*) 嘻嘻……，顶得我真舒服！');}else if(obj.responseText=="err"){alert('顶失败')}else if(obj.responseText=="havescore"){alert('(*^__^*) 嘻嘻…… 这么热心啊，您已经顶过了！')}
         }
@@ -86,7 +105,7 @@ function diggNews(id,div){
 }
 
 function treadNews(id,div){
-    ajax.get("/"+sitePath+"inc/ajax.asp?id="+id+"&action=treadnews",function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?id="+id+"&action=treadnews",function (obj){
             var returnValue=Number(obj.responseText)
             if(!isNaN(returnValue)){set($(div),returnValue);alert('小样儿，居然敢踩我！');}else if(obj.responseText=="err"){alert('踩失败')}	else if(obj.responseText=="havescore"){alert('我晕，您已经踩过了，想踩死我啊！')}
         }
@@ -134,7 +153,7 @@ function goSearchPage(maxPage,pageDiv,surl){
 function leaveWord(){
     if($("m_author").value.length<1){alert('昵称必须填写');return false;}
     if($("m_content").value.length<1){alert('内容必须填写');return false;}
-    ajax.postf($("f_leaveword"),function(obj){
+    $.ajax.postf($("f_leaveword"),function(obj){
         var x=obj.responseText;
         if(x=="ok"){
             viewLeaveWordList(1);alert('留言成功，多谢支持！');$("m_content").value='';
@@ -152,7 +171,7 @@ function leaveWord(){
 
 function viewLeaveWordList(page){
     view('leavewordlist');
-    ajax.get(
+    $.ajax.get(
         "/"+sitePath+"gbook.asp?action=list&page="+page+"&t="+(new Date()).getTime(),
         function(obj) {
             if (obj.responseText=="err"){
@@ -166,14 +185,14 @@ function viewLeaveWordList(page){
 
 function loginLeaveWord(){
     if($("m_username").value.length<1||$("m_pwd").value.length<1){alert('用户名密码不能为空');return false;}
-    ajax.postf(
+    $.ajax.postf(
         $("f_loginleaveword"),
         function(obj){if(obj.responseText=="ok"){closeWin();alert('登陆成功');setLoginState();viewLeaveWordList(1);}else if(obj.responseText=="no"){alert('用户名或密码不正确');}else if(obj.responseText=="err"){alert('发生错误');}else{setLoginState();}}
     );
 }
 
 function setLoginState(){
-    ajax.get(
+    $.ajax.get(
         "/"+sitePath+"gbook.asp?action=state",
         function (obj){
             set($('adminleaveword'),obj.responseText);
@@ -182,7 +201,7 @@ function setLoginState(){
 }
 
 function logOut(){
-    ajax.get(
+    $.ajax.get(
         "/"+sitePath+"gbook.asp?action=logout",
         function (obj){set($('adminleaveword'),'成功退出');}
     );
@@ -190,7 +209,7 @@ function logOut(){
 }
 
 function delLeaveWord(id,page,type){
-    ajax.get(
+    $.ajax.get(
         "/"+sitePath+"gbook.asp?action=del&id="+id+"&type="+type,
         function (obj){
             if (obj.responseText=="ok"){viewLeaveWordList(page)}else if(obj.responseText=="err"){alert('发生错误')}else{viewLeaveWordList(page);}
@@ -212,7 +231,7 @@ function viewLoginState(){
 
 function submitReply(page){
     if($("m_replycontent").value.length<1){alert('回复不能为空');return false;}
-    ajax.postf($("replyleaveword"),function(obj){if(obj.responseText=="ok"){closeWin();viewLeaveWordList(page)}else if(obj.responseText=="err"){alert('发生错误4');}else{viewLeaveWordList(page);}}
+    $.ajax.postf($("replyleaveword"),function(obj){if(obj.responseText=="ok"){closeWin();viewLeaveWordList(page)}else if(obj.responseText=="err"){alert('发生错误4');}else{viewLeaveWordList(page);}}
     );
 }
 
@@ -255,7 +274,7 @@ function openWins(url,w,h,left,top,resize){
 function markVideo(vd,d,t,s){
     var textStart = Array("很烂","很烂","一般","一般","不妨一看","不妨一看","比较精彩","比较精彩","棒极了","棒极了");
     var id='BT'+(new Date()).getTime();
-    ajax.get("/"+sitePath+"inc/ajax.asp?id="+vd+"&action=videoscore",function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?id="+vd+"&action=videoscore",function (obj){
         var a=obj.responseText
         try{
             a.replace(/\[(\d+),(\d+),(\d+)\]/i,function ($0,d,t,s){
@@ -289,7 +308,7 @@ function startm(v){
 }
 function OnStar(mid,v){
     var textStart = Array("很烂","很烂","一般","一般","不妨一看","不妨一看","比较精彩","比较精彩","棒极了","棒极了");
-    ajax.get("/"+sitePath+"inc/ajax.asp?id="+mid+"&action=score&score="+v,function (obj){
+    $.ajax.get("/"+sitePath+"inc/$.ajax.asp?id="+mid+"&action=score&score="+v,function (obj){
         var x=''+obj.responseText;
         if(x.indexOf("havescore")!=-1){
             alert('你已经评过分啦');

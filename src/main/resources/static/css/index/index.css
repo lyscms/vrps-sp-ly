@@ -5,6 +5,9 @@ body{
 a:hover {
     text-decoration: none;
 }
+a{
+    color: #444;
+}
 .user-box{
     width:1000px;
     height: auto;
@@ -24,7 +27,6 @@ a:hover {
     height: auto;
     overflow: auto;
     background:#343a40;
-    margin: 10px auto;
 }
 .user-nav li{
     width:100%;

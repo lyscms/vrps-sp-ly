@@ -15,6 +15,10 @@ a {
     color: #444;
 }
 
+#bdshare_weixin_qrcode_dialog_qr table {
+    width: auto !important;
+}
+
 .container {
     background: #fff;
     margin-top: 50px;
@@ -205,7 +209,7 @@ a {
     float: left;
 }
 .info span{
-    color: #03A9DD;
+    color: #444;
 }
 /*信息*/
 
@@ -241,7 +245,7 @@ a {
     line-height: 32px;
     padding-left: 32px;
     padding-right: 8px;
-    background: url(../../../img/filmDetail/g.gif) no-repeat 10px -122px;
+    background: url(../../img/filmDetail/g.gif) no-repeat 10px -122px;
     border: 1px solid #EDEDED;
 }
 

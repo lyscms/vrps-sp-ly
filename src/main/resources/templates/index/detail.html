@@ -7,7 +7,7 @@
       pageurl=@{/xl/index.html}"
 >
 <head>
-    <base href="<%=basePath%>">
+    <base th:href="${prourl}">
     <title th:text="${film.name}+'-'+${film.subClassName}+'-'+${film.typeName}"></title>
     <div th:replace="pub/head_meta"/>
     <div th:replace="pub/head_link"/>
@@ -74,11 +74,9 @@
 <!--头部-->
 <div th:replace="pub/head"/>
 <div class="container" style="margin-top: 50px;" >
-    <div th:if="${session.u_skl==null}" class="row">
-        <div class="col">
-            <marquee  onmouseover='this.stop()' onmouseout='this.start()'><a id="globalLoginBtn_register_input" href="registerInput.html">注册</a>|<a data-toggle="modal" data-target="#myModal" href="javascript:;">登录</a>后观看更多高清无码视频</marquee>
-        </div>
-    </div>
+
+    <!--滚动banner-->
+    <div th:replace="pub/ad_banner"/>
 
     <div class="row" style="background: #dcdfe2;">
         <div class="col">
@@ -99,7 +97,7 @@
                 <div class="col-sm-4" style="margin-top: 10px;margin-bottom: 10px;">
                     <div class="pic">
                         <img class="lazy" th:data-original="${film.image}" th:alt="${film.name}">
-                        <a th:href="@{/xl/detail.html(filmId=${film.id})#kan}">立即播放</a>
+                        <a th:href="@{/xl/detail.html(filmId=${film.id+'#kan'})}">立即播放</a>
                     </div>
                 </div>
                 <div class="col-sm-8" style="margin-top: 10px;margin-bottom: 10px;">
@@ -146,6 +144,12 @@
                                     <span th:if="${film.evaluation>=8&&film.evaluation<=10}">棒极了</span>
 
                                     (<span th:text="${totalRatys}"></span>评)
+
+                                    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                                    <script>
+                                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};
+                                        (document.getElementsByTagName('head')[0] || document.body).appendChild(document.createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5);
+                                    </script>
                                 </div>
                             </div>
                         </ul>
@@ -154,8 +158,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div th:each="reslist,reslistStat:${resListDupan}" th:if="${${reslistStat.index==0}}" class="updatetps clearfix">
-                        更新小提示：度盘：<span th:text="${reslist.link}"></span> 密码：<span th:text="${reslist.name}"></span>
+                    <div th:each="reslist,reslistStat:${resListDupan}" th:if="${reslistStat.index==0}" class="updatetps clearfix">
+                        更新小提示：度盘：<a th:href="${reslist.link}" th:text="${reslist.link}" target="_blank"></a> 密码：<span th:text="${reslist.name}"></span>
                     </div>
                 </div>
             </div>
@@ -238,10 +242,10 @@
     <div class="row" style="margin-top: 10px;">
         <div class="col">
             <!--下载地址-->
-                <div th:if="${resListHttp.size()!=0||resListOther.size()!=0||resListThunder.size()!=0||resListEd2k.size()!=0}" class="mox">
+                <div th:if="${resListHttp.size()!=0||resListOther.size()!=0||resListThunder.size()!=0||resListEd2k!='[]'}" class="mox">
                     <a id="down"></a>
                         <!--下载地址1-->
-                        <div th:if="${resListEd2k.size()!=0}" style="background: white;width: 100%;height: auto;padding: 5px;">
+                        <div th:if="${resListEd2k!='[]'}" style="background: white;width: 100%;height: auto;padding: 4px;">
                             <div class="row">
                                 <div class="col-sm-6">
                                      <span class="title-icon">下载地址</span>
@@ -255,13 +259,22 @@
                             </div>
                         </div>
 
-                        <div th:if="${resListEd2k.size()!=0}" class="row">
+                        <div th:if="${resListEd2k!='[]'}" class="row">
                             <div class="col">
                                 <div class="ndownlist">
-                                    <script th:if="${resListEd2k.size()!=0}">
-                                        /*var GvodUrls = "<c:forEach items="${resListEd2k}" var="relist" varStatus="s"><c:if test="${s.index>0}">###${relist.link}</c:if><c:if test="${s.index==0}">${relist.link}</c:if></c:forEach>";*/
+                                    <script th:inline="javascript" th:if="${resListEd2k!='[]'}">
+                                        var GvodUrls = "";
+                                        var resListEd2kArrayString = [[${resListEd2k}]];
+                                        var parse = JSON.parse(resListEd2kArrayString);
+                                        for (var i = 0; i < parse.length; i++) {
+                                            if (i == (parse.length - 1)) {
+                                                GvodUrls += parse[i].link;
+                                            } else {
+                                                GvodUrls += parse[i].link + "###";
+                                            }
+                                        }
                                     </script>
-                                    <div th:if="${resListEd2k.size()!=0}">
+                                    <div th:if="${resListEd2k!='[]'}">
                                         <script th:src="@{/static/js/download/xunlei.js(v=${version})}"></script>
                                         <script th:src="@{/static/js/download/check.js(v=${version})}"></script>
                                         <ul>
@@ -278,7 +291,7 @@
                                                         uclass = "";
                                                     }
                                                     xmhref = "https://d.miwifi.com/d2r/?url=" + Base64.encodeURI(ThunderEncode(GvodUrlArray[i])) + "&src=xunbo";
-                                                    document.writeln('<li><div class="row" style="padding: 4px 0px;"><div class="col-sm-6"><a style="margin-left: 10px;" oncontextmenu=ThunderNetwork_SetHref_b(this) onclick="return xunbotask(this)" href="javascript:void(0)" thunderResTitle="" thunderType="" thunderPid="20369" thunderHref="' + ThunderEncode(GvodUrlArray[i]) + '" >' + getSubstr(GvodUrlArray[i]) + '</a></div><div class="col-sm-6"><span><a class=d5 href="' + ThunderEncode(GvodUrlArray[i]) + '" target=_blank title="迅雷高速下载">迅雷</a><a class=d1 href="javascript:video(0);" onclick="start(\'' + GvodUrlArray[i] + '\')" title="迅雷影音播放">看看</a><a class=d2 href="http://lixian.vip.xunlei.com/lixian_login.html?referfrom=union&ucid=20369&furl=' + encodeURIComponent(ThunderEncode(GvodUrlArray[i])) + '" target=_blank title="迅雷离线下载">离线</a><a href="###" qhref="' + GvodUrlArray[i] + '" onclick="XFLIB.startDownload(this,event,21590)" oncontextmenu = "OnContextClick(this, event)" class=d3 title="QQ旋风下载">旋风</a><a href="' + xmhref + '" target=_blank class=d4 title="小米路由下载">小米</a></span></div></div></li>');
+                                                    document.writeln('<li><div class="row" style="padding: 4px 0px;"><div class="col-sm-6"><a style="margin-left: 10px;" oncontextmenu=ThunderNetwork_SetHref_b(this) href="javascript:void(0)" thunderResTitle="" thunderType="" thunderPid="20369" thunderHref="' + ThunderEncode(GvodUrlArray[i]) + '" >' + getSubstr(GvodUrlArray[i]) + '</a></div><div class="col-sm-6"><span><a class=d5 href="' + ThunderEncode(GvodUrlArray[i]) + '" target=_blank title="迅雷高速下载">迅雷</a><a class=d1 href="javascript:video(0);" onclick="start(\'' + GvodUrlArray[i] + '\')" title="迅雷影音播放">看看</a><a class=d2 href="http://lixian.vip.xunlei.com/lixian_login.html?referfrom=union&ucid=20369&furl=' + encodeURIComponent(ThunderEncode(GvodUrlArray[i])) + '" target=_blank title="迅雷离线下载">离线</a><a href="' + xmhref + '" target=_blank class=d4 title="小米路由下载">小米</a></span></div></div></li>');
                                                 }
                                             </script>
                                         </ul>
