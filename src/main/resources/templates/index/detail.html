@@ -84,8 +84,8 @@
             <div class="wz">
                 当前位置: <a href="/">首页</a>
                 &nbsp;&nbsp;»&nbsp;&nbsp;<a th:href="@{/xl/index.html(cataLogId=${film.cataLogId})}" th:text="${film.cataLogName}"></a>
-                &nbsp;&nbsp;»&nbsp;&nbsp;<a th:href="@{/xl/index.html(subClassId=${film.subClassId})}" th:text="${film.subClassName}"></a>
-                &nbsp;&nbsp;»&nbsp;&nbsp;<a th:href="@{/xl/index.html(typeId=${film.typeId})}" th:text="${film.typeName}"></a>
+                &nbsp;&nbsp;»&nbsp;&nbsp;<a th:href="@{/xl/index.html(cataLogId=${film.cataLogId},subClassId=${film.subClassId})}" th:text="${film.subClassName}"></a>
+                &nbsp;&nbsp;»&nbsp;&nbsp;<a th:href="@{/xl/index.html(cataLogId=${film.cataLogId},subClassId=${film.subClassId},typeId=${film.typeId})}" th:text="${film.typeName}"></a>
                 &nbsp;&nbsp;»&nbsp;&nbsp;<span th:text="${film.name}"></span>
             </div>
         </div>

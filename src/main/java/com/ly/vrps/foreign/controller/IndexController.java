@@ -74,8 +74,14 @@ public class IndexController {
         String subClassId = request.getParameter("subClassId");
         if(Tools.notEmpty(subClassId)){
             List<Type> typeList = typeService.listIsUseBySubClassId(subClassId);
+            map.addAttribute("subClassId",subClassId);
             map.addAttribute("typeList",typeList);
+
         }
+        map.addAttribute("typeId",request.getParameter("typeId"));
+        map.addAttribute("locId",request.getParameter("locId"));
+        map.addAttribute("levelId",request.getParameter("levelId"));
+        map.addAttribute("onDecade",request.getParameter("onDecade"));
         getCatalog(map);
         return "index/index";
     }
@@ -235,16 +241,12 @@ public class IndexController {
     }
 
     private void getCatalog(ModelMap map) {
-        List<CataLog> cataLogList =  cataLogService.listIsUse();
-        List<Location> locList = locService.listIsUse();
-        List<Level> levelList = levelService.listIsUse();
-        List<Decade> decadeList = decadeService.listIsUse();
 
         //读取路径下的文件返回UTF-8类型json字符串
-        map.addAttribute("cataLogList",cataLogList);
-        map.addAttribute("locList",locList);
-        map.addAttribute("levelList",levelList);
-        map.addAttribute("decadeList",decadeList);
+        map.addAttribute("cataLogList",cataLogService.listIsUse());
+        map.addAttribute("locList",locService.listIsUse());
+        map.addAttribute("levelList",levelService.listIsUse());
+        map.addAttribute("decadeList",decadeService.listIsUse());
     }
 
 }

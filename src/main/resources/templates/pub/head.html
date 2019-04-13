@@ -1,7 +1,7 @@
 <div style="width: 100%;height: auto;overflow:hidden; margin-bottom: 10px;" xmlns:th="http://www.thymeleaf.org">
     <!-- 头部begin -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="/">欢迎来到SP-LY最新影片资源</a>
+        <a class="navbar-brand" href="/">欢迎来到小火车SP-LY最新影片资源</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,9 +32,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="globalLoginBtn_register_input" href="/registerInput.html">注册</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:;">|</a>
-                </li>
+
                 <li class="nav-item">
                     <a  class="nav-link" href="/">首页</a>
                 </li>
@@ -81,7 +79,7 @@
 </div>
 <script>
     $(function () {
-        var error_info = "${error_info}";
+        var error_info = "[[${error_info}]]";
         if(error_info!=""){
             if("not_login"==error_info){
                 alert("该资源需要登录后访问!");

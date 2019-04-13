@@ -14,6 +14,33 @@ a{
     border-color: #57d2f2;
 }
 
+.filter-board{
+    width: 100%;
+    display: block;
+    height: auto;
+    overflow: hidden;
+}
+
+.filter-board .li-head{
+    font-weight: 600;
+}
+
+.filter-board .li-active{
+    background: #00AFE4;
+}
+
+.filter-board .li-active a{
+    color: white;
+}
+
+.filter-board .li-head,.filter-board .li-child{
+    float: left;
+    display: inline-block;
+    padding: 3px 8px;
+    text-align: center;
+}
+
+
 .user-box{
     width:1000px;
     height: auto;

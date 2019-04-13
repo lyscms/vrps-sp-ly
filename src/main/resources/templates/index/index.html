@@ -84,7 +84,50 @@
             </ul>
         </div>
         <div class="col-sm-10">
+            <ul class="filter-board" th:if="${cataLogList!=null and cataLogList.size()>0}">
+                <li class="li-head">一级分类：</li>
+                <li th:each="list:${cataLogList}" th:class="${'li-child'+(cataLogId==list.id?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(cataLogId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                </li>
+            </ul>
+
+            <ul class="filter-board" th:if="${subClassList!=null and subClassList.size()>0}">
+                <li class="li-head">二级分类：</li>
+                <li th:each="list:${subClassList}" th:class="${'li-child'+(subClassId==list.id?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(subClassId=${list.id},cataLogId=${cataLogId},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                </li>
+            </ul>
+
+            <ul class="filter-board" th:if="${typeList!=null and typeList.size()>0}">
+                <li class="li-head">类型：</li>
+                <li th:each="list:${typeList}" th:class="${'li-child'+(typeId==list.id?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                </li>
+            </ul>
+
+            <ul class="filter-board" th:if="${locList!=null and locList.size()>0}">
+                <li class="li-head">地区：</li>
+                <li th:each="list:${locList}" th:class="${'li-child'+(locId==list.id?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${list.id},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                </li>
+            </ul>
+
+            <!--<ul class="filter-board" th:if="${levelList!=null and levelList.size()>0}">
+                <li class="li-head">级别：</li>
+                <li th:each="list:${levelList}" th:class="${'li-child'+(levelId==list.id?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},levelId=${list.id})}" th:text="${list.name}"></a>
+                </li>
+            </ul>-->
+
+            <ul class="filter-board" th:if="${decadeList!=null and decadeList.size()>0}">
+                <li class="li-head">年代：</li>
+                <li th:each="list:${decadeList}" th:class="${'li-child'+(onDecade==list.name?' li-active':'')}" >
+                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${list.name})}" th:text="${list.name}"></a>
+                </li>
+            </ul>
+
             <ul class="film-list">
+
                 <li th:each="list:${page.list}">
                     <a th:href="@{/xl/detail.html(filmId=${list.id})}">
                         <div  class="note-left" th:title="${list.name}"><img class="lazy rounded img-fluids" th:data-original="${list.image}" /></div>
@@ -103,9 +146,9 @@
                             <em th:if="${list.evaluation>=6&&list.evaluation<8}" class="star star4"></em>
                             <em th:if="${list.evaluation>=8&&list.evaluation<=10}" class="star star5"></em>
 
-                            <p th:text="'主演：'+${list.actor}"></p>
-                            <p><i th:text="'状态：'+${list.status}"></i>&nbsp;<i th:text="'地区：'+${list.locName}"></i></p>
-                            <p><i th:text="'类型：'+${list.typeName}"></i><i th:text="'更新：'+${#dates.format(list.updateTime,'MM-dd')}"></i></p>
+                            <p th:text="'主演:'+${list.actor}"></p>
+                            <p><i th:text="'状态:'+${list.status}"></i>&nbsp;<i th:text="'地区:'+${list.locName}"></i></p>
+                            <p><i th:text="'类型:'+${list.typeName}"></i> <i th:text="'更新:'+${#dates.format(list.updateTime,'MM-dd')}"></i></p>
                             <br/>
                             <span>
                                 <a th:href="@{/xl/detail.html(filmId=${list.id})}" class="watch-btn" target="_blank">观看</a>
@@ -120,7 +163,7 @@
                 <nav style="float: right;">
                     <ul class="pagination">
                         <li th:class="${'page-item'+(page.isFirstPage ? ' disabled':'')}">
-                            <a class="page-link" th:if="${not page.isFirstPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum-1},pageSize=${page.pageSize},cataLogId=${cataLogId})}">上一页</a>
+                            <a class="page-link" th:if="${not page.isFirstPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum-1},pageSize=${page.pageSize},subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${onDecade})}">上一页</a>
                             <a class="page-link" th:if="${page.isFirstPage}" href="javascript:void(0);">上一页</a>
                         </li>
 
@@ -129,12 +172,12 @@
                                 <span th:text="${pageNo}"></span>
                             </a>
 
-                            <a class="page-link" th:if="${not (page.pageNum eq pageNo)}" th:href="@{/xl/index.html(pageNum=${pageNo},size=${page.pageSize},cataLogId=${cataLogId})}">
+                            <a class="page-link" th:if="${not (page.pageNum eq pageNo)}" th:href="@{/xl/index.html(pageNum=${pageNo},pageSize=${page.pageSize},subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${onDecade})}">
                                 <span th:text="${pageNo}"></span>
                             </a>
                         </li>
                         <li th:class="${'page-item'+(page.isLastPage ? ' disabled':'')}">
-                            <a class="page-link" th:if="${not page.isLastPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum+1},size=${page.pageSize},cataLogId=${cataLogId})}">下一页</a>
+                            <a class="page-link" th:if="${not page.isLastPage}" th:href="@{/xl/index.html(pageNum=${page.pageNum+1},pageSize=${page.pageSize},subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${onDecade})}">下一页</a>
                             <a class="page-link " th:if="${page.isLastPage}" href="javascript:void(0);">下一页</a>
                         </li>
                     </ul>
