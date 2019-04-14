@@ -5,6 +5,7 @@ import com.ly.vrps.common.util.EnvUtils;
 import com.ly.vrps.management.user.service.SysUserRoleRelationService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -32,6 +33,9 @@ public class SpLyAccessDecisionManager implements AccessDecisionManager {
 
     private List<String> roleIdList = null;
 
+    @Value("${admin.role.id}")
+    private String adminRoleId;
+
 
     //decide 方法是判定是否拥有权限的决策方法，
     //authentication 是SpLyUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
@@ -55,7 +59,7 @@ public class SpLyAccessDecisionManager implements AccessDecisionManager {
             permissionId = c.getAttribute();
             //超级管理员全部权限
             if(!CollectionUtils.isEmpty(roleIdList)){
-                if (roleIdList.contains("96dd75eadca94862987bb0ac89af20af")) {
+                if (roleIdList.contains(adminRoleId)) {
                     return;
                 }
             }

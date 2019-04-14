@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,9 @@ public class UserRoleController {
 
     @Autowired
     private SysRolePermissionRelationService sysRolePermissionRelationService;
+
+    @Value("${admin.role.id}")
+    private String adminRoleId;
 
     @ApiOperation(value = "获取角色列表")
     @GetMapping
@@ -62,7 +66,7 @@ public class UserRoleController {
         PageHelper.startPage(page,limit);
         List<SysRole> sysRoleInfos = sysRoleService.selectSysRoleInfo(sysRole);
         //过滤超级管理员角色
-        sysRoleInfos = sysRoleInfos.stream().filter(sr -> !sr.getId().equals("96dd75eadca94862987bb0ac89af20af")).collect(Collectors.toList());
+        sysRoleInfos = sysRoleInfos.stream().filter(sr -> !sr.getId().equals(adminRoleId)).collect(Collectors.toList());
         PageInfo pageInfo1 = new PageInfo(sysRoleInfos);
         SysRoleInfoVo sysRoleInfoVo = new SysRoleInfoVo();
         sysRoleInfoVo.setCode("0");

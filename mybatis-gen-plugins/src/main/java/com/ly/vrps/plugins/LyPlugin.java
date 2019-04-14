@@ -54,7 +54,7 @@ public class LyPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine(" * @author "+System.getProperty("user.name"));
         topLevelClass.addJavaDocLine(" * @date "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss")));
         topLevelClass.addJavaDocLine(" */");
-        topLevelClass.addImportedType("com.ly.imp4m.common.model.BaseModel");
+        topLevelClass.addImportedType("com.ly.vrps.common.model.BaseModel");
         topLevelClass.setSuperClass("BaseModel");
         this.modelClassName = topLevelClass.getType().getShortName();
         this.modelClassPackageName = topLevelClass.getType().getFullyQualifiedName();
@@ -131,7 +131,7 @@ public class LyPlugin extends PluginAdapter {
         interfaze.addJavaDocLine(" * @author "+System.getProperty("user.name"));
         interfaze.addJavaDocLine(" * @date "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss")));
         interfaze.addJavaDocLine(" */");
-        interfaze.addImportedType(new FullyQualifiedJavaType("com.ly.imp4m.common.dao.BaseDao"));
+        interfaze.addImportedType(new FullyQualifiedJavaType("com.ly.vrps.common.dao.BaseDao"));
         interfaze.addImportedType(new FullyQualifiedJavaType(this.modelClassPackageName));
         interfaze.addSuperInterface(new FullyQualifiedJavaType("BaseDao<"+this.modelClassName+">"));
         return super.clientGenerated(interfaze, topLevelClass, introspectedTable);

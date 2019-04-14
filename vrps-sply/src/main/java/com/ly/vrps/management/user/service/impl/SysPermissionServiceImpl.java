@@ -10,9 +10,9 @@ import com.ly.vrps.common.util.EnvUtils;
 import com.ly.vrps.management.user.service.SysPermissionService;
 import com.ly.vrps.management.user.web.vo.SysPermissionInfoQueryVo;
 import com.ly.vrps.management.user.web.vo.SysPermissionVo;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import springfox.documentation.service.*;
 import springfox.documentation.spring.web.DocumentationCache;
@@ -31,6 +31,11 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     @Autowired
     private SysPermissionMapper sysPermissionMapper;
+
+
+    @Value("${admin.account.id}")
+    private String adminId;
+
     /**
      * 获取指定id的权限信息
      * @param id
@@ -208,6 +213,9 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     @Override
     public List<SysPermission> getByUserId(String userId) {
+        if(adminId.equals(userId)){
+           return sysPermissionMapper.select(new SysPermission());
+        }
         return sysPermissionMapper.getByUserId(userId);
     }
 

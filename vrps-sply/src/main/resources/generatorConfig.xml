@@ -4,10 +4,12 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <!--去掉getter和setter插件-->
         <plugin type="com.ly.vrps.plugins.LyPlugin" />
+
 
         <!--去掉默认生成的注释-->
         <commentGenerator>
@@ -16,6 +18,8 @@
             <property name="addRemarkComments" value="true" />
             <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
         </commentGenerator>
+
+
 
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
@@ -36,7 +40,7 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.ly.vrps.common.model"
+        <javaModelGenerator targetPackage="com.ly.vrps.common.test.model"
                             targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -44,105 +48,193 @@
         </javaModelGenerator>
 
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="mapper"
+        <sqlMapGenerator targetPackage="test.mapper"
                          targetProject="src\main\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!--生成Dao类存放位置-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.ly.vrps.common.dao"
+                             targetPackage="com.ly.vrps.common.test.dao"
                              targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
         <table tableName="t_bus_catalog" domainObjectName="CataLog"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_film" domainObjectName="Film"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_decade" domainObjectName="Decade"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_level" domainObjectName="Level"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_loc" domainObjectName="Location"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_raty" domainObjectName="Raty"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_res" domainObjectName="Res"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_subclass" domainObjectName="SubClass"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_type" domainObjectName="Type"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_user" domainObjectName="User"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
         <table tableName="t_bus_vip_code" domainObjectName="VipCode"
-               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"
-               selectByExampleQueryId="false"
+               selectByExampleQueryId="true"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_sys_permission" domainObjectName="SysPermission"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="true"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_sys_role" domainObjectName="SysRole"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="true"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_sys_role_permission_relation" domainObjectName="SysRolePermissionRelation"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="true"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_sys_user" domainObjectName="SysUser"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="true"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_sys_user_role_relation" domainObjectName="SysUserRoleRelation"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableInsert="false"
+               enableSelectByExample="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
         />
     </context>

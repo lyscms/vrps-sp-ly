@@ -140,8 +140,8 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.sunkl.my.plugins</groupId>
-                        <artifactId>sunklmy-mybatis-plugins</artifactId>
+                        <groupId>com.ly.vrps</groupId>
+                        <artifactId>mybatis-gen-plugins</artifactId>
                         <version>0.0.1-SNAPSHOT</version>
                     </dependency>
                     <dependency>
