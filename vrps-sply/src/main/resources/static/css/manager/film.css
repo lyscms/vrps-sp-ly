@@ -57,6 +57,15 @@ a {
     height: auto;
     overflow: hidden;
 }
+.film-info a{
+    color: #444;
+}
+.uploadify-button{
+    background-color: #009688;
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #009688), color-stop(1, #009688) );
+    border-color:  #009688;
+}
+
 
 .film-info li {
     width: 100%;

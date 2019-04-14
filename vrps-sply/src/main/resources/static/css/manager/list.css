@@ -18,16 +18,27 @@ a {
     border-top: 1px solid #ddd;
 }
 
+.pagination{
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-right: 6px;
+}
+
+.pagination .active .page-link{
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
 .film-list li {
     list-style: none;
     float: left;
-    width: 104px;
-    margin: 2px;
+    width: 100px;
+    margin: 3px;
 }
 
 .film-list li img {
-    width: 86px;
-    height: 122px;
+    width: 100px;
+    height: 140px;
     padding: 4px;
     border: 1px solid #ddd;
 }
@@ -43,7 +54,7 @@ a {
 }
 
 .film-info a {
-    color: #1d94ff;
+    color: #444;
 }
 
 .film-info p {

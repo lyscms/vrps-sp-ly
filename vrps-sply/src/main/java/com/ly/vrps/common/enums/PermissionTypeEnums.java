@@ -2,7 +2,7 @@ package com.ly.vrps.common.enums;
 
 /**
  * 权限类型
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/15
  */
 public enum PermissionTypeEnums {

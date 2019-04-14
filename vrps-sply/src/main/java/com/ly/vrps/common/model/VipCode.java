@@ -1,5 +1,6 @@
 package com.ly.vrps.common.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,7 +11,7 @@ import java.util.Date;
 
 /**
  * vip编码
- * @author sunkl
+ * @author 1058980664
  * @date 2019年03月31日 10:45:31
  */
 @Data
@@ -32,5 +33,6 @@ public class VipCode extends BaseModel {
     /**
      * 过期时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date expireTime;
 }

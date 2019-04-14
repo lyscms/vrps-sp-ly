@@ -17,7 +17,7 @@ import java.util.*;
 
 /**
  * 权限信息提供
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/23
  */
 @Service
@@ -62,7 +62,7 @@ public class FilterISMSourceService implements FilterInvocationSecurityMetadataS
     /**
      * 加载权限表所有权限(资源)
      * 按照key为资源url，value为资源id
-     * @author sunkl
+     * @author 1058980664
      * @date 2019/4/14 11:31
      */
     public void loadResourceDefine() {

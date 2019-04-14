@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * 数据展示层
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月11日 18:44:44
  */
 @Data

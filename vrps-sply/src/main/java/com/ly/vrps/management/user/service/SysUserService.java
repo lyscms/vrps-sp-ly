@@ -8,14 +8,14 @@ import com.ly.vrps.management.user.web.vo.SysUserVo;
 
 /**
  * service层接口
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/6
  */
 public interface SysUserService extends BaseService<SysUser> {
 
     /**
      * 获取用户信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/6
      * @param id
      * @return
@@ -24,7 +24,7 @@ public interface SysUserService extends BaseService<SysUser> {
 
     /**
      * 获取所有信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/7
      * @param sysUser
      * @param page
@@ -35,7 +35,7 @@ public interface SysUserService extends BaseService<SysUser> {
 
     /**
      * 修改信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/11
      * @param sysUser
      */
@@ -43,7 +43,7 @@ public interface SysUserService extends BaseService<SysUser> {
 
     /**
      * 查询用户信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @param sysUser
      * @return

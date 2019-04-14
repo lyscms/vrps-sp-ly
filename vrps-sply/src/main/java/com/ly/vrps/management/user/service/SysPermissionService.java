@@ -9,14 +9,14 @@ import java.util.List;
 
 /**
  * 权限服务层接口
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 public interface SysPermissionService {
 
     /**
      * 获取指定id的权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param id
      * @return
@@ -25,7 +25,7 @@ public interface SysPermissionService {
 
     /**
      * 条件查询权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param sysPermission
      * @return
@@ -34,7 +34,7 @@ public interface SysPermissionService {
 
     /**
      * 更新权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param sysPermissionInfoQueryVo
      */
@@ -42,7 +42,7 @@ public interface SysPermissionService {
 
     /**
      * 添加权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param sysPermissionInfoQueryVo
      */
@@ -50,7 +50,7 @@ public interface SysPermissionService {
 
     /**
      * 删除权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param id
      */
@@ -58,7 +58,7 @@ public interface SysPermissionService {
 
     /**
      * 查询菜单信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @return
      */
@@ -66,7 +66,7 @@ public interface SysPermissionService {
 
     /**
      * 根据permissionIds查询权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @param permissionIds
      * @return
@@ -75,7 +75,7 @@ public interface SysPermissionService {
 
     /**
      * 根据swagger扫描更新权限列表
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/29
      * @return
      */
@@ -92,7 +92,7 @@ public interface SysPermissionService {
 
     /**
      * 根据用户id获取对应的权限(资源)
-     * @author sunkl
+     * @author 1058980664
      * @date 2019/4/14 1:32
      * @param userId
      * @return

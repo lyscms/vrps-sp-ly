@@ -69,11 +69,11 @@
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;" >
-                    <li th:each="menu:${menus}" class="layui-nav-item" >
-                        <a href="javascript:;" th:text="${menu.name}">用户管理</a>
-                        <dl class="layui-nav-child" th:each="child:${menu.child}">
-                            <dd><a th:href="${child.url}" th:target="main-body" th:text="${child.name}"></a></dd>
+                <ul class="layui-nav layui-nav-tree layui-inline" lay-shrink="all" style="margin-right: 10px;" >
+                    <li th:each="menu,menuStat:${menus}" th:class="${'layui-nav-item '+(menuStat.index==0?'layui-nav-itemed':'')}" >
+                        <a href="javascript:;"  th:text="${menu.name}">用户管理</a>
+                        <dl class="layui-nav-child" th:each="child,childStat:${menu.child}">
+                            <dd><a th:class="${childStat.index==0?'layui-this':''}" style="padding-left: 40px;" th:href="${child.url}" th:target="main-body" th:text="${child.name}"></a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -82,7 +82,7 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <iframe frameborder="0" name="main-body" href="javascript:;" style="margin: 0px;height: 100%;width: 100%;display: block;"></iframe>
+            <iframe frameborder="0" name="main-body" th:src="@{/user/role}" style="margin: 0px;height: 100%;width: 100%;display: block;"></iframe>
         </div>
 
         <div class="layui-footer">

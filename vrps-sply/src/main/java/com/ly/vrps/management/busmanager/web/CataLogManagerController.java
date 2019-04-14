@@ -1,4 +1,4 @@
-package com.ly.vrps.management.busmanager;
+package com.ly.vrps.management.busmanager.web;
 
 
 import com.ly.vrps.common.model.*;

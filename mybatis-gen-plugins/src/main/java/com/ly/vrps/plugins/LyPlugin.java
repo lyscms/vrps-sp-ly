@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Mybatis generator 忽略Getter和Setter生成
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/5
  */
 public class LyPlugin extends PluginAdapter {
@@ -65,7 +65,7 @@ public class LyPlugin extends PluginAdapter {
     /**
      * 该方法在生成每一个属性的getter方法时候调用，
      * 如果我们不想生成getter，直接返回false即可
-     * @author sunkl
+     * @author 1058980664
      * @date 2018年12月5日19:16:28
      * @param method
      * @param topLevelClass
@@ -85,7 +85,7 @@ public class LyPlugin extends PluginAdapter {
     /**
      * 该方法在生成每一个属性的setter方法时候调用，
      * 如果我们不想生成setter，直接返回false即可
-     * @author sunkl
+     * @author 1058980664
      * @date 2018年12月5日19:16:23
      * @param method
      * @param topLevelClass

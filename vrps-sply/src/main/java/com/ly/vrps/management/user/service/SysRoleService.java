@@ -7,14 +7,14 @@ import java.util.List;
 
 /**
  * 角色service层接口
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/6
  */
 public interface SysRoleService extends BaseService<SysRole> {
 
     /**
      * 获取用户角色信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/6
      * @param id
      * @return
@@ -23,7 +23,7 @@ public interface SysRoleService extends BaseService<SysRole> {
 
     /**
      * 获取所有角色信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/7
      * @param sysRole
      * @return
@@ -32,7 +32,7 @@ public interface SysRoleService extends BaseService<SysRole> {
 
     /**
      * 修改角色信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/11
      * @param sysRole
      */

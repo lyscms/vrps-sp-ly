@@ -5,7 +5,7 @@ import com.ly.vrps.common.model.Res;
 
 /**
  * 资源
- * @author sunkl
+ * @author 1058980664
  * @date 2019年03月31日 20:56:34
  */
 public interface ResMapper extends BaseDao<Res> {

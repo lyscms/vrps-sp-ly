@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * 用户角色关联表
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月20日 09:16:52
  */
 @Data

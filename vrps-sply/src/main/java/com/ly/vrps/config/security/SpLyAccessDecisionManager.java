@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * 自定义权限控制器
  *
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/23
  */
 @Service

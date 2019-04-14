@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Spring容器工具类
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/29
  */
 @Component
@@ -24,7 +24,7 @@ public class SpringContextUtils implements ApplicationContextAware {
 
     /**
      * 获取Spring容器的bean
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/29
      * @param beanName
      * @return

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * 资源
- * @author sunkl
+ * @author 1058980664
  * @date 2019年03月31日 20:56:34
  */
 @Data

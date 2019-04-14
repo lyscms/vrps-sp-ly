@@ -1,5 +1,7 @@
-package com.ly.vrps.management.busmanager;
+package com.ly.vrps.management.busmanager.web;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ly.vrps.common.model.*;
 import com.ly.vrps.common.util.FileOperate;
 import com.ly.vrps.common.util.Tools;
@@ -66,8 +68,18 @@ public class FilmManagerController {
         }
         Film film = new Film();
         film.setName(name);
+
+        String pageNum = request.getParameter("pageNum");
+        if(Tools.isEmpty(pageNum)){
+            pageNum = "1";
+        }
+        String pageSize = request.getParameter("pageSize");
+        if(Tools.isEmpty(pageSize)){
+            pageSize = "45";
+        }
+        PageHelper.startPage(Integer.parseInt(pageNum),Integer.parseInt(pageSize));
         List<Film> filmList = filmService.selectByCondition(film);
-        map.addAttribute("filmList", filmList);
+        map.addAttribute("page", new PageInfo<>(filmList));
         return "manager/list";
     }
 
