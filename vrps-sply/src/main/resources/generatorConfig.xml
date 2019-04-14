@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!--去掉getter和setter插件-->
+        <plugin type="com.ly.vrps.plugins.LyPlugin" />
+
+        <!--去掉默认生成的注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="addRemarkComments" value="true" />
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+        </commentGenerator>
+
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/video_resource_playback_site_sp_ly?
+                        autoReconnect=true
+                        &amp;useUnicode=true
+                        &amp;createDatabaseIfNotExist=true
+                        &amp;characterEncoding=utf8
+                        &amp;useSSL=false
+                        &amp;serverTimezone=UTC"
+                        userId="root"
+                        password="mysql246810*">
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.ly.vrps.common.model"
+                            targetProject="src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.ly.vrps.common.dao"
+                             targetProject="src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--生成对应表及类名-->
+        <table tableName="t_bus_catalog" domainObjectName="CataLog"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_film" domainObjectName="Film"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_decade" domainObjectName="Decade"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_level" domainObjectName="Level"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_loc" domainObjectName="Location"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_raty" domainObjectName="Raty"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_res" domainObjectName="Res"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_subclass" domainObjectName="SubClass"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_type" domainObjectName="Type"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_user" domainObjectName="User"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+        <table tableName="t_bus_vip_code" domainObjectName="VipCode"
+               enableSelectByExample="false"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false"
+               enableSelectByPrimaryKey="false"
+        />
+    </context>
+</generatorConfiguration>
