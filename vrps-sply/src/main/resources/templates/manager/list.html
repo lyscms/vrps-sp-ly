@@ -9,6 +9,8 @@
 
     <script th:src="@{/static/js/manager/list.js}" ></script>
     <link th:href="@{/static/css/manager/list.css}" type="text/css" rel="stylesheet">
+    <!--导入layui css文件-->
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -16,7 +18,7 @@
         <div class="col">
             <div class="search-box">
                 <div style="margin:0px auto;width:100%;overflow: hidden;">
-                    <a style="float: left;margin-left: 2px; margin-bottom: 5px;" class="btn btn-info" th:href="@{/video/manager/film.html}">添加影片</a>
+                    <a style="float: left;margin-left: 2px; margin-bottom: 5px;" class="layui-btn layui-btn-sm" th:href="@{/video/manager/film.html}">添加影片</a>
                     <form th:action="@{/video/manager/list.html}" style="display: inline-block; margin-top: 10px;" method="GET">
                         <input type="search" name="name" class="input" th:value="${name}" autocomplete="off"
                                placeholder="请输入影片名称"/>

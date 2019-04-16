@@ -3,18 +3,19 @@ package com.ly.vrps.management.busmanager.web;
 
 import com.ly.vrps.common.model.*;
 import com.ly.vrps.foreign.service.*;
+import com.ly.vrps.management.busmanager.vo.CataLogTree;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -45,10 +46,23 @@ public class CataLogManagerController {
      */
     @GetMapping(value = {"/catalog.html",""})
     @ApiOperation(value = "目录管理界面")
-    public String catalog(ModelMap map) {
-        getCatalog(map);
+    public String catalog() {
         return "manager/catalog";
     }
+
+
+    /**
+     * 获取目录树形结构数据
+     * @return
+     */
+    @GetMapping(value = "/cataLog-list.html",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(value = "获取目录树形结构数据")
+    public String getCataLogListByTree() {
+        String result = JSONArray.fromObject(getCatalog()).toString();
+        return result;
+    }
+
 
     /**
      * 增加目录
@@ -154,29 +168,84 @@ public class CataLogManagerController {
         return id;
     }
 
-    private void getCatalog(ModelMap map) {
+    private Collection<CataLogTree> getCatalog() {
+
+        List<CataLogTree> cataLogTrees = new ArrayList<>();
+
+        /**
+         * 获取目录节点信息
+         */
         List<CataLog> cataLogList = cataLogService.listIsUse();
-        List<String> cataLogIdList = cataLogList.stream().map(CataLog::getId).collect(Collectors.toList());
+        List<CataLogTree> cataLogTreeList = cataLogList.stream().map(cataLog -> {
+            CataLogTree cataLogTree = new CataLogTree();
+            cataLogTree.setId(cataLog.getId());
+            cataLogTree.setParentId(null);
+            cataLogTree.setName(cataLog.getName());
+            return cataLogTree;
+        }).collect(Collectors.toList());
+        cataLogTrees.addAll(cataLogTreeList);
 
-        List<SubClass> subClassList = subClassService.listIsUse(cataLogIdList);
-        Map<String, List<SubClass>> subClassMap = subClassList.stream().collect(Collectors.groupingBy(SubClass::getCatalogId));
 
-        for (int i = 0; i < cataLogList.size(); i++) {
-            CataLog cataLog = cataLogList.get(i);
-            cataLogList.get(i).setSubClassList(subClassMap.get(cataLog.getId()));
-        }
+        /**获取二级目录树形结构*/
+        List<SubClass> subClassList = subClassService.listIsUse();
+        List<CataLogTree> subClassTreeList = subClassList.stream().map(subClass -> {
+            CataLogTree cataLogTree = new CataLogTree();
+            cataLogTree.setId(subClass.getId());
+            cataLogTree.setParentId(subClass.getCatalogId());
+            cataLogTree.setName(subClass.getName());
+            return cataLogTree;
+        }).collect(Collectors.toList());
+        cataLogTrees.addAll(subClassTreeList);
 
+        /**获取类型树形结构*/
         List<Type> typeList = typeService.listIsUse();
-        List<Location> locList = locService.listIsUse();
-        List<Level> levelList = levelService.listIsUse();
-        List<Decade> decadeList = decadeService.listIsUse();
+        List<CataLogTree> typeTreeList = typeList.stream().map(type -> {
+            CataLogTree cataLogTree = new CataLogTree();
+            cataLogTree.setId(type.getId());
+            cataLogTree.setParentId(type.getSubclassId());
+            cataLogTree.setName(type.getName());
+            return cataLogTree;
+        }).collect(Collectors.toList());
+        cataLogTrees.addAll(typeTreeList);
 
-        //读取路径下的文件返回UTF-8类型json字符串
-        map.addAttribute("cataLogList", cataLogList);
-        map.addAttribute("typeList", typeList);
-        map.addAttribute("locList", locList);
-        map.addAttribute("levelList", levelList);
-        map.addAttribute("decadeList", decadeList);
+
+        Map<String,CataLogTree> root = new HashMap<>();
+        cataLogTrees.forEach(cataLogTree -> {
+            if(cataLogTree.getParentId()==null){
+                root.put(cataLogTree.getId(),cataLogTree);
+            }
+        });
+        cataLogTrees.removeAll(root.values());
+
+        /**
+         * 遍历所有子节点
+         */
+        addChildNode(cataLogTrees,root);
+        return root.values();
     }
 
+    private void addChildNode(List<CataLogTree> cataLogTrees,Map<String,CataLogTree> parent) {
+        Map<String,CataLogTree> tempParent = new HashMap<>();
+
+        List<CataLogTree> oldTree = new ArrayList<>();
+        oldTree.addAll(cataLogTrees);
+
+        //如果子节点存在父级节点
+        if(!CollectionUtils.isEmpty(cataLogTrees) && !parent.isEmpty()){
+            for (int i = 0; i < cataLogTrees.size(); i++) {
+                CataLogTree cataLogTree = cataLogTrees.get(i);
+                CataLogTree tree = parent.get(cataLogTree.getParentId());
+                if (tree != null) {
+                    List<CataLogTree> children = parent.get(cataLogTree.getParentId()).getChildren();
+                    if (CollectionUtils.isEmpty(children)) {
+                        parent.get(cataLogTree.getParentId()).setChildren(new ArrayList<>());
+                    }
+                    parent.get(cataLogTree.getParentId()).getChildren().add(cataLogTree);
+                    tempParent.put(cataLogTree.getId(), cataLogTree);
+                    oldTree.remove(cataLogTree);
+                }
+            }
+            addChildNode(oldTree, tempParent);
+        }
+    }
 }

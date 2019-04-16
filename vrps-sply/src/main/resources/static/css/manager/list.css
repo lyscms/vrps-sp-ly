@@ -4,10 +4,9 @@
     font-size: 12px;
     font-family: '微软雅黑';
 }
-
-a {
+a:hover {
+    color: #0056b3;
     text-decoration: none;
-    color: #444;
 }
 
 /*影片列表*/
@@ -33,7 +32,7 @@ a {
     list-style: none;
     float: left;
     width: 100px;
-    margin: 3px;
+    margin: 6px;
 }
 
 .film-list li img {
@@ -51,10 +50,6 @@ a {
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: center;
-}
-
-.film-info a {
-    color: #444;
 }
 
 .film-info p {
