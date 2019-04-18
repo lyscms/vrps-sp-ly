@@ -20,4 +20,6 @@ public interface TypeService {
     Type load(String val);
 
     List<Type> listIsUseBySubClassId(String subClassId);
+
+    void deleteById(String id);
 }

@@ -1,18 +1,21 @@
 package com.ly.vrps.management.busmanager.web;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ly.vrps.common.model.*;
 import com.ly.vrps.foreign.service.*;
 import com.ly.vrps.management.busmanager.vo.CataLogTree;
+import com.ly.vrps.management.busmanager.vo.CataLogVo;
+import com.ly.vrps.management.busmanager.vo.DecadeInfoVo;
+import com.ly.vrps.management.busmanager.vo.LocInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -63,6 +66,70 @@ public class CataLogManagerController {
         return result;
     }
 
+
+    /**
+     * 获取分类信息
+     * @return
+     */
+    @PostMapping(value = "/catalog",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(value = "获取分类信息")
+    public String listCatalog() {
+        List<CataLog> cataLogs = cataLogService.listIsUse();
+        String result = JSONArray.fromObject(cataLogs).toString();
+        return result;
+    }
+
+
+    /**
+     * 删除分类
+     * @return
+     */
+    @PostMapping(value = "/delete")
+    @ResponseBody
+    @ApiOperation(value = "删除所有的分类")
+    public String delete(@RequestBody CataLogVo cataLogVo) {
+        List<String> ids = cataLogVo.getCataIds();
+        if(CollectionUtils.isEmpty(ids)){
+            return "0";
+        }
+        for (int i = 0; i < ids.size(); i++) {
+            cataLogService.deleteById(ids.get(i));
+            subClassService.deleteById(ids.get(i));
+            typeService.deleteById(ids.get(i));
+        }
+        return "1";
+    }
+
+    /**
+     * 删除地区
+     * @return
+     */
+    @PostMapping(value = "/delete-loc")
+    @ResponseBody
+    @ApiOperation(value = "删除地区")
+    public String deleteLoc(String id) {
+        if(StringUtils.isEmpty(id)){
+            return "0";
+        }
+        locService.deleteById(id);
+        return "1";
+    }
+
+    /**
+     * 删除年代
+     * @return
+     */
+    @PostMapping(value = "/delete-decade")
+    @ResponseBody
+    @ApiOperation(value = "删除地区")
+    public String deleteDecade(String id) {
+        if(StringUtils.isEmpty(id)){
+            return "0";
+        }
+        decadeService.deleteById(id);
+        return "1";
+    }
 
     /**
      * 增加目录
@@ -131,8 +198,7 @@ public class CataLogManagerController {
         /**
          * 添加年代
          */
-        String id = decadeService.add(decade);
-        return id;
+        return decadeService.add(decade);
     }
 
     @PostMapping(value = "/addLevel.html")
@@ -168,6 +234,35 @@ public class CataLogManagerController {
         return id;
     }
 
+    @GetMapping(value = "/loc-list")
+    @ResponseBody
+    @ApiOperation(value = "获取地区信息")
+    public LocInfoVo getLoc(Location location, int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<Location> locations = locService.listIsUse();
+        LocInfoVo locInfoVo = new LocInfoVo();
+        locInfoVo.setCode("0");
+        PageInfo<Location> pageInfo = new PageInfo<>(locations);
+        locInfoVo.setCount(Long.valueOf(pageInfo.getTotal()).intValue());
+        locInfoVo.setData(locations);
+        return locInfoVo;
+    }
+
+
+    @GetMapping(value = "/decade-list")
+    @ResponseBody
+    @ApiOperation(value = "获取年代信息")
+    public DecadeInfoVo getDecade(Decade decade, int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<Decade> decades = decadeService.listIsUse();
+        DecadeInfoVo decadeInfoVo = new DecadeInfoVo();
+        decadeInfoVo.setCode("0");
+        PageInfo<Decade> pageInfo = new PageInfo<>(decades);
+        decadeInfoVo.setCount(Long.valueOf(pageInfo.getTotal()).intValue());
+        decadeInfoVo.setData(decades);
+        return decadeInfoVo;
+    }
+
     private Collection<CataLogTree> getCatalog() {
 
         List<CataLogTree> cataLogTrees = new ArrayList<>();
@@ -179,7 +274,7 @@ public class CataLogManagerController {
         List<CataLogTree> cataLogTreeList = cataLogList.stream().map(cataLog -> {
             CataLogTree cataLogTree = new CataLogTree();
             cataLogTree.setId(cataLog.getId());
-            cataLogTree.setParentId(null);
+            cataLogTree.setParentId("0");
             cataLogTree.setName(cataLog.getName());
             return cataLogTree;
         }).collect(Collectors.toList());
@@ -209,19 +304,19 @@ public class CataLogManagerController {
         cataLogTrees.addAll(typeTreeList);
 
 
-        Map<String,CataLogTree> root = new HashMap<>();
+        /*Map<String,CataLogTree> root = new HashMap<>();
         cataLogTrees.forEach(cataLogTree -> {
             if(cataLogTree.getParentId()==null){
                 root.put(cataLogTree.getId(),cataLogTree);
             }
         });
-        cataLogTrees.removeAll(root.values());
+        cataLogTrees.removeAll(root.values());*/
 
         /**
          * 遍历所有子节点
          */
-        addChildNode(cataLogTrees,root);
-        return root.values();
+        /*addChildNode(cataLogTrees,root);*/
+        return cataLogTrees;
     }
 
     private void addChildNode(List<CataLogTree> cataLogTrees,Map<String,CataLogTree> parent) {

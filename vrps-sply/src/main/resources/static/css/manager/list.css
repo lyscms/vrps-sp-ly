@@ -14,7 +14,7 @@ a:hover {
     width: 100%;
     height: auto;
     overflow: hidden;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #009688!important;
 }
 
 .pagination{
@@ -24,8 +24,8 @@ a:hover {
 }
 
 .pagination .active .page-link{
-    background-color: #17a2b8;
-    border-color: #17a2b8;
+    background-color: #009688;
+    border-color: #009688;
 }
 
 .film-list li {
@@ -39,7 +39,7 @@ a:hover {
     width: 100px;
     height: 140px;
     padding: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid #009688;
 }
 
 .film-info {

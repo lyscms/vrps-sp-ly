@@ -18,4 +18,5 @@ public interface CataLogService {
 
     CataLog load(String cataLogId);
 
+    void deleteById(String id);
 }

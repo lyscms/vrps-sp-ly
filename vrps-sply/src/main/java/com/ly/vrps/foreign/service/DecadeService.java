@@ -16,4 +16,6 @@ public interface DecadeService {
     String add(Decade decade);
 
     List<Decade> listIsUse();
+
+    void deleteById(String id);
 }
