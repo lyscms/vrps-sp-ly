@@ -20,4 +20,10 @@ public interface LocService {
      * @param id
      */
     void deleteById(String id);
+
+    /**
+     * 更新地区
+     * @param location
+     */
+    void update(Location location);
 }

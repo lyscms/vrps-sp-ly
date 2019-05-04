@@ -102,7 +102,8 @@ a {
 }
 
 .title {
-    background: #efefef;
+    background: #009688;
+    color: white;
 }
 
 .longInput {
@@ -113,10 +114,10 @@ a {
     padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none;
-    color: #444;
+    color: #fff;
     margin-right: 10px;
-    border: 1px solid #F3B99E;
-    background: #F3D8D6;
+    border: 1px solid #009688;
+    background: #009688;
 }
 
 .edit, .label-input {

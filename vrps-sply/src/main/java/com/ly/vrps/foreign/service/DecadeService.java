@@ -18,4 +18,6 @@ public interface DecadeService {
     List<Decade> listIsUse();
 
     void deleteById(String id);
+
+    void update(Decade decade);
 }

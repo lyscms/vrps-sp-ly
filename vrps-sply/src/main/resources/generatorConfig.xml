@@ -23,7 +23,7 @@
 
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/video_resource_playback_site_sp_ly?
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/examdb?
                         autoReconnect=true
                         &amp;useUnicode=true
                         &amp;createDatabaseIfNotExist=true
@@ -61,18 +61,10 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="t_bus_catalog" domainObjectName="CataLog"
-               enableDeleteByPrimaryKey="false"
-               enableUpdateByPrimaryKey="false"
-               enableInsert="false"
-               enableSelectByExample="true"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableUpdateByExample="false"
-               selectByExampleQueryId="true"
-               enableSelectByPrimaryKey="false"
+        <table tableName="knowledge_points" domainObjectName="KnowledgePoints"
+
         />
-        <table tableName="t_bus_film" domainObjectName="Film"
+        <!--<table tableName="t_bus_film" domainObjectName="Film"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableInsert="false"
@@ -236,6 +228,6 @@
                enableUpdateByExample="false"
                selectByExampleQueryId="true"
                enableSelectByPrimaryKey="false"
-        />
+        />-->
     </context>
 </generatorConfiguration>

@@ -38,4 +38,10 @@ public class LocServiceImpl implements LocService {
     public void deleteById(String id) {
         locationMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void update(Location location) {
+        location.beforeUpdate();
+        locationMapper.updateByPrimaryKeySelective(location);
+    }
 }

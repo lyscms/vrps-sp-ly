@@ -9,5 +9,4 @@ import com.ly.vrps.common.model.Location;
  * @date 2019年03月31日 10:45:31
  */
 public interface LocationMapper extends BaseDao<Location> {
-    int updateByPrimaryKey(Location record);
 }

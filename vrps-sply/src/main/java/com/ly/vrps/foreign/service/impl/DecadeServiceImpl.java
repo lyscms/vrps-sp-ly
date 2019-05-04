@@ -45,4 +45,10 @@ public class DecadeServiceImpl implements DecadeService {
     public void deleteById(String id) {
         decadeMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void update(Decade decade) {
+        decade.beforeUpdate();
+        decadeMapper.updateByPrimaryKeySelective(decade);
+    }
 }

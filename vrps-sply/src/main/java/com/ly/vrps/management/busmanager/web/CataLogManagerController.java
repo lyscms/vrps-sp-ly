@@ -132,6 +132,37 @@ public class CataLogManagerController {
     }
 
     /**
+     * 更新地区
+     * @return
+     */
+    @PostMapping(value = "/update-loc")
+    @ResponseBody
+    @ApiOperation(value = "更新地区")
+    public String updateLoc(Location location) {
+        if(StringUtils.isEmpty(location.getId()) || StringUtils.isEmpty(location.getName())){
+            return "0";
+        }
+        locService.update(location);
+        return "1";
+    }
+
+    /**
+     * 更新年代
+     * @return
+     */
+    @PostMapping(value = "/update-decade")
+    @ResponseBody
+    @ApiOperation(value = "更新地区")
+    public String updateDecade(Decade decade) {
+        if(StringUtils.isEmpty(decade.getId()) || StringUtils.isEmpty(decade.getName())){
+            return "0";
+        }
+        decadeService.update(decade);
+        return "1";
+    }
+
+
+    /**
      * 增加目录
      * @param cataLog
      * @return

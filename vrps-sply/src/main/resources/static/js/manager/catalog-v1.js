@@ -2,10 +2,11 @@ layui.config({
     base: '/static/plugins/layui/lay/modules/'
 }).extend({
     authtree: 'authtree'
-}).use(['authtree','form','table'], function() {
+}).use(['authtree','form','table','laytpl'], function() {
     var authtree = layui.authtree;
     var form = layui.form;
     var table = layui.table;
+    var laytpl = layui.laytpl;
     $.ajax({
         type: "get",
         dataType: "json",
@@ -28,7 +29,7 @@ layui.config({
         ,url:'/catalog/manager/loc-list'
         ,cols: [[
             {field: 'name', title: '地区名称',sort: true},
-            {field: 'createTime', title: '时间',sort: true},
+            {field: 'updateTime', title: '时间',sort: true},
             {fixed: 'right', title:'操作', toolbar: '#operate-bar', width:200}
         ]]
         ,page: true,
@@ -78,6 +79,57 @@ layui.config({
         });
     }
 
+
+    /**
+     * 更新地区
+     * @param data
+     */
+    function updateLoc(id,name) {
+        $.ajax({
+            url: "/catalog/manager/update-loc",
+            type: "post",
+            dataType: "json",
+            data:'id='+id+"&name="+name,
+            success: backFunction,
+            error:function (e) {
+                try {
+                    if(e.responseJSON.status=='403'){
+                        alert(e.responseJSON.message+":你没有操作权限!");
+                    }else{
+                        alert(e.responseJSON.message);
+                    }
+                }catch (e) {
+                    //nothing
+                }
+            }
+        });
+    }
+
+    /**
+     * 更新年代
+     * @param data
+     */
+    function updateDecade(id,name) {
+        $.ajax({
+            url: "/catalog/manager/update-decade",
+            type: "post",
+            dataType: "json",
+            data:'id='+id+"&name="+name,
+            success: backFunction,
+            error:function (e) {
+                try {
+                    if (e.responseJSON.status == '403') {
+                        alert(e.responseJSON.message + ":你没有操作权限!");
+                    } else {
+                        alert(e.responseJSON.message);
+                    }
+                }catch (e) {
+                    //nothing
+                }
+            }
+        });
+    }
+
     //监听工具条
     table.on('tool(loc-id)', function(obj){
         debugger;
@@ -91,15 +143,18 @@ layui.config({
                 layer.close(index);
             });
         } else if(obj.event === 'edit'){
-            $("#loc-edit-name").val(data.name);
+            var html = laytpl($("#loc-edit-form").html()).render({
+                name:data.name
+            });
             layer.open({
                 type: 1
                 ,offset: 'auto' //
                 ,id: 'layerDemo'+'auto' //防止重复弹出
-                ,content: $("#loc-edit-form").html()
+                ,content: html
                 ,btn: ['确认','取消']
                 ,shade: 0 //不显示遮罩
                 ,yes: function(){
+                    updateLoc(data.id,$("#loc-edit-name").val());
                     layer.closeAll();
 
                 }
@@ -120,7 +175,22 @@ layui.config({
                 layer.close(index);
             });
         } else if(obj.event === 'edit'){
-            layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            var html = laytpl($("#decade-edit-form").html()).render({
+                name:data.name
+            });
+            layer.open({
+                type: 1
+                ,offset: 'auto' //
+                ,id: 'layerDemo'+'auto' //防止重复弹出
+                ,content: html
+                ,btn: ['确认','取消']
+                ,shade: 0 //不显示遮罩
+                ,yes: function(){
+                    updateDecade(data.id,$("#decade-edit-name").val());
+                    layer.closeAll();
+
+                }
+            });
         }
     });
 
