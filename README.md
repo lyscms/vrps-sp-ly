@@ -20,8 +20,8 @@
 1. 下载代码
 2. maven方式导入项目
 3. 配置maven settings文件下载依赖：settings_sply.xml, 不同软件配置方式自行百度
-4. 执行Maven Reimport 刷新maven相关依赖下载，等待完成
-5. 新建MYSQL数据库名称为:video_resource_playback_site_sp_ly
+4. 执行maven reimport 刷新maven相关依赖下载，等待完成
+5. 新建Mysql数据库名称为:video_resource_playback_site_sp_ly
 6. 执行vrps-sply子模块sql目录下数据库脚本
 7. 修改application-loc.properties中的数据库连接信息
 8. 执行maven插件:mvn spring-boot:run,也可软件工具方式启动或者执行vrps-sply子模块com.ly.vrps包下的VrpsSpLyApplication.main方法
