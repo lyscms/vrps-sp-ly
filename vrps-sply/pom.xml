@@ -5,7 +5,7 @@
     <parent>
         <artifactId>vrps-sp-ly</artifactId>
         <groupId>com.ly.vrps</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -117,7 +117,7 @@
         <dependency>
             <groupId>com.ly.vrps</groupId>
             <artifactId>mybatis-gen-plugins</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -142,7 +142,7 @@
                     <dependency>
                         <groupId>com.ly.vrps</groupId>
                         <artifactId>mybatis-gen-plugins</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
+                        <version>1.0.2-SNAPSHOT</version>
                     </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
