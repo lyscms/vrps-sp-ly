@@ -190,6 +190,7 @@ $(function () {
         dataType: "json",
         data: "cataLogId=" + $(".cataLog_id_subClass").val(),
         success: function (data) {
+            debugger;
             var jss = data;
             for (var i = 0; i < jss.length; i++) {
                 var op1 = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
