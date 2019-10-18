@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * 为所有实体的父类
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月7日09:36:10
  */
 @Data

@@ -14,4 +14,16 @@ public interface LocService {
     String add(Location loc);
 
     List<Location> listIsUse();
+
+    /**
+     * 删除地区
+     * @param id
+     */
+    void deleteById(String id);
+
+    /**
+     * 更新地区
+     * @param location
+     */
+    void update(Location location);
 }

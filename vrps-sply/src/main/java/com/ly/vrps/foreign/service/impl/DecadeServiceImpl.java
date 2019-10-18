@@ -40,4 +40,15 @@ public class DecadeServiceImpl implements DecadeService {
     public List<Decade> listIsUse() {
         return decadeMapper.selectByIsUse(1);
     }
+
+    @Override
+    public void deleteById(String id) {
+        decadeMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Decade decade) {
+        decade.beforeUpdate();
+        decadeMapper.updateByPrimaryKeySelective(decade);
+    }
 }

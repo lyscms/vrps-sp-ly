@@ -27,6 +27,13 @@
 8. 执行maven插件:mvn spring-boot:run,也可软件工具方式启动或者执行vrps-sply子模块com.ly.vrps包下的VrpsSpLyApplication.main方法
 9. 访问http://localhost:8080
 
-
 #### 博客
 我的CSDN博客：https://blog.csdn.net/xzpdskll
+
+#### 版本升级说明
+
+##### v1.0.2
+````
+  1.修改目录页面改为LaYui界面
+  2.其它部分bug修复
+````

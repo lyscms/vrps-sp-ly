@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * 用户相关工具
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/24
  */
 public class EnvUtils {
@@ -15,7 +15,7 @@ public class EnvUtils {
 
     /**
      * 获取当前登录的Authentication
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/24
      * @return
      */
@@ -25,7 +25,7 @@ public class EnvUtils {
 
     /**
      * 获取当前登录用户
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/24
      * @return
      */
@@ -39,7 +39,7 @@ public class EnvUtils {
 
     /**
      * 获取当前登录用户id
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/24
      * @return
      */
@@ -54,7 +54,7 @@ public class EnvUtils {
 
     /**
      * 获取当前登录用户名
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/24
      * @return
      */
@@ -68,7 +68,7 @@ public class EnvUtils {
 
     /**
      * 获取当前登录账号
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/24
      * @return
      */

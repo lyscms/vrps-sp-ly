@@ -9,6 +9,8 @@
 
     <script th:src="@{/static/js/manager/list.js}" ></script>
     <link th:href="@{/static/css/manager/list.css}" type="text/css" rel="stylesheet">
+    <!--导入layui css文件-->
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -16,16 +18,16 @@
         <div class="col">
             <div class="search-box">
                 <div style="margin:0px auto;width:100%;overflow: hidden;">
-                    <a style="float: left; margin-bottom: 5px;" class="btn btn-dark" th:href="@{/video/manager/film.html}">添加影片</a>
-                    <form th:action="@{/video/manager/list.html}" style="display: inline-block; margin-top: 10px;" method="GET">
-                        <input type="search" name="name" class="input" th:value="${name}" autocomplete="off"
+                    <a style="float: left;margin-left: 2px; " class="layui-btn layui-btn-sm" th:href="@{/video/manager/film.html}">添加影片</a>
+                    <form th:action="@{/video/manager/list.html}" style="display: inline-block;" method="GET">
+                        <input type="search" name="name" class="layui-input" th:value="${name}" autocomplete="off"
                                placeholder="请输入影片名称"/>
                     </form>
                 </div>
             </div>
             <div style="margin: 3px auto;">
                 <ul class="film-list">
-                    <li th:each="list:${filmList}">
+                    <li th:each="list:${page.list}">
                         <a th:href="@{/video/manager/film.html(filmId = ${list.id})}">
                             <div th:title="${list.name}"><img th:src="@{${list.image}}"></div>
                         </a>
@@ -35,6 +37,31 @@
                         </div>
                     </li>
                 </ul>
+
+                <div style="width:100%;margin: 5px auto;height: auto;overflow: hidden;border: 1px solid #009688!important;">
+                    <nav style="float: right;">
+                        <ul class="pagination">
+                            <li th:class="${'page-item'+(page.isFirstPage ? ' disabled':'')}">
+                                <a class="page-link" th:if="${not page.isFirstPage}" th:href="@{/video/manager/(pageNum=${page.pageNum-1},pageSize=${page.pageSize})}">上一页</a>
+                                <a class="page-link" th:if="${page.isFirstPage}" href="javascript:void(0);">上一页</a>
+                            </li>
+
+                            <li th:each="pageNo : ${#numbers.sequence(1, page.pages)}"  th:class="${'page-item '+(page.pageNum eq pageNo ? 'active':'')}">
+                                <a class="page-link" th:if="${page.pageNum eq pageNo}" href="javascript:void(0);">
+                                    <span th:text="${pageNo}"></span>
+                                </a>
+
+                                <a class="page-link" th:if="${not (page.pageNum eq pageNo)}" th:href="@{/video/manager/(pageNum=${pageNo},pageSize=${page.pageSize})}">
+                                    <span th:text="${pageNo}"></span>
+                                </a>
+                            </li>
+                            <li th:class="${'page-item'+(page.isLastPage ? ' disabled':'')}">
+                                <a class="page-link" th:if="${not page.isLastPage}" th:href="@{/video/manager/(pageNum=${page.pageNum+1},pageSize=${page.pageSize})}">下一页</a>
+                                <a class="page-link " th:if="${page.isLastPage}" href="javascript:void(0);">下一页</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

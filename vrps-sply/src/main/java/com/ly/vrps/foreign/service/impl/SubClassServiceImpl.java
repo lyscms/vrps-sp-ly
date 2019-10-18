@@ -58,4 +58,14 @@ public class SubClassServiceImpl implements SubClassService {
         ).build();
         return subClassMapper.selectByExample(example);
     }
+
+    @Override
+    public List<SubClass> listIsUse() {
+        return subClassMapper.select(new SubClass());
+    }
+
+    @Override
+    public void deleteById(String id) {
+        subClassMapper.deleteByPrimaryKey(id);
+    }
 }

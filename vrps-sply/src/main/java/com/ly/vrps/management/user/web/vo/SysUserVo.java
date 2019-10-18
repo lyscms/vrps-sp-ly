@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 用户列表信息VO
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/20
  */
 @Data

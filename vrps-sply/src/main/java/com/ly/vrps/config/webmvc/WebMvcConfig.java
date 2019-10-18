@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 /**
  * MVC配置
- * @author sunkl
+ * @author 1058980664
  * @date 2019/3/24 20:30
  */
 @Configuration

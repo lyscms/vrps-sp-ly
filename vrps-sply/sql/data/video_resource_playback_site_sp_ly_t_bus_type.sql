@@ -1,0 +1,49 @@
+create table t_bus_type
+(
+    id          varchar(255) not null comment '主键'
+        primary key,
+    is_use      int          not null comment '是否在使用',
+    name        varchar(255) null comment '类型名称',
+    subclass_id varchar(255) null comment '子分类id',
+    create_by   varchar(64)  null comment '创建人',
+    create_time datetime     null comment '创建时间',
+    update_by   varchar(64)  null comment '修改人',
+    update_time datetime     null comment '修改时间',
+    remark      text         null comment '备注'
+)
+    comment '类型' charset = utf8;
+
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('0620c8f57f42a4cc89cab6ddc33016d8', 1, '爱情', 'a559754ef20fda71b8dbf8ea1f6c8e94', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('831153b819af44d3b2830122bc76c87b', 1, '123', 'f39c979857b48a2a0157c3053fdc010a', null, '2019-04-17 00:00:00', null, '2019-04-17 00:00:00', null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('d3d96c4b495941eea0d2db8db14fcb28', 1, '房贷首付', 'f39c979857a4874a0157a4a723560001', null, '2019-04-17 00:00:00', null, '2019-04-17 00:00:00', null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857a4c8c50157a8fe5ad8001b', 1, '犯罪', 'f39c979857a4c8c50157a8fe00ff001a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857a4c8c50157ac793ffc0029', 1, '惊悚', 'f39c979857a4c8c50157ac76b5140027', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857ad7e8c0157ae5d8ce30008', 1, '情色', 'f39c979857a4c8c50157a8fe00ff001a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857ad7e8c0157ae6ea77a000c', 1, '爱情', 'f39c979857a4c8c50157a8fe00ff001a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857ad7e8c0157af4c961b001a', 1, '惊悚', 'f39c979857ad7e8c0157af45971a0018', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157b788a8c10003', 1, '爱情', 'f39c979857ad7e8c0157ae8927290011', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157b7a248fb0018', 1, '悬疑', 'f39c979857ad7e8c0157af45971a0018', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157b7b0c3120025', 1, '爱情', 'f39c979857b48a2a0157b7b0974e0024', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157b81d64dd003b', 1, '喜剧', 'f39c979857a4874a0157a4a723560001', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157b83b41680045', 1, '恐怖', 'f39c979857b48a2a0157b83af6940044', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157bdc2b98c004e', 1, '灾难', 'f39c979857b48a2a0157b83af6940044', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157bdd9e3b10055', 1, '科幻', 'f39c979857b48a2a0157bdd983220054', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157be5f4bd0007b', 1, '武侠', 'f39c979857b48a2a0157be5f224f007a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157bebe075200a1', 1, '家庭', 'f39c979857a4c8c50157a8fe00ff001a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157c2c3c94e00b2', 1, '武侠', 'f39c979857b48a2a0157c2c386d600b1', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157c2c3f42800b3', 1, '奇幻', 'f39c979857b48a2a0157c2c386d600b1', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157c2f13a6d00f1', 1, '犯罪', 'f39c979857b48a2a0157b7b0974e0024', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857b48a2a0157c30a04e7010b', 1, '奇幻', 'f39c979857b48a2a0157c3053fdc010a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c74ee3f80030', 1, '内详', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c75d1583003f', 1, '动作', 'f39c979857a4c8c50157a8fe00ff001a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c75d80c80040', 1, '动作', 'f39c979857b48a2a0157be5f224f007a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c77eac7d0054', 1, '喜剧', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c784d4f70056', 1, '奇幻', 'f39c979857ad7e8c0157ae8927290011', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c814e869005a', 1, '格斗', 'f39c979857b48a2a0157b83af6940044', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c81a48f4006a', 1, '格斗', 'f39c979857ad7e8c0157af45971a0018', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c822a1cf006b', 1, '格斗', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c8269392006c', 1, '惊悚', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c82d5f250080', 1, '动作', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c8319d420081', 1, '科幻', 'f39c979857c72e810157c74e89a8002e', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f39c979857c72e810157c83fd8d10098', 1, '冒险', 'f39c979857b48a2a0157be5f224f007a', null, null, null, null, null);
+INSERT INTO video_resource_playback_site_sp_ly.t_bus_type (id, is_use, name, subclass_id, create_by, create_time, update_by, update_time, remark) VALUES ('f50bf782258bf4479e6573ced2c3bad5', 1, '感情', 'a559754ef20fda71b8dbf8ea1f6c8e94', null, null, null, null, null);

@@ -9,7 +9,10 @@ $(function(){
     }catch (e){
         //nothing
     }
-    $("html").niceScroll();
+    $("html").niceScroll({
+        cursorcolor: "#6c757d",
+        cursorborder: "1px solid transparent"
+    });
     /*菜单*/
     $(".menu li a").wrapInner( '<span class="out"></span>');
     $(".menu li a").each(function() {

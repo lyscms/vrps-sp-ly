@@ -19,6 +19,12 @@ a{
     display: block;
     height: auto;
     overflow: hidden;
+    margin-top: 1rem;
+}
+.pagination{
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-right: 6px;
 }
 
 .filter-board .li-head{
@@ -59,7 +65,7 @@ a{
     width: 100%;
     height: auto;
     overflow: auto;
-    background:#343a40;
+    background:#6c757d;
 }
 .user-nav li{
     width:100%;
@@ -204,7 +210,6 @@ a{
 }
 .info span a{
     display: inline-block;
-    float: left;
     width: 50px;
     line-height: 21px;
     height: 21px;
@@ -220,6 +225,7 @@ a{
 .download-btn{
     border-radius: 4px;
     background: #FAD119;
+    float: right;
 }
 /*影片列表*/
 

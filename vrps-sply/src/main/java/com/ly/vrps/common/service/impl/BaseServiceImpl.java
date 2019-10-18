@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Service层基类实现
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/7
  */
 public abstract class BaseServiceImpl<T> implements BaseService<T> {

@@ -1,5 +1,7 @@
 package com.ly.vrps.foreign.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ly.vrps.common.dao.impl.VipCodeMapper;
 import com.ly.vrps.common.model.VipCode;
 import com.ly.vrps.foreign.service.VipCodeService;
@@ -63,5 +65,12 @@ public class VipCodeServiceImpl implements VipCodeService {
     @Override
     public boolean update(VipCode vipCode) {
         return vipCodeMapper.updateByPrimaryKeySelective(vipCode) > 0;
+    }
+
+    @Override
+    public PageInfo<VipCode> selectByPage(VipCode vipCode, int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<VipCode> select = vipCodeMapper.select(vipCode);
+        return new PageInfo<>(select);
     }
 }

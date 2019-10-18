@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 角色信息列表Vo
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/7
  */
 @Data

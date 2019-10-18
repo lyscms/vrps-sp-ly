@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 角色权限关联服务
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 public interface SysRolePermissionRelationService {
@@ -15,7 +15,7 @@ public interface SysRolePermissionRelationService {
     /**
      * 
      * 查询角色权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param roleId
      * @return
@@ -24,7 +24,7 @@ public interface SysRolePermissionRelationService {
 
     /**
      * 查询角色权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @param roleIds
      * @return
@@ -33,7 +33,7 @@ public interface SysRolePermissionRelationService {
 
     /**
      * 增加关联信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/22
      * @param sysRolePermissionRelationQueryVo
      */

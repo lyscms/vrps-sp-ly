@@ -1,56 +1,8 @@
 $(function () {
-    $(".nav-title").click(function () {
-        $(this).parent().find(".nav2-ul").toggle();
-        if($(this).find(".nav-icon").css("background-position")=="-144px -27px"){
-            $(this).find(".nav-icon").css("background-position","-92px -27px");
-        }else{
-            $(this).find(".nav-icon").css("background-position","-144px -27px");
-        }
-    });
 
-    $(".add_CataLog_btn").click(function () {
-        var catalog_name = $(".catalog_name").text();
-        if(catalog_name!=""){
-            $.ajax({
-                url: "/catalog/manager/addCataLog.html",
-                type: "POST",
-                dataType: "json",
-                data: "name=" + catalog_name,
-                success: backFunction,
-                error:function (e) {
-                    if(e.responseJSON.status=='403'){
-                        alert(e.responseJSON.message+":你没有操作权限!");
-                    }else{
-                        alert(e.responseJSON.message);
-                    }
-                }
-            });
-        }else{
-            alert("字段为空！");
-        }
-    });
 
-    $(".add_SubClass_btn").click(function () {
-        var subClass_name = $(".subClass_name").text();
-        if(subClass_name!="") {
-            $.ajax({
-                url: "/catalog/manager/addSubClass.html",
-                type: "POST",
-                dataType: "json",
-                data: "cataLogId=" + $(".cataLog_id").val() + "&name=" + $(".subClass_name").text(),
-                success: backFunction,
-                error:function (e) {
-                    if(e.responseJSON.status=='403'){
-                        alert(e.responseJSON.message+":你没有操作权限!");
-                    }else{
-                        alert(e.responseJSON.message);
-                    }
-                }
-            });
-        }else{
-            alert("字段为空！");
-        }
-    });
+
+
 
     $(".add_Type_btn").click(function () {
         var type_name = $(".type_name").text();

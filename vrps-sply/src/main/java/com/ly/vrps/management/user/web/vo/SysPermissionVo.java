@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 权限信息Vo
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 @Data

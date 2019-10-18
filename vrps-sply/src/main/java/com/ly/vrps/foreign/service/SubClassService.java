@@ -21,4 +21,8 @@ public interface SubClassService {
     List<SubClass> listIsUse(String cataLogId);
 
     List<SubClass> listIsUse(List<String> cataLogIdList);
+
+    List<SubClass> listIsUse();
+
+    void deleteById(String id);
 }

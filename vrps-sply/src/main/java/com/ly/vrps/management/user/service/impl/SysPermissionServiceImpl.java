@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 /**
  * 权限信息实现
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 @Service
@@ -40,7 +40,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
      * 获取指定id的权限信息
      * @param id
      * @return
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      */
     @Override
@@ -52,7 +52,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
      * 条件查询权限信息
      * @param sysPermission
      * @return
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      */
     @Override
@@ -75,7 +75,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     /**
      * 更新权限信息
      * @param sysPermissionInfoQueryVo
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      */
     @Override
@@ -85,7 +85,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     /**
      * 新增权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/21
      * @param sysPermissionInfoQueryVo
      */
@@ -221,7 +221,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     /**
      * 获取方法多个请求方式处理
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/31
      * @param sysPermissionMaps
      * @param addList

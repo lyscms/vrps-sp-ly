@@ -13,7 +13,7 @@
     <div th:replace="pub/head_link"/>
     <div th:replace="pub/head_script"/>
     <!--=====================CSS_Link===========================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index/index.css(v=${pageurl})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index/index.css(v=${version})}">
 
     <!--=====================JS_Link===========================-->
     <script>
@@ -70,7 +70,7 @@
 <body>
 <!--头部-->
 <div th:replace="pub/head"/>
-<div class="container" style="margin-top: 50px;">
+<div class="container" style="margin-top: 80px;">
     <!--滚动banner-->
     <div th:replace="pub/ad_banner"/>
     <div class="row">
@@ -84,48 +84,49 @@
             </ul>
         </div>
         <div class="col-sm-10">
-            <ul class="filter-board" th:if="${cataLogList!=null and cataLogList.size()>0}">
-                <li class="li-head">分类：</li>
-                <li th:each="list:${cataLogList}" th:class="${'li-child'+(cataLogId==list.id?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(cataLogId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
-                </li>
-            </ul>
+            <div style="width: 100%;height: auto;overflow: hidden;border:1px solid #ddd;margin-bottom: 6px;">
+                <ul class="filter-board" th:if="${cataLogList!=null and cataLogList.size()>0}">
+                    <li class="li-head">分类：</li>
+                    <li th:each="list:${cataLogList}" th:class="${'li-child'+(cataLogId==list.id?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(cataLogId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>
 
-            <ul class="filter-board" th:if="${subClassList!=null and subClassList.size()>0}">
-                <li class="li-head">子分类：</li>
-                <li th:each="list:${subClassList}" th:class="${'li-child'+(subClassId==list.id?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(subClassId=${list.id},cataLogId=${cataLogId},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
-                </li>
-            </ul>
+                <ul class="filter-board" th:if="${subClassList!=null and subClassList.size()>0}">
+                    <li class="li-head">子分类：</li>
+                    <li th:each="list:${subClassList}" th:class="${'li-child'+(subClassId==list.id?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(subClassId=${list.id},cataLogId=${cataLogId},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>
 
-            <ul class="filter-board" th:if="${typeList!=null and typeList.size()>0}">
-                <li class="li-head">类型：</li>
-                <li th:each="list:${typeList}" th:class="${'li-child'+(typeId==list.id?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
-                </li>
-            </ul>
+                <ul class="filter-board" th:if="${typeList!=null and typeList.size()>0}">
+                    <li class="li-head">类型：</li>
+                    <li th:each="list:${typeList}" th:class="${'li-child'+(typeId==list.id?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${list.id},locId=${locId},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>
 
-            <ul class="filter-board" th:if="${locList!=null and locList.size()>0}">
-                <li class="li-head">地区：</li>
-                <li th:each="list:${locList}" th:class="${'li-child'+(locId==list.id?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${list.id},onDecade=${onDecade})}" th:text="${list.name}"></a>
-                </li>
-            </ul>
+                <ul class="filter-board" th:if="${locList!=null and locList.size()>0}">
+                    <li class="li-head">地区：</li>
+                    <li th:each="list:${locList}" th:class="${'li-child'+(locId==list.id?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${list.id},onDecade=${onDecade})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>
 
-            <!--<ul class="filter-board" th:if="${levelList!=null and levelList.size()>0}">
-                <li class="li-head">级别：</li>
-                <li th:each="list:${levelList}" th:class="${'li-child'+(levelId==list.id?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},levelId=${list.id})}" th:text="${list.name}"></a>
-                </li>
-            </ul>-->
+                <!--<ul class="filter-board" th:if="${levelList!=null and levelList.size()>0}">
+                    <li class="li-head">级别：</li>
+                    <li th:each="list:${levelList}" th:class="${'li-child'+(levelId==list.id?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},levelId=${list.id})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>-->
 
-            <ul class="filter-board" th:if="${decadeList!=null and decadeList.size()>0}">
-                <li class="li-head">年代：</li>
-                <li th:each="list:${decadeList}" th:class="${'li-child'+(onDecade==list.name?' li-active':'')}" >
-                    <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${list.name})}" th:text="${list.name}"></a>
-                </li>
-            </ul>
-
+                <ul class="filter-board" th:if="${decadeList!=null and decadeList.size()>0}">
+                    <li class="li-head">年代：</li>
+                    <li th:each="list:${decadeList}" th:class="${'li-child'+(onDecade==list.name?' li-active':'')}" >
+                        <a th:href="@{/xl/index.html(subClassId=${subClassId},cataLogId=${cataLogId},typeId=${typeId},locId=${locId},onDecade=${list.name})}" th:text="${list.name}"></a>
+                    </li>
+                </ul>
+            </div>
             <ul class="film-list">
 
                 <li th:each="list:${page.list}">
@@ -159,7 +160,7 @@
                 </li>
             </ul>
             <ul th:if="${page.size==0}" class="mlist">对不起，没有找到任何记录,<a target="_blank" href="note.html"><font color="red"><b>请您在此留言</b></font></a>，我们尽快为你添加喜欢的数据<div class="cr"></div></ul>
-            <div style="width:100%;margin: 5px auto;height: auto;overflow: hidden;">
+            <div style="width:100%;margin: 5px auto;height: auto;overflow: hidden;border: 1px solid #ddd;">
                 <nav style="float: right;">
                     <ul class="pagination">
                         <li th:class="${'page-item'+(page.isFirstPage ? ' disabled':'')}">

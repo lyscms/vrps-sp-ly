@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 用户角色关联服务层
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/20
  */
 public interface SysUserRoleRelationService {
@@ -16,7 +16,7 @@ public interface SysUserRoleRelationService {
 
     /**
      * 删除角色关联信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/20
      * @param id
      */
@@ -24,7 +24,7 @@ public interface SysUserRoleRelationService {
 
     /**
      * 更新用户角色信息关联
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/20
      * @param sysUserInfoQueryVo
      */
@@ -32,7 +32,7 @@ public interface SysUserRoleRelationService {
 
     /**
      * 查询用户关联的角色信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/20
      * @param userId
      * @return

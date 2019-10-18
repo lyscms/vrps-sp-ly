@@ -1,90 +1,177 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html >
+<html lang="en" style="height: 100%;" xmlns:th="http://www.thymeleaf.org"
+      th:with="
+      version=${#dates.createNow().getTime()}">
 <head>
     <meta charset="UTF-8">
     <title>目录</title>
-    <div th:replace="pub/head_meta"/>
-    <div th:replace="pub/head_link"/>
-    <div th:replace="pub/head_script"/>
-    <script th:src="@{/static/js/manager/catalog.js}" ></script>
-    <link th:href="@{/static/css/manager/catalog.css}" type="text/css" rel="stylesheet">
+    <!--导入layui css文件-->
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
+    <!--导入layui js文件-->
+    <script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
+
+    <!--导入Jquery-->
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.serializejson.js"></script>
+    <script type="text/javascript" th:src="@{/static/js/manager/catalog-v1.js(v=${version})}"></script>
+
+    <!--引入多选样式文件-->
+    <link href="/static/plugins/layui/css/modules/formSelects-v4.css" rel="stylesheet" />
 </head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div style="width:50%;float:left;height: auto;overflow: hidden;">
-                <span>一级分类</span><br/>
-                <div contenteditable="true" class="catalog_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_CataLog_btn btn">添加</a><br/><br/>
+<body style="height: 100%;">
+<div class="layui-fluid" style="height: 100%;">
+    <div class="layui-row" style="height: 100%;">
+        <div class="layui-col-sm4" style="height: 100%;">
+            <div class="grid-demo grid-demo-bg1">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        &nbsp;
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分类</label>
+                        <div class="layui-input-inline">
+                              <input type="text" name="title" lay-verify="title" id="catalog_name" autocomplete="off" placeholder="请输入一级分类" class="layui-input catalog_name">
+                        </div>
 
-                <span>二级子分类</span>
-                <select class="cataLogId">
-                   <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
-                </select>
-                <br/>
-                <div contenteditable="true" class="subClass_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_SubClass_btn btn">添加</a><br/><br/>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn add_CataLog_btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                        </div>
+                    </div>
 
-                <span>类型</span><br/>
-                <select class="cataLogId_subClass">
-                    <option th:each="cataLogList_var:${cataLogList}" th:value="${cataLogList_var.id}" th:text="${cataLogList_var.name}"></option>
-                </select>
-                <select class="subClassId"></select><br/>
-                <div contenteditable="true" class="type_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_Type_btn btn">添加</a><br/><br/>
-                <br/>
+                    <hr class="layui-bg-green">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">&nbsp;</label>
+                        <div class="layui-input-inline">
+                            <select name="catalog" lay-verify="" id="cataLog_id"></select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">二级分类</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入二级分类" class="layui-input subClass_name">
+                        </div>
 
-                <h2><span style="color:blue;">一级目录</span>--><span style="color:green;">二级目录</span>--><span style="color:#fd5c11;">类型</span></h2>
-                <span th:each="list:${cataLogList}">
-                    <span style="color:blue;" th:text="${list.name}"></span>
-                    <br/>
-                    <span th:if="${list.subClassList!=null}" th:each="li:${list.subClassList}">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;" th:text="${li.name}"></span>-->
-                        <span th:each="l:${typeList}">
-                            <span th:if="${li.id==l.subclassId}" style="color:#fd5c11;" th:text="${l.name}"></span>
-                        </span>
-                        <br/>
-                    </span>
-                    <br/>
-                </span>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn add_SubClass_btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                        </div>
+                    </div>
+
+                    <hr class="layui-bg-green">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">&nbsp</label>
+                        <div class="layui-input-inline">
+                            <select name="city" lay-filter="type-catalog" id="type-catalog"></select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="city" lay-filter="type-sub-class" id="type-sub-class"></select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">类型</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="title" id="type_name" lay-verify="title" autocomplete="off" placeholder="请输入类型" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">&nbsp;</label>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" id="add_Type_btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        &nbsp;
+                    </div>
+                    <hr class="layui-bg-green">
+                    <div class="layui-form-block" style="margin-left: 10px;">
+                        <button type="button" class="layui-btn layui-btn-sm" onclick="checkAll('#catalog-tree')">全选</button>
+                        <button type="button" class="layui-btn layui-btn-sm" onclick="uncheckAll('#catalog-tree')">全不选</button>
+                        <button type="button" class="layui-btn layui-btn-sm" onclick="showAll('#catalog-tree')">全部展开</button>
+                        <button type="button" class="layui-btn layui-btn-sm" onclick="closeAll('#catalog-tree')">全部隐藏</button>
+                        <button type="button" class="layui-btn layui-btn-sm" onclick="deleteCheck('#catalog-tree')">删除</button>
+                    </div>
+                    <hr class="layui-bg-green">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">目录信息：</label>
+                        <div class="layui-input-block">
+                            <div id="catalog-tree"></div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div style="width:50%;float:left;height: auto;overflow: hidden;">
+        </div>
+        <div class="layui-col-sm4" style="border-left: 1px solid #009688!important;height: 100%;">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    &nbsp;
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">地区</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" lay-verify="title" id="loc_name" autocomplete="off" placeholder="请输入地区" class="layui-input loc_name">
+                    </div>
 
-                <span>地区</span><br/>
-                <div contenteditable="true" class="loc_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_Loc_btn btn" >添加</a><br/><br/>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="add_loc_btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                    </div>
+                </div>
 
+                <hr class="layui-bg-green">
+            </form>
+            <table class="layui-hide" id="loc-id" lay-filter="loc-id"></table>
+        </div>
+        <div class="layui-col-sm4" style="border-left: 1px solid #009688!important;height: 100%;">
 
-                <span>级别</span><br/>
-                <div contenteditable="true" class="level_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_Level_btn btn">添加</a><br/><br/>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    &nbsp;
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年代</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" lay-verify="title" id="decade_name" autocomplete="off" placeholder="请输入年代" class="layui-input decade_name">
+                    </div>
 
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="add_decade_btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                    </div>
+                </div>
 
-                <span>年代</span><br/>
-                <div contenteditable="true" class="decade_name" style="display: inline-block;"></div>
-                <a href="javascript:;" class="add_Decade_btn btn">添加</a><br/><br/>
-
-
-                <h2>地区-->级别-->年代</h2>
-                <br/>
-                <span>地区--></span>
-                <span th:each="locList_list:${locList}" th:text="${locList_list.name}+'&nbsp;&nbsp;&nbsp;'"></span>
-                <br/>
-                <span>级别--></span>
-                <span th:each="levelList_list:${levelList}" th:text="${levelList_list.name}+'&nbsp;&nbsp;&nbsp;'"></span>
-                <br/>
-
-                <span>年代--></span><br/>
-                <span th:each="decadeList_list:${decadeList}">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  th:text="${decadeList_list.name}"></span>
-                    <br/>
-                </span>
-
-                <br/>
-            </div>
+                <hr class="layui-bg-green">
+            </form>
+            <table class="layui-hide" id="decade-id" lay-filter="decade-id"></table>
         </div>
     </div>
 </div>
+
+<!--地区表格操作列的按钮-->
+<script type="text/html" id="operate-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/html" id="loc-edit-form" >
+    <form id="loc-edit-layui-form" class="layui-form"  lay-filter="loc-edit">
+        <div class="layui-form-item" style="margin: 40px;">
+            <label class="layui-form-label" style="text-align: center;">名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" id="loc-edit-name" lay-verify="name" autocomplete="off"
+                       placeholder="地区" class="layui-input" value="{{d.name}}">
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/html" id="decade-edit-form" >
+    <form id="decade-edit-layui-form" class="layui-form"  lay-filter="loc-edit">
+        <div class="layui-form-item" style="margin: 40px;">
+            <label class="layui-form-label" style="text-align: center;">名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" id="decade-edit-name" lay-verify="name" autocomplete="off"
+                       placeholder="地区" class="layui-input" value="{{d.name}}">
+            </div>
+        </div>
+    </form>
+</script>
 </body>
 </html>
+

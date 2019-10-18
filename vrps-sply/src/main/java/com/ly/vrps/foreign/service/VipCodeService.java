@@ -1,5 +1,6 @@
 package com.ly.vrps.foreign.service;
 
+import com.github.pagehelper.PageInfo;
 import com.ly.vrps.common.model.VipCode;
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface VipCodeService {
     VipCode findByVipCode(String code);
 
     boolean update(VipCode vipCode);
+
+    PageInfo<VipCode> selectByPage(VipCode vipCode, int page, int limit);
 }

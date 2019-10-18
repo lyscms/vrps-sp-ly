@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:with="
+      version=${#dates.createNow().getTime()}">
 <head>
     <meta charset="UTF-8">
     <title>添加影片</title>
@@ -9,7 +11,7 @@
 
     <!--=====================CSS_Link===========================-->
     <link rel="stylesheet" href="/static/plugins/uploadify/uploadify.css" type="text/css">
-    <link th:href="@{/static/css/manager/film.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/static/css/manager/film.css(v=${version})}" type="text/css" rel="stylesheet">
     <!--=====================JS_Link===========================-->
     <script type="text/javascript" src="/static/plugins/uploadify/jquery.uploadify.min.js"></script>
 
@@ -309,7 +311,7 @@
                         <div class="left-con">添加资源</div>
                         <div class="right-con">
                         <span class="zhuti">
-                            <a th:if="${film!=null}" href="javascript:;" class="show" th:text="'影片主体：'+ ${film.id}"></a>
+                            <a th:if="${film!=null}" href="javascript:;" style="color: #fff;" class="show" th:text="'影片主体：'+ ${film.id}"></a>
                         </span>
                     </div>
                     </li>

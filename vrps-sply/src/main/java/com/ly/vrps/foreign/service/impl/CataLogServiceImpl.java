@@ -46,4 +46,9 @@ public class CataLogServiceImpl implements CataLogService {
     public CataLog load(String cataLogId) {
         return cataLogMapper.selectByPrimaryKey(cataLogId);
     }
+
+    @Override
+    public void deleteById(String id) {
+        cataLogMapper.deleteByPrimaryKey(id);
+    }
 }

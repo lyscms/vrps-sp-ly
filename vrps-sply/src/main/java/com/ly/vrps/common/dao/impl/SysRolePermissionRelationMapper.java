@@ -7,14 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月21日 14:25:53
  */
 public interface SysRolePermissionRelationMapper extends BaseDao<SysRolePermissionRelation> {
 
     /**
      * 查询角色权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @param roleIds
      * @return

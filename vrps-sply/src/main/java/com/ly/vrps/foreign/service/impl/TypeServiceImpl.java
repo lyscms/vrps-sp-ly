@@ -51,4 +51,9 @@ public class TypeServiceImpl implements TypeService {
         type.setIsUse(1);
         return typeMapper.select(type);
     }
+
+    @Override
+    public void deleteById(String id) {
+        typeMapper.deleteByPrimaryKey(id);
+    }
 }

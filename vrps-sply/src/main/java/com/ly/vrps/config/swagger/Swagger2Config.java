@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger 的配置信息
- * @author sunkl
+ * @author 1058980664
  */
 @Configuration
 @EnableSwagger2

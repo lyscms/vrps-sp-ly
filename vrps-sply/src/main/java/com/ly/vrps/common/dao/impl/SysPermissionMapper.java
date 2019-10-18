@@ -8,14 +8,14 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月21日 15:11:59
  */
 public interface SysPermissionMapper extends BaseDao<SysPermission> {
 
     /**
      * 根据permissionIds查询权限信息
-     * @author sunkl
+     * @author 1058980664
      * @date 2018/12/23
      * @param permissionIds
      * @return
@@ -24,7 +24,7 @@ public interface SysPermissionMapper extends BaseDao<SysPermission> {
 
     /**
      * 根据用户id获取权限(资源)
-     * @author sunkl
+     * @author 1058980664
      * @date 2019/4/14 1:33
      * @param userId
      * @return

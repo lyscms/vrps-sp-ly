@@ -33,4 +33,15 @@ public class LocServiceImpl implements LocService {
         location.setIsUse(1);
         return locationMapper.select(location);
     }
+
+    @Override
+    public void deleteById(String id) {
+        locationMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Location location) {
+        location.beforeUpdate();
+        locationMapper.updateByPrimaryKeySelective(location);
+    }
 }

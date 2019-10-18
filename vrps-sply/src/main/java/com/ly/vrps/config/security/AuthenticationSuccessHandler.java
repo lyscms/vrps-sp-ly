@@ -20,7 +20,7 @@ import java.util.Date;
 /**
  * 自定义认证成功后处理
  *
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/23
  */
 @Slf4j

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 /**
  * 权限信息管理
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 @Slf4j

@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/xl/**",
                         "/index.html",
                         "/note.html",
+                        "/registerInput.html",
                         "/error.html",
                         "/favicon.ico",
                         "/sendEmail.html"
@@ -68,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/static/**",
                 "/upload/**",
                 "/logout.html",
-                "/login.html"
+                "/login.html",
+                "/register.html"
                 );
     }
 

@@ -57,6 +57,15 @@ a {
     height: auto;
     overflow: hidden;
 }
+.film-info a{
+    color: #444;
+}
+.uploadify-button{
+    background-color: #009688;
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #009688), color-stop(1, #009688) );
+    border-color:  #009688;
+}
+
 
 .film-info li {
     width: 100%;
@@ -93,7 +102,8 @@ a {
 }
 
 .title {
-    background: #efefef;
+    background: #009688;
+    color: white;
 }
 
 .longInput {
@@ -104,10 +114,10 @@ a {
     padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none;
-    color: #444;
+    color: #fff;
     margin-right: 10px;
-    border: 1px solid #F3B99E;
-    background: #F3D8D6;
+    border: 1px solid #009688;
+    background: #009688;
 }
 
 .edit, .label-input {

@@ -17,5 +17,4 @@ public class VrpsSpLyApplication {
     public static void main(String[] args) {
         SpringApplication.run(VrpsSpLyApplication.class, args);
     }
-
 }

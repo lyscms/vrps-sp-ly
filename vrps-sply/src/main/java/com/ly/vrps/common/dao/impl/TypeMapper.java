@@ -5,7 +5,7 @@ import com.ly.vrps.common.model.Type;
 
 /**
  * 类型
- * @author sunkl
+ * @author 1058980664
  * @date 2019年03月31日 10:45:31
  */
 public interface TypeMapper extends BaseDao<Type> {

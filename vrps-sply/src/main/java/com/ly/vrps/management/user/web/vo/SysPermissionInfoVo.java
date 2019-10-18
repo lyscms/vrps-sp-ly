@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 权限信息列表
- * @author sunkl
+ * @author 1058980664
  * @date 2018/12/21
  */
 @Data

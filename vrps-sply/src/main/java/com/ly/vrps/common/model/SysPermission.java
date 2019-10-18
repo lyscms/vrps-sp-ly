@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Table;
 
 /**
- * @author sunkl
+ * @author 1058980664
  * @date 2018年12月21日 15:11:59
  */
 @Data
