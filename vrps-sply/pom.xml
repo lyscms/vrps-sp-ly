@@ -117,7 +117,7 @@
         <dependency>
             <groupId>com.ly.vrps</groupId>
             <artifactId>mybatis-gen-plugins</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <version>1.0.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -142,7 +142,7 @@
                     <dependency>
                         <groupId>com.ly.vrps</groupId>
                         <artifactId>mybatis-gen-plugins</artifactId>
-                        <version>1.0.2-SNAPSHOT</version>
+                        <version>1.0.3-SNAPSHOT</version>
                     </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
