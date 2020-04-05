@@ -31,6 +31,9 @@
 我的CSDN博客：https://blog.csdn.net/xzpdskll
 
 #### 版本升级说明
+##### v1.0.3
+
+-  修复后台目录界面引入外部js错误
 
 ##### v1.0.2
 
