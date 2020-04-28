@@ -10,7 +10,7 @@
 
     <groupId>com.ly.vrps</groupId>
     <artifactId>vrps-sp-ly</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>vrps-sp-ly</name>
     <description>VRPS-SP-LY project for Spring Boot</description>
 

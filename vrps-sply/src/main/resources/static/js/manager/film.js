@@ -19,7 +19,7 @@ $(function () {
     $(".edit").click(function () {
         $(this).parent().parent().find(".label-input").show();
         $(this).parent().parent().find(".label").hide();
-        var t = $(this).attr("t");
+        let t = $(this).attr("t");
         if (t != undefined) {
             $("#cancel-bt").hide();
             $("#save-bt").hide();
@@ -29,9 +29,9 @@ $(function () {
         $(this).parent().parent().find(".label-input").hide();
         $(this).parent().parent().find(".label").show();
 
-        var t = $(this).attr("t");
+        let t = $(this).attr("t");
         if (t != undefined) {
-            var filepath = $(this).parent().parent().find(".label .update-pre div img").attr("src");
+            let filepath = $(this).parent().parent().find(".label .update-pre div img").attr("src");
 
             $.ajax({
                 type: "post",
@@ -40,7 +40,7 @@ $(function () {
                 data: "picsPath=" + filepath,
                 dataType: 'json',     //接受数据格式
                 success: function (rs) {
-                    var data = JSON.parse(rs);
+                    let data = JSON.parse(rs);
                     if (data.code == "1") {
                         $("#file_upload").show();
                         $(this).parent().parent().find(".label .update-pre div").remove();
@@ -61,12 +61,11 @@ $(function () {
     })
 
     $(".save").click(function () {
-        debugger;
-        var key = $(this).parent().find(".update-input").attr("name");
-        var key1 = "";
-        var val = "";
-        var val1 = "";
-        var input = $(this).parent().find(".update-input");
+        let key = $(this).parent().find(".update-input").attr("name");
+        let key1 = "";
+        let val = "";
+        let val1 = "";
+        let input = $(this).parent().find(".update-input");
         if (input.attr("el") == "div") {
             val = input.val();
         } else {
@@ -83,7 +82,7 @@ $(function () {
                 val = input.val();
             }
         }
-        var filmId = $(this).attr("filmId");
+        let filmId = $(this).attr("filmId");
         if (val != undefined && val != "") {
             updateFilmInfo(filmId, key, val, this);
             if (key1 != "") {
@@ -142,14 +141,14 @@ function setMoban() {
     $("#res_name").val("xxxx@@集##1##集数结束##分割符号");
 }
 
-var isLoc = 0;
+let isLoc = 0;
 $(function () {
 
     /**
      * 同步更改二级目录
      */
     $(".cataLog_id_subClass").change(function () {
-        var catalog_id = $(this).val();
+        let catalog_id = $(this).val();
         $.ajax({
             url: "getSubClass.html",
             type: "get",
@@ -157,9 +156,9 @@ $(function () {
             data: "cataLogId=" + catalog_id,
             success: function (data) {
                 $(".subClass_id").find("option").remove();
-                var jss = data;
-                for (var i = 0; i < jss.length; i++) {
-                    var op = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
+                let jss = data;
+                for (let i = 0; i < jss.length; i++) {
+                    let op = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
                     $(".subClass_id").append($(op));
                 }
                 getType();
@@ -190,10 +189,9 @@ $(function () {
         dataType: "json",
         data: "cataLogId=" + $(".cataLog_id_subClass").val(),
         success: function (data) {
-            debugger;
-            var jss = data;
-            for (var i = 0; i < jss.length; i++) {
-                var op1 = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
+            const jss = data;
+            for (let i = 0; i < jss.length; i++) {
+                const op1 = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
                 $(".subClass_id").append($(op1));
             }
             getType();
@@ -218,9 +216,9 @@ $(function () {
             data: "subClassId=" + $(".subClass_id").val(),
             success: function (data) {
                 $(".type_id").find("option").remove();
-                var jss = data;
-                for (var i = 0; i < jss.length; i++) {
-                    var op1 = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
+                let jss = data;
+                for (let i = 0; i < jss.length; i++) {
+                    const op1 = "<option value='" + jss[i].id + "'>" + jss[i].name + "</option>";
                     $(".type_id").append($(op1));
                 }
             },
@@ -240,18 +238,18 @@ $(function () {
      */
     $("#addFilm-btn").click(function () {
 
-        var name_val = $("#name").val();
-        var image_val = $("#image").attr("src");
-        var onDecade_val = $("#onDecade").val();
-        var status_val = $("#status").val();
-        var resolution_val = $("#resolution").val();
-        var typeName_val = $("#type_id").find("option:selected").text();
-        var type_id_val = $("#type_id").val();
-        var actor_val = $("#actor").val();
-        var locName_val = $("#locName").find("option:selected").text();
-        var loc_id_val = $("#locName").val();
-        var plot_val = $("#plot").val();
-        var is_vip = $("#isVip").val();
+        let name_val = $("#name").val();
+        let image_val = $("#image").attr("src");
+        let onDecade_val = $("#onDecade").val();
+        let status_val = $("#status").val();
+        let resolution_val = $("#resolution").val();
+        let typeName_val = $("#type_id").find("option:selected").text();
+        let type_id_val = $("#type_id").val();
+        let actor_val = $("#actor").val();
+        let locName_val = $("#locName").find("option:selected").text();
+        let loc_id_val = $("#locName").val();
+        let plot_val = $("#plot").val();
+        let is_vip = $("#isVip").val();
         if (name_val == ""
             || image_val == ""
             || image_val == undefined
@@ -330,12 +328,12 @@ $(function () {
      * 添加影片资源
      */
     $("#addRes-btn").click(function () {
-        var filmId = $(this).attr("filmId");
+        let filmId = $(this).attr("filmId");
 
-        var res_name_val = $("#res_name").val();
-        var res_episodes_val = $("#res_episodes").val();
-        var res_link_val = $("#res_link").val();
-        var res_linkType_val = $("#res_linkType").val();
+        let res_name_val = $("#res_name").val();
+        let res_episodes_val = $("#res_episodes").val();
+        let res_link_val = $("#res_link").val();
+        let res_linkType_val = $("#res_linkType").val();
         if (filmId == undefined || filmId === "") {
             alert("没有影片主体");
         } else if (res_name_val == ""
@@ -421,7 +419,7 @@ $(function () {
      */
     $(".delRes").click(function () {
 
-        var isEnsure = confirm("确定删除?");
+        let isEnsure = confirm("确定删除?");
         if (isEnsure) {
             $.ajax({
                 url: "delRes.html",
@@ -467,66 +465,113 @@ function clearAddFilmInput() {
 /**
  * 文件上传
  */
-var timestamp = new Date().getTime();
-$("#file_upload").uploadify({
-    'formData': {
-        'timestamp': timestamp,
-        'childPath': 'filmPic',
-        'token': 'unique_salt' + timestamp
-    },// 设置想后台传递的参数 如果设置该参数，那么method应该设置为get，才能得到参数
-    "width": 120,
-    "height": 30,
-    "swf": "/static/plugins/uploadify/uploadify.swf",
-    "fileObjName": "download",
-    "buttonText": "上传海报",
-    "uploader": "/upload.html",
-    'cancelImg': '/static/plugins/uploadify/uploadify.swf',// 取消按钮图片路径
-    'removeTimeout': 1,
-    'method': 'post',
-    'fileTypeExts': '*.jpg',
-    'simUploadLimit': 1,
-    'auto': true,// 当选中文件后是否自动提交
-    'uploadLimit': 0,
-    'multi': false,//支持多文件上传
-    "onUploadSuccess": uploadFinish,
-    'onFallback': function () {
-        alert('未检测到兼容版本的Flash.');
-    }
+let timestamp = new Date().getTime();
+
+layui.use('upload', function(){
+    let upload = layui.upload;
+    debugger
+    //执行实例
+    let uploadInst = upload.render({
+        elem: '#file_upload' //绑定元素
+        ,url: '/upload.html', //上传接口
+        data:{
+            'timestamp': timestamp,
+            'childPath': 'filmPic',
+            'token': 'unique_salt' + timestamp
+        }
+        ,done: function(res){
+            //上传完毕回调
+            debugger
+            uploadFinish(res);
+        }
+        ,error: function(e){
+            //请求异常回调
+            // alert('上传文件出错.',e);
+        }
+    });
+
+
+    //执行实例
+    let uploadInstSrc = upload.render({
+        elem: '#file_upload_src' //绑定元素
+        ,url: '/upload.html', //上传接口
+        accept:'video',
+        data:{
+            'timestamp': timestamp,
+            'childPath': 'filmFile',
+            'token': 'unique_salt' + timestamp
+        }
+        ,done: function(res){
+            //上传完毕回调
+            debugger
+            uploadFileFinish(res);
+        }
+        ,error: function(e){
+            //请求异常回调
+            // alert('上传文件出错.',e);
+        }
+    });
 });
 
+// $("#file_upload").uploadify({
+//     'formData': {
+//         'timestamp': timestamp,
+//         'childPath': 'filmPic',
+//         'token': 'unique_salt' + timestamp
+//     },// 设置想后台传递的参数 如果设置该参数，那么method应该设置为get，才能得到参数
+//     "width": 120,
+//     "height": 30,
+//     "swf": "/static/plugins/uploadify/uploadify.swf",
+//     "fileObjName": "download",
+//     "buttonText": "上传海报",
+//     "uploader": "/upload.html",
+//     'cancelImg': '/static/plugins/uploadify/uploadify.swf',// 取消按钮图片路径
+//     'removeTimeout': 1,
+//     'method': 'post',
+//     'fileTypeExts': '*.jpg',
+//     'simUploadLimit': 1,
+//     'auto': true,// 当选中文件后是否自动提交
+//     'uploadLimit': 0,
+//     'multi': false,//支持多文件上传
+//     "onUploadSuccess": uploadFinish,
+//     'onFallback': function () {
+//         alert('未检测到兼容版本的Flash.');
+//     }
+// });
 
-$("#file_upload_src").uploadify({
-    'formData': {
-        'timestamp': timestamp,
-        'childPath': 'filmFile',
-        'token': 'unique_salt' + timestamp
-    },// 设置想后台传递的参数 如果设置该参数，那么method应该设置为get，才能得到参数
-    "width": 120,
-    "height": 30,
-    "swf": "/static/plugins/uploadify/uploadify.swf",
-    "fileObjName": "download",
-    "buttonText": "上传本地影片",
-    "uploader": "/upload.html",
-    'cancelImg': '/static/plugins/uploadify/uploadify.swf',// 取消按钮图片路径
-    'removeTimeout': 1,
-    'method': 'post',
-    'fileTypeExts': '*',
-    'simUploadLimit': 1,
-    'auto': true,// 当选中文件后是否自动提交
-    'uploadLimit': 0,
-    'multi': false,//支持多文件上传
-    "onUploadSuccess": uploadFileFinish,
-    'onFallback': function () {
-        alert('未检测到兼容版本的Flash.');
-    }
-});
+
+// $("#file_upload_src").uploadify({
+//     'formData': {
+//         'timestamp': timestamp,
+//         'childPath': 'filmFile',
+//         'token': 'unique_salt' + timestamp
+//     },// 设置想后台传递的参数 如果设置该参数，那么method应该设置为get，才能得到参数
+//     "width": 120,
+//     "height": 30,
+//     "swf": "/static/plugins/uploadify/uploadify.swf",
+//     "fileObjName": "download",
+//     "buttonText": "上传本地影片",
+//     "uploader": "/upload.html",
+//     'cancelImg': '/static/plugins/uploadify/uploadify.swf',// 取消按钮图片路径
+//     'removeTimeout': 1,
+//     'method': 'post',
+//     'fileTypeExts': '*',
+//     'simUploadLimit': 1,
+//     'auto': true,// 当选中文件后是否自动提交
+//     'uploadLimit': 0,
+//     'multi': false,//支持多文件上传
+//     "onUploadSuccess": uploadFileFinish,
+//     'onFallback': function () {
+//         alert('未检测到兼容版本的Flash.');
+//     }
+// });
 
 
-function uploadFileFinish(file, data) {
-    var file_info = JSON.parse(data)[0];
-    var filePath = file_info.filePath;
-    var file_name = file_info.fileName;
-    var org_file_name = file_name;
+function uploadFileFinish(data) {
+    let file_info = data[0];
+    let filePath = file_info.filePath;
+    let file_name = file_info.fileName;
+    let org_file_name = file_name;
     file_name = file_name.substr(0,file_name.lastIndexOf("."));
     isLoc = 1;
     /**设置资源名称*/
@@ -538,8 +583,8 @@ function uploadFileFinish(file, data) {
     $(".file-pre-file").append($("<div path='"+filePath+"'>"+org_file_name+"<a onClick='del(this,1)' class='del'>删除</a></div>"));
 }
 
-function uploadFinish(file, data) {
-    var file_info = JSON.parse(data)[0].filePath;
+function uploadFinish(data) {
+    let file_info = data[0].filePath;
     $(".file-pre").append($("<div><img src='" + file_info + "' class='update-input' id='image' el='img' name='image'/><a onClick='del(this,2)' class='del'>删除</a></div>"));
     setTimeout(function () {
         $("#cancel-bt").show();
@@ -552,7 +597,7 @@ function uploadFinish(file, data) {
 /**删除图片*/
 function del(e,type) {
     if (confirm("确定删除吗")) {
-        var path = $(e).parent("div").find("img").attr("src");
+        let path = $(e).parent("div").find("img").attr("src");
         if(type==1){
             path =  $(e).parent("div").attr("path");
         }
@@ -563,7 +608,7 @@ function del(e,type) {
             data: "picsPath=" + path,
             dataType: 'json',     //接受数据格式
             success: function (rs) {
-                var data = rs;
+                let data = rs;
                 if (data.code == "1") {
                     $(e).parent("div").remove();
                     if(type!=1){
