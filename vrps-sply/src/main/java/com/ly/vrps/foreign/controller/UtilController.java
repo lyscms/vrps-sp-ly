@@ -74,11 +74,13 @@ public class UtilController{
                 long length = file.getSize();
                 System.out.println("length值=" + length);
                 //如果名称不为“”,说明该文件存在，否则说明该文件不存在
-                if(myFileName.trim() !=""){
+                assert myFileName != null;
+                if(!myFileName.trim().equals("")){
                     System.out.print("上传文件"+count+"："+myFileName+"  用时：");
                     //重命名上传后的文件名
                     String fileName = file.getOriginalFilename();
 
+                    assert fileName != null;
                     String fileType = fileName.substring(fileName.lastIndexOf("."));
 
                     String fileSuffix = fileName.substring(fileName.lastIndexOf(".")+1);

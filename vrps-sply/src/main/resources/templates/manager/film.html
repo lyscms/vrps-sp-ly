@@ -15,6 +15,11 @@
     <!--=====================JS_Link===========================-->
     <script type="text/javascript" src="/static/plugins/uploadify/jquery.uploadify.min.js"></script>
 
+    <!--导入layui css文件-->
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
+    <!--导入layui js文件-->
+    <script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -58,14 +63,20 @@
                                     <a href="javascript:;" class="btn edit" t="img">编辑</a>
                                 </div>
                                 <div class="label-input">
-                                    <input id="file_upload" name="file_upload" type="file">
+                                    <!-- <input id="file_upload" name="file_upload" type="file">-->
+                                    <button type="button" class="layui-btn" id="file_upload">
+                                        <i class="layui-icon">&#xe67c;</i>上传图片
+                                    </button>
                                     <div class="file-pre"></div>
                                     <a href="javascript:;" class="btn save" id="save-bt" th:filmId="${film.id}">保存</a>
                                     <a href="javascript:;" class="btn cancel" t="img" id="cancel-bt">取消</a>
                                 </div>
                             </div>
 
-                            <input th:if="${film==null}" id="file_upload" name="file_upload" type="file">
+                            <button th:if="${film==null}" type="button" class="layui-btn" id="file_upload">
+                                <i class="layui-icon">&#xe67c;</i>上传图片
+                            </button>
+                            <!-- <input th:if="${film==null}" id="file_upload" name="file_upload" type="file">-->
                             <div th:if="${film==null}" class="file-pre"></div>
                         </div>
                     </li>
@@ -317,7 +328,9 @@
                     </li>
                     <li>
                         <div style="width: 200px;height: auto;margin: 10px auto;">
-                            <input id="file_upload_src" name="file_upload" type="file">
+                            <button type="button" class="layui-btn" id="file_upload_src">
+                                <i class="layui-icon">&#xe67c;</i>上传资源
+                            </button>
                         </div>
                         <div class="file-pre-file" style="margin: 10px auto;text-align: center;"></div>
                     </li>
