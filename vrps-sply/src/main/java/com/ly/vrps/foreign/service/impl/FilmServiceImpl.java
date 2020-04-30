@@ -65,7 +65,7 @@ public class FilmServiceImpl implements FilmService {
         CataLog cataLog = cataLogMapper.selectByPrimaryKey(subClass.getCatalogId());
         film.setCataLogId(subClass.getCatalogId());
         film.setCataLogName(cataLog.getName());
-
+        film.beforeInsert();
         return filmMapper.insert(film) > 0 ? film.getId() : "0";
     }
 

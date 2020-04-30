@@ -123,8 +123,7 @@ public class FilmManagerController {
         /**
          * 添加地区
          */
-        String id = filmService.add(film);
-        return id;
+        return filmService.add(film);
     }
 
     /**

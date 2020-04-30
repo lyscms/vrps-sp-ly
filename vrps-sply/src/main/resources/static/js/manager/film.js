@@ -296,17 +296,17 @@ $(function () {
             $.ajax({
                 url: "addFilm.html",
                 type: "post",
-                dataType: "json",
+                dataType: "text",
                 data: "name=" + name_val +
                     "&image=" + image_val +
                     "&onDecade=" + onDecade_val +
                     "&status=" + status_val +
                     "&resolution=" + resolution_val +
                     "&typeName=" + typeName_val +
-                    "&type_id=" + type_id_val +
+                    "&typeId=" + type_id_val +
                     "&actor=" + actor_val +
                     "&locName=" + locName_val +
-                    "&loc_id=" + loc_id_val +
+                    "&locId=" + loc_id_val +
                     "&plot=" + plot_val+
                     "&isVip=" + is_vip,
                 success: addSuccess,
@@ -346,7 +346,7 @@ $(function () {
             $.ajax({
                 url: "addRes.html",
                 type: "post",
-                dataType: "json",
+                dataType: "text",
                 data: "filmId=" + filmId +
                     "&name=" + res_name_val +
                     "&episodes=" + res_episodes_val +
