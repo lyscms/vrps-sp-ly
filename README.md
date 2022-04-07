@@ -28,7 +28,8 @@
 6. 执行vrps-sply子模块sql目录下数据库脚本
 7. 修改application-loc.properties中的数据库连接信息
 8. 执行maven插件:mvn spring-boot:run,也可软件工具方式启动或者执行vrps-sply子模块com.ly.vrps包下的VrpsSpLyApplication.main方法
-9. 访问http://localhost:8080
+9. 前台访问地址：http://localhost:8080
+10. 后台访问地址：http://localhost:8080/manager   sply-admin 123456
 
 #### 博客
 我的CSDN博客：https://blog.csdn.net/xzpdskll
